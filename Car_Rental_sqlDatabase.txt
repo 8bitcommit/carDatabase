@@ -1,0 +1,79 @@
+use Project_group3;
+
+drop table Branch;
+drop table Employee;
+drop table Customer;
+drop table VehicleType;
+drop table Vehicle;
+drop table Rental;
+
+CREATE TABLE Branch(
+BranchID int IDENTITY(5000, 1) primary key,
+BranchName nchar(10) NULL,
+PhoneNumber nchar(10) NULL,
+UnitNum int NULL,
+Street nchar(10) NULL,
+City nchar(10) NULL,
+Province nchar(10) NULL,
+PostalCode nchar(10) NULL);
+
+CREATE TABLE Employee(
+EmployeeID int IDENTITY(10000,1) primary key,
+FirstName nchar(20) NULL,
+LastName nchar(20) NULL, 
+Gender nchar(2) NULL, 
+DOB date NULL,
+Email nchar(40) NULL,
+UnitNum int NULL,
+Street nchar(10) NULL,
+City nchar(10) NULL,
+Province nchar(10) NULL,
+PostalCode nchar(10) NULL);
+
+CREATE TABLE Customer(
+CustomerID int IDENTITY(100,1) primary key,
+FirstName nchar(20) NULL,
+LastName nchar(20) NULL, 
+Gender nchar(2) NULL, 
+DOB date NULL,
+Email nchar(40) NULL,
+UnitNum int NULL,
+Street nchar(10) NULL,
+City nchar(10) NULL,
+Province nchar(10) NULL,
+PostalCode nchar(10) NULL);
+
+CREATE TABLE VehicleType(
+vType nchar(7) primary key,
+CostPerDay numeric(6, 2) NULL,
+CostPerWeek numeric(6, 2) NULL,
+CostPerMonth numeric(6, 2) NULL);
+
+CREATE TABLE Vehicle(
+VIN nchar(10) primary key,
+LicensePlate nchar(7) NULL,
+Mileage numeric(6, 0) NULL,
+vType nchar(7) NULL);
+
+CREATE TABLE Rental(
+TransactionID nchar(10) primary key,
+DateRented date NULL,
+DateReturned date NULL,
+TotalPrice numeric(6, 2) NULL,
+EmployeeID int IDENTITY(10000,1),
+CustomerID int NULL,
+VIN nchar(10) NULL,
+RentedFrom int NULL,
+ReturnedTo int NULL);
+
+ALTER TABLE Vehicle ADD FOREIGN KEY (vType) REFERENCES VehicleType(vType);
+--EmployeeID FK Reference Employee
+ALTER TABLE Rental ADD FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID);
+--CustomerID FK Reference Customer
+ALTER TABLE Rental ADD FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
+--VIN FK Reference Vehicle
+ALTER TABLE Rental ADD FOREIGN KEY (VIN) REFERENCES Vehicle(VIN);
+--RentedFrom FK Reference Branch
+ALTER TABLE Rental ADD FOREIGN KEY (RentedFrom) REFERENCES Branch(BranchID);
+--ReturnedTo FK Reference Branch
+ALTER TABLE Rental ADD FOREIGN KEY (ReturnedTo) REFERENCES Branch(BranchID);
