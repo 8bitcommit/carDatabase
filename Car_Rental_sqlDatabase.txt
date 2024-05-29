@@ -66,6 +66,7 @@ VIN nchar(10) NULL,
 RentedFrom int NULL,
 ReturnedTo int NULL);
 
+-- vType FKReference Vehicle
 ALTER TABLE Vehicle ADD FOREIGN KEY (vType) REFERENCES VehicleType(vType);
 --EmployeeID FK Reference Employee
 ALTER TABLE Rental ADD FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID);
