@@ -55,6 +55,7 @@ LicensePlate nchar(7) NULL,
 Mileage numeric(6, 0) NULL,
 Make nchar(10) NULL,
 Model nchar(10) NULL,
+Colour nchar(10) NULL,
 vType nchar(7) NULL);
 
 CREATE TABLE Rental(
