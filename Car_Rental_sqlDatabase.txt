@@ -53,6 +53,9 @@ CREATE TABLE Vehicle(
 VIN nchar(10) primary key,
 LicensePlate nchar(7) NULL,
 Mileage numeric(6, 0) NULL,
+Make nchar(10) NULL,
+Model nchar(10) NULL,
+Colour nchar(10) NULL,
 vType nchar(7) NULL);
 
 CREATE TABLE Rental(
@@ -66,7 +69,6 @@ VIN nchar(10) NULL,
 RentedFrom int NULL,
 ReturnedTo int NULL);
 
--- vType FKReference Vehicle
 ALTER TABLE Vehicle ADD FOREIGN KEY (vType) REFERENCES VehicleType(vType);
 --EmployeeID FK Reference Employee
 ALTER TABLE Rental ADD FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID);
