@@ -31,11 +31,14 @@
             mult = new RadioButton();
             add = new RadioButton();
             sub = new RadioButton();
-            tabPage3 = new TabPage();
+            Car = new TabPage();
+            Delete = new RadioButton();
+            textBox6 = new TextBox();
+            label2 = new Label();
             label1 = new Label();
             button1 = new Button();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
+            Search = new RadioButton();
+            Modify = new RadioButton();
             radioButton1 = new RadioButton();
             comboBox1 = new ComboBox();
             label4 = new Label();
@@ -49,7 +52,7 @@
             label6 = new Label();
             label5 = new Label();
             VIN = new Label();
-            tabPage2 = new TabPage();
+            Rental = new TabPage();
             ReturnBox = new ComboBox();
             locationReturn = new Label();
             diff = new RadioButton();
@@ -62,11 +65,9 @@
             DateP = new DateTimePicker();
             enterp = new Label();
             tabControl1 = new TabControl();
-            tabPage4 = new TabPage();
-            textBox6 = new TextBox();
-            label2 = new Label();
-            tabPage3.SuspendLayout();
-            tabPage2.SuspendLayout();
+            Reports = new TabPage();
+            Car.SuspendLayout();
+            Rental.SuspendLayout();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
@@ -105,33 +106,64 @@
             sub.Text = "Subtract";
             sub.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // Car
             // 
-            tabPage3.BackColor = SystemColors.GradientInactiveCaption;
-            tabPage3.Controls.Add(textBox6);
-            tabPage3.Controls.Add(label2);
-            tabPage3.Controls.Add(label1);
-            tabPage3.Controls.Add(button1);
-            tabPage3.Controls.Add(radioButton3);
-            tabPage3.Controls.Add(radioButton2);
-            tabPage3.Controls.Add(radioButton1);
-            tabPage3.Controls.Add(comboBox1);
-            tabPage3.Controls.Add(label4);
-            tabPage3.Controls.Add(textBox5);
-            tabPage3.Controls.Add(label8);
-            tabPage3.Controls.Add(textBox4);
-            tabPage3.Controls.Add(label7);
-            tabPage3.Controls.Add(textBox3);
-            tabPage3.Controls.Add(textBox2);
-            tabPage3.Controls.Add(textBox1);
-            tabPage3.Controls.Add(label6);
-            tabPage3.Controls.Add(label5);
-            tabPage3.Controls.Add(VIN);
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(758, 596);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Car";
+            Car.AccessibleRole = AccessibleRole.Caret;
+            Car.BackColor = SystemColors.GradientInactiveCaption;
+            Car.Controls.Add(Delete);
+            Car.Controls.Add(textBox6);
+            Car.Controls.Add(label2);
+            Car.Controls.Add(label1);
+            Car.Controls.Add(button1);
+            Car.Controls.Add(Search);
+            Car.Controls.Add(Modify);
+            Car.Controls.Add(radioButton1);
+            Car.Controls.Add(comboBox1);
+            Car.Controls.Add(label4);
+            Car.Controls.Add(textBox5);
+            Car.Controls.Add(label8);
+            Car.Controls.Add(textBox4);
+            Car.Controls.Add(label7);
+            Car.Controls.Add(textBox3);
+            Car.Controls.Add(textBox2);
+            Car.Controls.Add(textBox1);
+            Car.Controls.Add(label6);
+            Car.Controls.Add(label5);
+            Car.Controls.Add(VIN);
+            Car.Location = new Point(4, 29);
+            Car.Name = "Car";
+            Car.Size = new Size(758, 596);
+            Car.TabIndex = 2;
+            Car.Text = "Car";
+            // 
+            // Delete
+            // 
+            Delete.AutoSize = true;
+            Delete.Location = new Point(441, 414);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(74, 24);
+            Delete.TabIndex = 23;
+            Delete.TabStop = true;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.CheckedChanged += radioButton4_CheckedChanged;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(219, 280);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(151, 27);
+            textBox6.TabIndex = 22;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label2.Location = new Point(41, 276);
+            label2.Name = "label2";
+            label2.Size = new Size(93, 31);
+            label2.TabIndex = 21;
+            label2.Text = "Colour:";
             // 
             // label1
             // 
@@ -153,28 +185,28 @@
             button1.Text = "Submit";
             button1.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // Search
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(460, 414);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(74, 24);
-            radioButton3.TabIndex = 18;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Search";
-            radioButton3.UseVisualStyleBackColor = true;
+            Search.AutoSize = true;
+            Search.Location = new Point(549, 414);
+            Search.Name = "Search";
+            Search.Size = new Size(74, 24);
+            Search.TabIndex = 18;
+            Search.TabStop = true;
+            Search.Text = "Search";
+            Search.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // Modify
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(336, 414);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(77, 24);
-            radioButton2.TabIndex = 17;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Modify";
-            radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            Modify.AutoSize = true;
+            Modify.Location = new Point(336, 414);
+            Modify.Name = "Modify";
+            Modify.Size = new Size(77, 24);
+            Modify.TabIndex = 17;
+            Modify.TabStop = true;
+            Modify.Text = "Modify";
+            Modify.UseVisualStyleBackColor = true;
+            Modify.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // radioButton1
             // 
@@ -294,27 +326,27 @@
             VIN.Text = "VIN:";
             VIN.Click += label4_Click_3;
             // 
-            // tabPage2
+            // Rental
             // 
-            tabPage2.BackColor = SystemColors.GradientInactiveCaption;
-            tabPage2.Controls.Add(ReturnBox);
-            tabPage2.Controls.Add(locationReturn);
-            tabPage2.Controls.Add(diff);
-            tabPage2.Controls.Add(addBranch);
-            tabPage2.Controls.Add(Reserve);
-            tabPage2.Controls.Add(dateR);
-            tabPage2.Controls.Add(enterD);
-            tabPage2.Controls.Add(branch);
-            tabPage2.Controls.Add(locationtext);
-            tabPage2.Controls.Add(DateP);
-            tabPage2.Controls.Add(enterp);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(758, 596);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Rental";
-            tabPage2.Click += tabPage2_Click;
+            Rental.BackColor = SystemColors.GradientInactiveCaption;
+            Rental.Controls.Add(ReturnBox);
+            Rental.Controls.Add(locationReturn);
+            Rental.Controls.Add(diff);
+            Rental.Controls.Add(addBranch);
+            Rental.Controls.Add(Reserve);
+            Rental.Controls.Add(dateR);
+            Rental.Controls.Add(enterD);
+            Rental.Controls.Add(branch);
+            Rental.Controls.Add(locationtext);
+            Rental.Controls.Add(DateP);
+            Rental.Controls.Add(enterp);
+            Rental.Location = new Point(4, 29);
+            Rental.Name = "Rental";
+            Rental.Padding = new Padding(3);
+            Rental.Size = new Size(758, 596);
+            Rental.TabIndex = 1;
+            Rental.Text = "Rental";
+            Rental.Click += tabPage2_Click;
             // 
             // ReturnBox
             // 
@@ -436,41 +468,24 @@
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
-            tabControl1.Location = new Point(35, 51);
+            tabControl1.Controls.Add(Car);
+            tabControl1.Controls.Add(Rental);
+            tabControl1.Controls.Add(Reports);
+            tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(766, 629);
             tabControl1.TabIndex = 11;
             // 
-            // tabPage4
+            // Reports
             // 
-            tabPage4.BackColor = SystemColors.GradientInactiveCaption;
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(758, 596);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Reports";
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(219, 280);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(151, 27);
-            textBox6.TabIndex = 22;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label2.Location = new Point(41, 276);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 31);
-            label2.TabIndex = 21;
-            label2.Text = "Colour:";
+            Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Location = new Point(4, 29);
+            Reports.Name = "Reports";
+            Reports.Padding = new Padding(3);
+            Reports.Size = new Size(758, 596);
+            Reports.TabIndex = 3;
+            Reports.Text = "Reports";
             // 
             // Form1
             // 
@@ -482,10 +497,10 @@
             Name = "Form1";
             Text = "Reservation";
             Load += Form1_Load;
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
+            Car.ResumeLayout(false);
+            Car.PerformLayout();
+            Rental.ResumeLayout(false);
+            Rental.PerformLayout();
             tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -494,8 +509,9 @@
         private RadioButton mult;
         private RadioButton add;
         private RadioButton sub;
-        private TabPage tabPage3;
-        private TabPage tabPage2;
+        private TabPage Car;
+        private RadioButton Delete;
+        private TabPage Rental;
         private ComboBox ReturnBox;
         private Label locationReturn;
         private RadioButton diff;
@@ -508,7 +524,7 @@
         private DateTimePicker DateP;
         private Label enterp;
         private TabControl tabControl1;
-        private TabPage tabPage4;
+        private TabPage Reports;
         private Label label6;
         private Label label5;
         private Label VIN;
@@ -522,11 +538,12 @@
         private TextBox textBox4;
         private Label label7;
         private Button button1;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
+        private RadioButton Search;
+        private RadioButton Modify;
         private RadioButton radioButton1;
         private Label label1;
         private TextBox textBox6;
         private Label label2;
+        private TabPage tabPage3;
     }
 }
