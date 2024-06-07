@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Adam David\\Desktop\\CMPT291-master\\project291.csproj": {}
+    "C:\\Users\\saphi\\Source\\Repos\\CMPT29\\project291.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Adam David\\Desktop\\CMPT291-master\\project291.csproj": {
+    "C:\\Users\\saphi\\Source\\Repos\\CMPT29\\project291.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Adam David\\Desktop\\CMPT291-master\\project291.csproj",
+        "projectUniqueName": "C:\\Users\\saphi\\Source\\Repos\\CMPT29\\project291.csproj",
         "projectName": "project291",
-        "projectPath": "C:\\Users\\Adam David\\Desktop\\CMPT291-master\\project291.csproj",
-        "packagesPath": "C:\\Users\\Adam David\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Adam David\\Desktop\\CMPT291-master\\obj\\",
+        "projectPath": "C:\\Users\\saphi\\Source\\Repos\\CMPT29\\project291.csproj",
+        "packagesPath": "C:\\Users\\saphi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\saphi\\Source\\Repos\\CMPT29\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Adam David\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\saphi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

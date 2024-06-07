@@ -1,0 +1,17 @@
+C:\Users\saphi\Source\Repos\CMPT29\bin\Debug\net8.0-windows\project291.exe
+C:\Users\saphi\Source\Repos\CMPT29\bin\Debug\net8.0-windows\project291.deps.json
+C:\Users\saphi\Source\Repos\CMPT29\bin\Debug\net8.0-windows\project291.runtimeconfig.json
+C:\Users\saphi\Source\Repos\CMPT29\bin\Debug\net8.0-windows\project291.dll
+C:\Users\saphi\Source\Repos\CMPT29\bin\Debug\net8.0-windows\project291.pdb
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\LAB6291.Form1.resources
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.csproj.GenerateResource.cache
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.AssemblyInfoInputs.cache
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.AssemblyInfo.cs
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.csproj.CoreCompileInputs.cache
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.sourcelink.json
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.dll
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\refint\project291.dll
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.pdb
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\project291.genruntimeconfig.cache
+C:\Users\saphi\Source\Repos\CMPT29\obj\Debug\net8.0-windows\ref\project291.dll
