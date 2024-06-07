@@ -1,13 +1,31 @@
+using Microsoft.Data.SqlClient;
+
 namespace LAB6291
 {
     public partial class Form1 : Form
     {
+        public SqlConnection myConnection;
+        public SqlCommand myCommand;
+        public SqlDataReader myReader;
+
         public Form1()
         {
             InitializeComponent();
-           
-        
-       
+            string connectionString = "Server = Bubbles; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+
+            var myConnection = new SqlConnection(connectionString); // Timeout in seconds
+
+            try
+            {
+                myConnection.Open(); // Open connection
+                myCommand = new SqlCommand();
+                myCommand.Connection = myConnection; // Link the command stream to the connection
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+                this.Close();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
