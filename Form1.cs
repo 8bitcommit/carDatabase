@@ -28,127 +28,30 @@ namespace LAB6291
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void ReserveButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
-        private void label4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label4_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string mes = "Reservation from " + branch.Text + " branch \nFrom Date: " + DateP.Text + " To Date: " + dateR.Text + "\nFor:" + (dateR.Value - DateP.Value).Days.ToString() + " days is Confirmed";
+            string mes = "Reservation from " + BranchComboBox.Text + " branch \nFrom Date: " + PickUpPicker.Text + " To Date: " + DropOffPicker.Text + "\nFor:" + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days is Confirmed";
             MessageBox.Show(mes);
         }
 
-        private void addBranch_Click(object sender, EventArgs e)
+        private void AddBranchButton_Click(object sender, EventArgs e)
         {
-            branch.Items.Add("London");
+            BranchComboBox.Items.Add("London");
         }
 
-        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        private void DifferentLocationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (diff.Checked == true)
-                locationReturn.Visible = true;
-            ReturnBox.Visible = true;
-
-
-        }
-
-        private void locationtext_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ReturnBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click_3(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
+            if (DifferentLocationCheckBox.Checked)
+            {
+                ReturnBranchLabel.Visible = true;
+                ReturnComboBox.Visible = true;
+            }
+            else
+            {
+                ReturnBranchLabel.Visible = false;
+                ReturnComboBox.Visible = false;
+            }
         }
     }
 }

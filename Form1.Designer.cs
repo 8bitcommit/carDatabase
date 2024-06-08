@@ -28,522 +28,485 @@
         /// </summary>
         private void InitializeComponent()
         {
-            mult = new RadioButton();
-            add = new RadioButton();
-            sub = new RadioButton();
-            Car = new TabPage();
-            Delete = new RadioButton();
-            textBox6 = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            button1 = new Button();
-            Search = new RadioButton();
-            Modify = new RadioButton();
-            radioButton1 = new RadioButton();
-            comboBox1 = new ComboBox();
-            label4 = new Label();
-            textBox5 = new TextBox();
-            label8 = new Label();
-            textBox4 = new TextBox();
-            label7 = new Label();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            label6 = new Label();
-            label5 = new Label();
-            VIN = new Label();
-            Rental = new TabPage();
-            ReturnBox = new ComboBox();
-            locationReturn = new Label();
-            diff = new RadioButton();
-            addBranch = new Button();
-            Reserve = new Button();
-            dateR = new DateTimePicker();
-            enterD = new Label();
-            branch = new ComboBox();
-            locationtext = new Label();
-            DateP = new DateTimePicker();
-            enterp = new Label();
-            tabControl1 = new TabControl();
             Reports = new TabPage();
-            Car.SuspendLayout();
+            Rental = new TabPage();
+            DifferentLocationCheckBox = new CheckBox();
+            ReturnComboBox = new ComboBox();
+            ReturnBranchLabel = new Label();
+            AddBranchButton = new Button();
+            ReserveButton = new Button();
+            DropOffPicker = new DateTimePicker();
+            DropOffDateLabel = new Label();
+            BranchComboBox = new ComboBox();
+            PickUpBranchLabel = new Label();
+            PickUpPicker = new DateTimePicker();
+            PickUpDateLabel = new Label();
+            Car = new TabPage();
+            DeleteRadioButton = new RadioButton();
+            ColourTextBox = new TextBox();
+            ModelTextBox = new TextBox();
+            MakeTextBox = new TextBox();
+            KilometersTextBox = new TextBox();
+            VINTextBox = new TextBox();
+            LicensePlateTextBox = new TextBox();
+            ColourLabel = new Label();
+            SelectOneLabel = new Label();
+            SubmitButton = new Button();
+            SearchRadioButton = new RadioButton();
+            ModifyRadioButton = new RadioButton();
+            AddRadioButton = new RadioButton();
+            VehicleTypeComboBox = new ComboBox();
+            VehicleTypeLabel = new Label();
+            ModelLabel = new Label();
+            MakeLabel = new Label();
+            KilometersLabel = new Label();
+            LicensePlateLabel = new Label();
+            VINLabel = new Label();
+            tabControl1 = new TabControl();
             Rental.SuspendLayout();
+            Car.SuspendLayout();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // mult
+            // Reports
             // 
-            mult.AutoSize = true;
-            mult.Location = new Point(170, 4);
-            mult.Name = "mult";
-            mult.Size = new Size(84, 24);
-            mult.TabIndex = 10;
-            mult.TabStop = true;
-            mult.Text = "Multiply";
-            mult.UseVisualStyleBackColor = true;
-            mult.CheckedChanged += radioButton3_CheckedChanged;
+            Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Location = new Point(4, 24);
+            Reports.Margin = new Padding(3, 2, 3, 2);
+            Reports.Name = "Reports";
+            Reports.Padding = new Padding(3, 2, 3, 2);
+            Reports.Size = new Size(662, 444);
+            Reports.TabIndex = 3;
+            Reports.Text = "Reports";
             // 
-            // add
+            // Rental
             // 
-            add.AutoSize = true;
-            add.Location = new Point(15, 4);
-            add.Name = "add";
-            add.Size = new Size(58, 24);
-            add.TabIndex = 8;
-            add.TabStop = true;
-            add.Text = "Add";
-            add.UseVisualStyleBackColor = true;
-            add.CheckedChanged += radioButton1_CheckedChanged;
+            Rental.BackColor = SystemColors.GradientInactiveCaption;
+            Rental.Controls.Add(DifferentLocationCheckBox);
+            Rental.Controls.Add(ReturnComboBox);
+            Rental.Controls.Add(ReturnBranchLabel);
+            Rental.Controls.Add(AddBranchButton);
+            Rental.Controls.Add(ReserveButton);
+            Rental.Controls.Add(DropOffPicker);
+            Rental.Controls.Add(DropOffDateLabel);
+            Rental.Controls.Add(BranchComboBox);
+            Rental.Controls.Add(PickUpBranchLabel);
+            Rental.Controls.Add(PickUpPicker);
+            Rental.Controls.Add(PickUpDateLabel);
+            Rental.Location = new Point(4, 24);
+            Rental.Margin = new Padding(3, 2, 3, 2);
+            Rental.Name = "Rental";
+            Rental.Padding = new Padding(3, 2, 3, 2);
+            Rental.Size = new Size(662, 444);
+            Rental.TabIndex = 1;
+            Rental.Text = "Rental";
             // 
-            // sub
+            // DifferentLocationCheckBox
             // 
-            sub.AutoSize = true;
-            sub.Location = new Point(79, 4);
-            sub.Name = "sub";
-            sub.Size = new Size(85, 24);
-            sub.TabIndex = 9;
-            sub.TabStop = true;
-            sub.Text = "Subtract";
-            sub.UseVisualStyleBackColor = true;
+            DifferentLocationCheckBox.AutoSize = true;
+            DifferentLocationCheckBox.Location = new Point(59, 93);
+            DifferentLocationCheckBox.Name = "DifferentLocationCheckBox";
+            DifferentLocationCheckBox.Size = new Size(169, 19);
+            DifferentLocationCheckBox.TabIndex = 14;
+            DifferentLocationCheckBox.Text = "Return to different location";
+            DifferentLocationCheckBox.UseVisualStyleBackColor = true;
+            DifferentLocationCheckBox.CheckedChanged += DifferentLocationCheckBox_CheckedChanged;
+            // 
+            // ReturnComboBox
+            // 
+            ReturnComboBox.FormattingEnabled = true;
+            ReturnComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            ReturnComboBox.Location = new Point(207, 148);
+            ReturnComboBox.Margin = new Padding(3, 2, 3, 2);
+            ReturnComboBox.Name = "ReturnComboBox";
+            ReturnComboBox.Size = new Size(133, 23);
+            ReturnComboBox.TabIndex = 13;
+            ReturnComboBox.Visible = false;
+            // 
+            // ReturnBranchLabel
+            // 
+            ReturnBranchLabel.AutoSize = true;
+            ReturnBranchLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ReturnBranchLabel.Location = new Point(59, 143);
+            ReturnBranchLabel.Name = "ReturnBranchLabel";
+            ReturnBranchLabel.Size = new Size(78, 25);
+            ReturnBranchLabel.TabIndex = 12;
+            ReturnBranchLabel.Text = "Return:";
+            ReturnBranchLabel.Visible = false;
+            // 
+            // AddBranchButton
+            // 
+            AddBranchButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AddBranchButton.Location = new Point(240, 376);
+            AddBranchButton.Margin = new Padding(3, 2, 3, 2);
+            AddBranchButton.Name = "AddBranchButton";
+            AddBranchButton.Size = new Size(154, 40);
+            AddBranchButton.TabIndex = 10;
+            AddBranchButton.Text = "Add Branch";
+            AddBranchButton.UseVisualStyleBackColor = true;
+            AddBranchButton.Click += AddBranchButton_Click;
+            // 
+            // ReserveButton
+            // 
+            ReserveButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ReserveButton.Location = new Point(46, 374);
+            ReserveButton.Margin = new Padding(3, 2, 3, 2);
+            ReserveButton.Name = "ReserveButton";
+            ReserveButton.Size = new Size(132, 44);
+            ReserveButton.TabIndex = 9;
+            ReserveButton.Text = "Reserve";
+            ReserveButton.UseVisualStyleBackColor = true;
+            ReserveButton.Click += ReserveButton_Click;
+            // 
+            // DropOffPicker
+            // 
+            DropOffPicker.Location = new Point(261, 276);
+            DropOffPicker.Margin = new Padding(3, 2, 3, 2);
+            DropOffPicker.Name = "DropOffPicker";
+            DropOffPicker.Size = new Size(219, 23);
+            DropOffPicker.TabIndex = 8;
+            // 
+            // DropOffDateLabel
+            // 
+            DropOffDateLabel.AutoSize = true;
+            DropOffDateLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DropOffDateLabel.Location = new Point(46, 276);
+            DropOffDateLabel.Name = "DropOffDateLabel";
+            DropOffDateLabel.Size = new Size(191, 25);
+            DropOffDateLabel.TabIndex = 7;
+            DropOffDateLabel.Text = "Enter drop-off date:";
+            // 
+            // BranchComboBox
+            // 
+            BranchComboBox.FormattingEnabled = true;
+            BranchComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            BranchComboBox.Location = new Point(203, 49);
+            BranchComboBox.Margin = new Padding(3, 2, 3, 2);
+            BranchComboBox.Name = "BranchComboBox";
+            BranchComboBox.Size = new Size(133, 23);
+            BranchComboBox.TabIndex = 5;
+            // 
+            // PickUpBranchLabel
+            // 
+            PickUpBranchLabel.AutoSize = true;
+            PickUpBranchLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PickUpBranchLabel.Location = new Point(54, 44);
+            PickUpBranchLabel.Name = "PickUpBranchLabel";
+            PickUpBranchLabel.Size = new Size(85, 25);
+            PickUpBranchLabel.TabIndex = 4;
+            PickUpBranchLabel.Text = "Pick-up:";
+            // 
+            // PickUpPicker
+            // 
+            PickUpPicker.Location = new Point(261, 220);
+            PickUpPicker.Margin = new Padding(3, 2, 3, 2);
+            PickUpPicker.Name = "PickUpPicker";
+            PickUpPicker.Size = new Size(219, 23);
+            PickUpPicker.TabIndex = 2;
+            // 
+            // PickUpDateLabel
+            // 
+            PickUpDateLabel.AutoSize = true;
+            PickUpDateLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PickUpDateLabel.Location = new Point(46, 220);
+            PickUpDateLabel.Name = "PickUpDateLabel";
+            PickUpDateLabel.Size = new Size(181, 25);
+            PickUpDateLabel.TabIndex = 0;
+            PickUpDateLabel.Text = "Enter pick-up date:";
             // 
             // Car
             // 
             Car.AccessibleRole = AccessibleRole.Caret;
             Car.BackColor = SystemColors.GradientInactiveCaption;
-            Car.Controls.Add(Delete);
-            Car.Controls.Add(textBox6);
-            Car.Controls.Add(label2);
-            Car.Controls.Add(label1);
-            Car.Controls.Add(button1);
-            Car.Controls.Add(Search);
-            Car.Controls.Add(Modify);
-            Car.Controls.Add(radioButton1);
-            Car.Controls.Add(comboBox1);
-            Car.Controls.Add(label4);
-            Car.Controls.Add(textBox5);
-            Car.Controls.Add(label8);
-            Car.Controls.Add(textBox4);
-            Car.Controls.Add(label7);
-            Car.Controls.Add(textBox3);
-            Car.Controls.Add(textBox2);
-            Car.Controls.Add(textBox1);
-            Car.Controls.Add(label6);
-            Car.Controls.Add(label5);
-            Car.Controls.Add(VIN);
-            Car.Location = new Point(4, 29);
+            Car.Controls.Add(DeleteRadioButton);
+            Car.Controls.Add(ColourTextBox);
+            Car.Controls.Add(ModelTextBox);
+            Car.Controls.Add(MakeTextBox);
+            Car.Controls.Add(KilometersTextBox);
+            Car.Controls.Add(VINTextBox);
+            Car.Controls.Add(LicensePlateTextBox);
+            Car.Controls.Add(ColourLabel);
+            Car.Controls.Add(SelectOneLabel);
+            Car.Controls.Add(SubmitButton);
+            Car.Controls.Add(SearchRadioButton);
+            Car.Controls.Add(ModifyRadioButton);
+            Car.Controls.Add(AddRadioButton);
+            Car.Controls.Add(VehicleTypeComboBox);
+            Car.Controls.Add(VehicleTypeLabel);
+            Car.Controls.Add(ModelLabel);
+            Car.Controls.Add(MakeLabel);
+            Car.Controls.Add(KilometersLabel);
+            Car.Controls.Add(LicensePlateLabel);
+            Car.Controls.Add(VINLabel);
+            Car.Location = new Point(4, 24);
+            Car.Margin = new Padding(3, 2, 3, 2);
             Car.Name = "Car";
-            Car.Size = new Size(758, 596);
+            Car.Size = new Size(662, 444);
             Car.TabIndex = 2;
             Car.Text = "Car";
             // 
-            // Delete
+            // DeleteRadioButton
             // 
-            Delete.AutoSize = true;
-            Delete.Location = new Point(441, 414);
-            Delete.Name = "Delete";
-            Delete.Size = new Size(74, 24);
-            Delete.TabIndex = 23;
-            Delete.TabStop = true;
-            Delete.Text = "Delete";
-            Delete.UseVisualStyleBackColor = true;
-            Delete.CheckedChanged += radioButton4_CheckedChanged;
+            DeleteRadioButton.AutoSize = true;
+            DeleteRadioButton.Location = new Point(386, 310);
+            DeleteRadioButton.Margin = new Padding(3, 2, 3, 2);
+            DeleteRadioButton.Name = "DeleteRadioButton";
+            DeleteRadioButton.Size = new Size(58, 19);
+            DeleteRadioButton.TabIndex = 23;
+            DeleteRadioButton.Text = "Delete";
+            DeleteRadioButton.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // ColourTextBox
             // 
-            textBox6.Location = new Point(219, 280);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(151, 27);
-            textBox6.TabIndex = 22;
+            ColourTextBox.Location = new Point(192, 210);
+            ColourTextBox.Margin = new Padding(3, 2, 3, 2);
+            ColourTextBox.Name = "ColourTextBox";
+            ColourTextBox.Size = new Size(133, 23);
+            ColourTextBox.TabIndex = 22;
             // 
-            // label2
+            // ModelTextBox
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label2.Location = new Point(41, 276);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 31);
-            label2.TabIndex = 21;
-            label2.Text = "Colour:";
+            ModelTextBox.Location = new Point(191, 172);
+            ModelTextBox.Margin = new Padding(3, 2, 3, 2);
+            ModelTextBox.Name = "ModelTextBox";
+            ModelTextBox.Size = new Size(134, 23);
+            ModelTextBox.TabIndex = 13;
             // 
-            // label1
+            // MakeTextBox
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label1.Location = new Point(40, 407);
-            label1.Name = "label1";
-            label1.Size = new Size(130, 31);
-            label1.TabIndex = 20;
-            label1.Text = "Select one:";
+            MakeTextBox.Location = new Point(191, 137);
+            MakeTextBox.Margin = new Padding(3, 2, 3, 2);
+            MakeTextBox.Name = "MakeTextBox";
+            MakeTextBox.Size = new Size(134, 23);
+            MakeTextBox.TabIndex = 11;
             // 
-            // button1
+            // KilometersTextBox
             // 
-            button1.Location = new Point(41, 492);
-            button1.Name = "button1";
-            button1.RightToLeft = RightToLeft.Yes;
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 19;
-            button1.Text = "Submit";
-            button1.UseVisualStyleBackColor = true;
+            KilometersTextBox.Location = new Point(191, 98);
+            KilometersTextBox.Margin = new Padding(3, 2, 3, 2);
+            KilometersTextBox.Name = "KilometersTextBox";
+            KilometersTextBox.Size = new Size(134, 23);
+            KilometersTextBox.TabIndex = 9;
             // 
-            // Search
+            // VINTextBox
             // 
-            Search.AutoSize = true;
-            Search.Location = new Point(549, 414);
-            Search.Name = "Search";
-            Search.Size = new Size(74, 24);
-            Search.TabIndex = 18;
-            Search.TabStop = true;
-            Search.Text = "Search";
-            Search.UseVisualStyleBackColor = true;
+            VINTextBox.Location = new Point(191, 22);
+            VINTextBox.Margin = new Padding(3, 2, 3, 2);
+            VINTextBox.Name = "VINTextBox";
+            VINTextBox.Size = new Size(134, 23);
+            VINTextBox.TabIndex = 8;
             // 
-            // Modify
+            // LicensePlateTextBox
             // 
-            Modify.AutoSize = true;
-            Modify.Location = new Point(336, 414);
-            Modify.Name = "Modify";
-            Modify.Size = new Size(77, 24);
-            Modify.TabIndex = 17;
-            Modify.TabStop = true;
-            Modify.Text = "Modify";
-            Modify.UseVisualStyleBackColor = true;
-            Modify.CheckedChanged += radioButton2_CheckedChanged;
+            LicensePlateTextBox.Location = new Point(191, 60);
+            LicensePlateTextBox.Margin = new Padding(3, 2, 3, 2);
+            LicensePlateTextBox.Name = "LicensePlateTextBox";
+            LicensePlateTextBox.Size = new Size(134, 23);
+            LicensePlateTextBox.TabIndex = 7;
             // 
-            // radioButton1
+            // ColourLabel
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(222, 414);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(58, 24);
-            radioButton1.TabIndex = 16;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Add";
-            radioButton1.UseVisualStyleBackColor = true;
+            ColourLabel.AutoSize = true;
+            ColourLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            ColourLabel.Location = new Point(36, 207);
+            ColourLabel.Name = "ColourLabel";
+            ColourLabel.Size = new Size(79, 25);
+            ColourLabel.TabIndex = 21;
+            ColourLabel.Text = "Colour:";
             // 
-            // comboBox1
+            // SelectOneLabel
             // 
-            comboBox1.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            comboBox1.Location = new Point(219, 330);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 15;
+            SelectOneLabel.AutoSize = true;
+            SelectOneLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            SelectOneLabel.Location = new Point(35, 305);
+            SelectOneLabel.Name = "SelectOneLabel";
+            SelectOneLabel.Size = new Size(108, 25);
+            SelectOneLabel.TabIndex = 20;
+            SelectOneLabel.Text = "Select one:";
             // 
-            // label4
+            // SubmitButton
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label4.Location = new Point(40, 327);
-            label4.Name = "label4";
-            label4.Size = new Size(150, 31);
-            label4.TabIndex = 14;
-            label4.Text = "Vehicle type:";
+            SubmitButton.Location = new Point(36, 369);
+            SubmitButton.Margin = new Padding(3, 2, 3, 2);
+            SubmitButton.Name = "SubmitButton";
+            SubmitButton.RightToLeft = RightToLeft.Yes;
+            SubmitButton.Size = new Size(82, 22);
+            SubmitButton.TabIndex = 19;
+            SubmitButton.Text = "Submit";
+            SubmitButton.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // SearchRadioButton
             // 
-            textBox5.Location = new Point(218, 229);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(152, 27);
-            textBox5.TabIndex = 13;
+            SearchRadioButton.AutoSize = true;
+            SearchRadioButton.Location = new Point(480, 310);
+            SearchRadioButton.Margin = new Padding(3, 2, 3, 2);
+            SearchRadioButton.Name = "SearchRadioButton";
+            SearchRadioButton.Size = new Size(60, 19);
+            SearchRadioButton.TabIndex = 18;
+            SearchRadioButton.Text = "Search";
+            SearchRadioButton.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // ModifyRadioButton
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label8.Location = new Point(40, 225);
-            label8.Name = "label8";
-            label8.Size = new Size(89, 31);
-            label8.TabIndex = 12;
-            label8.Text = "Model:";
+            ModifyRadioButton.AutoSize = true;
+            ModifyRadioButton.Location = new Point(281, 310);
+            ModifyRadioButton.Margin = new Padding(3, 2, 3, 2);
+            ModifyRadioButton.Name = "ModifyRadioButton";
+            ModifyRadioButton.Size = new Size(63, 19);
+            ModifyRadioButton.TabIndex = 17;
+            ModifyRadioButton.Text = "Modify";
+            ModifyRadioButton.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // AddRadioButton
             // 
-            textBox4.Location = new Point(218, 183);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(152, 27);
-            textBox4.TabIndex = 11;
+            AddRadioButton.AutoSize = true;
+            AddRadioButton.Checked = true;
+            AddRadioButton.Location = new Point(194, 310);
+            AddRadioButton.Margin = new Padding(3, 2, 3, 2);
+            AddRadioButton.Name = "AddRadioButton";
+            AddRadioButton.Size = new Size(47, 19);
+            AddRadioButton.TabIndex = 16;
+            AddRadioButton.TabStop = true;
+            AddRadioButton.Text = "Add";
+            AddRadioButton.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // VehicleTypeComboBox
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label7.Location = new Point(40, 179);
-            label7.Name = "label7";
-            label7.Size = new Size(79, 31);
-            label7.TabIndex = 10;
-            label7.Text = "Make:";
+            VehicleTypeComboBox.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            VehicleTypeComboBox.FormattingEnabled = true;
+            VehicleTypeComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            VehicleTypeComboBox.Location = new Point(192, 248);
+            VehicleTypeComboBox.Margin = new Padding(3, 2, 3, 2);
+            VehicleTypeComboBox.Name = "VehicleTypeComboBox";
+            VehicleTypeComboBox.Size = new Size(133, 23);
+            VehicleTypeComboBox.TabIndex = 15;
             // 
-            // textBox3
+            // VehicleTypeLabel
             // 
-            textBox3.Location = new Point(218, 130);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(152, 27);
-            textBox3.TabIndex = 9;
+            VehicleTypeLabel.AutoSize = true;
+            VehicleTypeLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            VehicleTypeLabel.Location = new Point(35, 245);
+            VehicleTypeLabel.Name = "VehicleTypeLabel";
+            VehicleTypeLabel.Size = new Size(123, 25);
+            VehicleTypeLabel.TabIndex = 14;
+            VehicleTypeLabel.Text = "Vehicle type:";
             // 
-            // textBox2
+            // ModelLabel
             // 
-            textBox2.Location = new Point(218, 29);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(152, 27);
-            textBox2.TabIndex = 8;
-            textBox2.TextChanged += textBox2_TextChanged;
+            ModelLabel.AutoSize = true;
+            ModelLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            ModelLabel.Location = new Point(35, 169);
+            ModelLabel.Name = "ModelLabel";
+            ModelLabel.Size = new Size(74, 25);
+            ModelLabel.TabIndex = 12;
+            ModelLabel.Text = "Model:";
             // 
-            // textBox1
+            // MakeLabel
             // 
-            textBox1.Location = new Point(218, 80);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(152, 27);
-            textBox1.TabIndex = 7;
+            MakeLabel.AutoSize = true;
+            MakeLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            MakeLabel.Location = new Point(35, 134);
+            MakeLabel.Name = "MakeLabel";
+            MakeLabel.Size = new Size(66, 25);
+            MakeLabel.TabIndex = 10;
+            MakeLabel.Text = "Make:";
             // 
-            // label6
+            // KilometersLabel
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label6.Location = new Point(40, 126);
-            label6.Name = "label6";
-            label6.Size = new Size(136, 31);
-            label6.TabIndex = 2;
-            label6.Text = "Kilometers:";
+            KilometersLabel.AutoSize = true;
+            KilometersLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            KilometersLabel.Location = new Point(35, 94);
+            KilometersLabel.Name = "KilometersLabel";
+            KilometersLabel.Size = new Size(111, 25);
+            KilometersLabel.TabIndex = 2;
+            KilometersLabel.Text = "Kilometers:";
             // 
-            // label5
+            // LicensePlateLabel
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label5.Location = new Point(40, 74);
-            label5.Name = "label5";
-            label5.Size = new Size(158, 31);
-            label5.TabIndex = 1;
-            label5.Text = "License Plate:";
+            LicensePlateLabel.AutoSize = true;
+            LicensePlateLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            LicensePlateLabel.Location = new Point(35, 56);
+            LicensePlateLabel.Name = "LicensePlateLabel";
+            LicensePlateLabel.Size = new Size(130, 25);
+            LicensePlateLabel.TabIndex = 1;
+            LicensePlateLabel.Text = "License Plate:";
             // 
-            // VIN
+            // VINLabel
             // 
-            VIN.AutoSize = true;
-            VIN.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            VIN.Location = new Point(40, 29);
-            VIN.Name = "VIN";
-            VIN.Size = new Size(60, 31);
-            VIN.TabIndex = 0;
-            VIN.Text = "VIN:";
-            VIN.Click += label4_Click_3;
-            // 
-            // Rental
-            // 
-            Rental.BackColor = SystemColors.GradientInactiveCaption;
-            Rental.Controls.Add(ReturnBox);
-            Rental.Controls.Add(locationReturn);
-            Rental.Controls.Add(diff);
-            Rental.Controls.Add(addBranch);
-            Rental.Controls.Add(Reserve);
-            Rental.Controls.Add(dateR);
-            Rental.Controls.Add(enterD);
-            Rental.Controls.Add(branch);
-            Rental.Controls.Add(locationtext);
-            Rental.Controls.Add(DateP);
-            Rental.Controls.Add(enterp);
-            Rental.Location = new Point(4, 29);
-            Rental.Name = "Rental";
-            Rental.Padding = new Padding(3);
-            Rental.Size = new Size(758, 596);
-            Rental.TabIndex = 1;
-            Rental.Text = "Rental";
-            Rental.Click += tabPage2_Click;
-            // 
-            // ReturnBox
-            // 
-            ReturnBox.FormattingEnabled = true;
-            ReturnBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            ReturnBox.Location = new Point(237, 197);
-            ReturnBox.Name = "ReturnBox";
-            ReturnBox.Size = new Size(151, 28);
-            ReturnBox.TabIndex = 13;
-            ReturnBox.Visible = false;
-            ReturnBox.SelectedIndexChanged += ReturnBox_SelectedIndexChanged;
-            ReturnBox.VisibleChanged += radioButton1_CheckedChanged_1;
-            ReturnBox.Click += radioButton1_CheckedChanged_1;
-            // 
-            // locationReturn
-            // 
-            locationReturn.AutoSize = true;
-            locationReturn.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            locationReturn.Location = new Point(67, 191);
-            locationReturn.Name = "locationReturn";
-            locationReturn.Size = new Size(92, 31);
-            locationReturn.TabIndex = 12;
-            locationReturn.Text = "Return:";
-            locationReturn.Visible = false;
-            locationReturn.VisibleChanged += radioButton1_CheckedChanged_1;
-            locationReturn.Click += radioButton3_CheckedChanged;
-            // 
-            // diff
-            // 
-            diff.AutoSize = true;
-            diff.Location = new Point(67, 128);
-            diff.Name = "diff";
-            diff.Size = new Size(210, 24);
-            diff.TabIndex = 11;
-            diff.TabStop = true;
-            diff.Text = "Return to different location";
-            diff.UseVisualStyleBackColor = true;
-            diff.CheckedChanged += radioButton1_CheckedChanged_1;
-            // 
-            // addBranch
-            // 
-            addBranch.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            addBranch.Location = new Point(274, 501);
-            addBranch.Name = "addBranch";
-            addBranch.Size = new Size(176, 53);
-            addBranch.TabIndex = 10;
-            addBranch.Text = "Add Branch";
-            addBranch.UseVisualStyleBackColor = true;
-            addBranch.Click += addBranch_Click;
-            // 
-            // Reserve
-            // 
-            Reserve.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Reserve.Location = new Point(52, 498);
-            Reserve.Name = "Reserve";
-            Reserve.Size = new Size(151, 58);
-            Reserve.TabIndex = 9;
-            Reserve.Text = "Reserve";
-            Reserve.UseVisualStyleBackColor = true;
-            Reserve.Click += button2_Click;
-            // 
-            // dateR
-            // 
-            dateR.Location = new Point(298, 368);
-            dateR.Name = "dateR";
-            dateR.Size = new Size(250, 27);
-            dateR.TabIndex = 8;
-            // 
-            // enterD
-            // 
-            enterD.AutoSize = true;
-            enterD.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            enterD.Location = new Point(52, 368);
-            enterD.Name = "enterD";
-            enterD.Size = new Size(227, 31);
-            enterD.TabIndex = 7;
-            enterD.Text = "Enter drop-off date:";
-            enterD.Click += label5_Click_1;
-            // 
-            // branch
-            // 
-            branch.FormattingEnabled = true;
-            branch.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            branch.Location = new Point(232, 65);
-            branch.Name = "branch";
-            branch.Size = new Size(151, 28);
-            branch.TabIndex = 5;
-            branch.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // locationtext
-            // 
-            locationtext.AutoSize = true;
-            locationtext.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            locationtext.Location = new Point(62, 59);
-            locationtext.Name = "locationtext";
-            locationtext.Size = new Size(101, 31);
-            locationtext.TabIndex = 4;
-            locationtext.Text = "Pick-up:";
-            locationtext.Click += locationtext_Click;
-            // 
-            // DateP
-            // 
-            DateP.Location = new Point(298, 294);
-            DateP.Name = "DateP";
-            DateP.Size = new Size(250, 27);
-            DateP.TabIndex = 2;
-            DateP.ValueChanged += dateTimePicker1_ValueChanged;
-            // 
-            // enterp
-            // 
-            enterp.AutoSize = true;
-            enterp.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            enterp.Location = new Point(52, 294);
-            enterp.Name = "enterp";
-            enterp.Size = new Size(216, 31);
-            enterp.TabIndex = 0;
-            enterp.Text = "Enter pick-up date:";
-            enterp.Click += label4_Click_2;
+            VINLabel.AutoSize = true;
+            VINLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            VINLabel.Location = new Point(35, 22);
+            VINLabel.Name = "VINLabel";
+            VINLabel.Size = new Size(51, 25);
+            VINLabel.TabIndex = 0;
+            VINLabel.Text = "VIN:";
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(Car);
             tabControl1.Controls.Add(Rental);
             tabControl1.Controls.Add(Reports);
-            tabControl1.Location = new Point(12, 12);
+            tabControl1.Location = new Point(10, 9);
+            tabControl1.Margin = new Padding(3, 2, 3, 2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(766, 629);
+            tabControl1.Size = new Size(670, 472);
             tabControl1.TabIndex = 11;
-            // 
-            // Reports
-            // 
-            Reports.BackColor = SystemColors.GradientInactiveCaption;
-            Reports.Location = new Point(4, 29);
-            Reports.Name = "Reports";
-            Reports.Padding = new Padding(3);
-            Reports.Size = new Size(758, 596);
-            Reports.TabIndex = 3;
-            Reports.Text = "Reports";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuBar;
-            ClientSize = new Size(996, 819);
+            ClientSize = new Size(872, 614);
             Controls.Add(tabControl1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Reservation";
-            Load += Form1_Load;
-            Car.ResumeLayout(false);
-            Car.PerformLayout();
             Rental.ResumeLayout(false);
             Rental.PerformLayout();
+            Car.ResumeLayout(false);
+            Car.PerformLayout();
             tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private RadioButton mult;
-        private RadioButton add;
-        private RadioButton sub;
-        private TabPage Car;
-        private RadioButton Delete;
-        private TabPage Rental;
-        private ComboBox ReturnBox;
-        private Label locationReturn;
-        private RadioButton diff;
-        private Button addBranch;
-        private Button Reserve;
-        private DateTimePicker dateR;
-        private Label enterD;
-        private ComboBox branch;
-        private Label locationtext;
-        private DateTimePicker DateP;
-        private Label enterp;
-        private TabControl tabControl1;
-        private TabPage Reports;
-        private Label label6;
-        private Label label5;
-        private Label VIN;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
-        private Label label4;
-        private TextBox textBox5;
-        private Label label8;
-        private TextBox textBox4;
-        private Label label7;
-        private Button button1;
-        private RadioButton Search;
-        private RadioButton Modify;
-        private RadioButton radioButton1;
-        private Label label1;
-        private TextBox textBox6;
-        private Label label2;
         private TabPage tabPage3;
+        private TabPage Reports;
+        private TabPage Rental;
+        private ComboBox ReturnComboBox;
+        private Label ReturnBranchLabel;
+        private Button AddBranchButton;
+        private Button ReserveButton;
+        private DateTimePicker DropOffPicker;
+        private Label DropOffDateLabel;
+        private ComboBox BranchComboBox;
+        private Label PickUpBranchLabel;
+        private DateTimePicker PickUpPicker;
+        private Label PickUpDateLabel;
+        private TabPage Car;
+        private RadioButton DeleteRadioButton;
+        private TextBox ColourTextBox;
+        private TextBox ModelTextBox;
+        private TextBox MakeTextBox;
+        private TextBox KilometersTextBox;
+        private TextBox VINTextBox;
+        private TextBox LicensePlateTextBox;
+        private Label ColourLabel;
+        private Label SelectOneLabel;
+        private Button SubmitButton;
+        private RadioButton SearchRadioButton;
+        private RadioButton ModifyRadioButton;
+        private RadioButton AddRadioButton;
+        private ComboBox VehicleTypeComboBox;
+        private Label VehicleTypeLabel;
+        private Label ModelLabel;
+        private Label MakeLabel;
+        private Label KilometersLabel;
+        private Label LicensePlateLabel;
+        private Label VINLabel;
+        private TabControl tabControl1;
+        private CheckBox DifferentLocationCheckBox;
     }
 }
