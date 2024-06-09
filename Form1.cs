@@ -14,7 +14,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = SAPHIA_WINDOW; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = VBOX; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -99,7 +99,7 @@ namespace project291
             }
             else if (SearchRadioButton.Checked)
             {
-
+                SearchCar();
             }
         }
 
@@ -303,6 +303,88 @@ namespace project291
             {
                 ShowError("Error: " + e.Message);
             }
+        }
+        
+        private void SearchCar()
+        {
+            var carInput = GetCarFromUI();
+
+            try
+            {
+                var search = new List<string>();
+
+                if (carInput.LicensePlate != "")
+                {
+                    search.Add($"LicensePlate='{carInput.LicensePlate}'");
+                }
+
+                if (carInput.Kilometers != "")
+                {
+                    search.Add($"Kilometers={carInput.Kilometers}");
+                }
+
+                if (carInput.Make != "")
+                {
+                    search.Add($"Make='{carInput.Make}'");
+                }
+
+                if (carInput.Model != "")
+                {
+                    search.Add($"Model='{carInput.Model}'");
+                }
+
+                if (carInput.Colour != "")
+                {
+                    search.Add($"Colour='{carInput.Colour}'");
+                }
+
+                if (carInput.VehicleType != "")
+                {
+                    search.Add($"vType='{carInput.VehicleType}'");
+                }
+
+
+                var searchString = "";
+
+                for (int i = 0; i < search.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        searchString += "WHERE " + search[i];
+                    }
+                    if (i > 0)
+                    {
+                        searchString += " AND " + search[i];
+                    }
+
+                }
+
+                myCommand.CommandText = $"SELECT * FROM Vehicle {searchString};";
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(), 
+                                         myReader["LicensePlate"].ToString(), 
+                                         myReader["Kilometers"].ToString(), 
+                                         myReader["Make"].ToString(), 
+                                         myReader["Model"].ToString(),
+                                         myReader["Colour"].ToString(),
+                                         myReader["vType"].ToString());
+                }
+
+
+
+                myReader.Close();
+            }
+            catch (Exception e )
+            {
+                ShowError("Error: " + e.Message);
+            }
+
         }
 
 

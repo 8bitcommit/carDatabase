@@ -66,9 +66,18 @@
             NotificationLabel = new Label();
             tabControl1 = new TabControl();
             HideNotificationTimer = new System.Windows.Forms.Timer(components);
+            vehicleList = new DataGridView();
+            VIN = new DataGridViewTextBoxColumn();
+            LicensePlate = new DataGridViewTextBoxColumn();
+            Kilometers = new DataGridViewTextBoxColumn();
+            Make = new DataGridViewTextBoxColumn();
+            Model = new DataGridViewTextBoxColumn();
+            Colour = new DataGridViewTextBoxColumn();
+            vType = new DataGridViewTextBoxColumn();
             Rental.SuspendLayout();
             Car.SuspendLayout();
             tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)vehicleList).BeginInit();
             SuspendLayout();
             // 
             // Reports
@@ -78,7 +87,7 @@
             Reports.Margin = new Padding(3, 2, 3, 2);
             Reports.Name = "Reports";
             Reports.Padding = new Padding(3, 2, 3, 2);
-            Reports.Size = new Size(662, 444);
+            Reports.Size = new Size(672, 444);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             // 
@@ -100,7 +109,7 @@
             Rental.Margin = new Padding(3, 2, 3, 2);
             Rental.Name = "Rental";
             Rental.Padding = new Padding(3, 2, 3, 2);
-            Rental.Size = new Size(662, 444);
+            Rental.Size = new Size(672, 444);
             Rental.TabIndex = 1;
             Rental.Text = "Rental";
             // 
@@ -245,7 +254,7 @@
             Car.Location = new Point(4, 24);
             Car.Margin = new Padding(3, 2, 3, 2);
             Car.Name = "Car";
-            Car.Size = new Size(662, 444);
+            Car.Size = new Size(740, 444);
             Car.TabIndex = 2;
             Car.Text = "Car";
             // 
@@ -469,11 +478,11 @@
             tabControl1.Controls.Add(Car);
             tabControl1.Controls.Add(Rental);
             tabControl1.Controls.Add(Reports);
-            tabControl1.Location = new Point(10, 9);
-            tabControl1.Margin = new Padding(3, 2, 3, 2);
+            tabControl1.Location = new Point(13, 13);
+            tabControl1.Margin = new Padding(4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(670, 472);
+            tabControl1.Size = new Size(748, 472);
             tabControl1.TabIndex = 11;
             // 
             // HideNotificationTimer
@@ -481,12 +490,67 @@
             HideNotificationTimer.Interval = 5000;
             HideNotificationTimer.Tick += HideNotificationTimer_Tick;
             // 
+            // vehicleList
+            // 
+            vehicleList.AllowUserToAddRows = false;
+            vehicleList.AllowUserToDeleteRows = false;
+            vehicleList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            vehicleList.Columns.AddRange(new DataGridViewColumn[] { VIN, LicensePlate, Kilometers, Make, Model, Colour, vType });
+            vehicleList.Location = new Point(17, 492);
+            vehicleList.Name = "vehicleList";
+            vehicleList.ReadOnly = true;
+            vehicleList.Size = new Size(744, 274);
+            vehicleList.TabIndex = 12;
+            // 
+            // VIN
+            // 
+            VIN.HeaderText = "VIN";
+            VIN.Name = "VIN";
+            VIN.ReadOnly = true;
+            // 
+            // LicensePlate
+            // 
+            LicensePlate.HeaderText = "License Plate";
+            LicensePlate.Name = "LicensePlate";
+            LicensePlate.ReadOnly = true;
+            // 
+            // Kilometers
+            // 
+            Kilometers.HeaderText = "Kilometers";
+            Kilometers.Name = "Kilometers";
+            Kilometers.ReadOnly = true;
+            // 
+            // Make
+            // 
+            Make.HeaderText = "Make";
+            Make.Name = "Make";
+            Make.ReadOnly = true;
+            // 
+            // Model
+            // 
+            Model.HeaderText = "Model";
+            Model.Name = "Model";
+            Model.ReadOnly = true;
+            // 
+            // Colour
+            // 
+            Colour.HeaderText = "Colour";
+            Colour.Name = "Colour";
+            Colour.ReadOnly = true;
+            // 
+            // vType
+            // 
+            vType.HeaderText = "Vehicle Type";
+            vType.Name = "vType";
+            vType.ReadOnly = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuBar;
-            ClientSize = new Size(872, 614);
+            ClientSize = new Size(772, 771);
+            Controls.Add(vehicleList);
             Controls.Add(tabControl1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
@@ -496,6 +560,7 @@
             Car.ResumeLayout(false);
             Car.PerformLayout();
             tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)vehicleList).EndInit();
             ResumeLayout(false);
         }
 
@@ -538,5 +603,13 @@
         private CheckBox DifferentLocationCheckBox;
         private Label NotificationLabel;
         private System.Windows.Forms.Timer HideNotificationTimer;
+        private DataGridView vehicleList;
+        private DataGridViewTextBoxColumn VIN;
+        private DataGridViewTextBoxColumn LicensePlate;
+        private DataGridViewTextBoxColumn Kilometers;
+        private DataGridViewTextBoxColumn Make;
+        private DataGridViewTextBoxColumn Model;
+        private DataGridViewTextBoxColumn Colour;
+        private DataGridViewTextBoxColumn vType;
     }
 }
