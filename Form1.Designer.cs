@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Reports = new TabPage();
             Rental = new TabPage();
             DifferentLocationCheckBox = new CheckBox();
@@ -62,7 +63,9 @@
             KilometersLabel = new Label();
             LicensePlateLabel = new Label();
             VINLabel = new Label();
+            NotificationLabel = new Label();
             tabControl1 = new TabControl();
+            HideNotificationTimer = new System.Windows.Forms.Timer(components);
             Rental.SuspendLayout();
             Car.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -238,6 +241,7 @@
             Car.Controls.Add(KilometersLabel);
             Car.Controls.Add(LicensePlateLabel);
             Car.Controls.Add(VINLabel);
+            Car.Controls.Add(NotificationLabel);
             Car.Location = new Point(4, 24);
             Car.Margin = new Padding(3, 2, 3, 2);
             Car.Name = "Car";
@@ -334,6 +338,7 @@
             SubmitButton.TabIndex = 19;
             SubmitButton.Text = "Submit";
             SubmitButton.UseVisualStyleBackColor = true;
+            SubmitButton.Click += SubmitButton_Click;
             // 
             // SearchRadioButton
             // 
@@ -441,6 +446,17 @@
             VINLabel.TabIndex = 0;
             VINLabel.Text = "VIN:";
             // 
+            // NotificationLabel
+            // 
+            NotificationLabel.AutoSize = true;
+            NotificationLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            NotificationLabel.Location = new Point(183, 369);
+            NotificationLabel.Name = "NotificationLabel";
+            NotificationLabel.Size = new Size(85, 19);
+            NotificationLabel.TabIndex = 25;
+            NotificationLabel.Text = "Notification";
+            NotificationLabel.Visible = false;
+            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(Car);
@@ -452,6 +468,11 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(670, 472);
             tabControl1.TabIndex = 11;
+            // 
+            // HideNotificationTimer
+            // 
+            HideNotificationTimer.Interval = 5000;
+            HideNotificationTimer.Tick += HideNotificationTimer_Tick;
             // 
             // Form1
             // 
@@ -508,5 +529,7 @@
         private Label VINLabel;
         private TabControl tabControl1;
         private CheckBox DifferentLocationCheckBox;
+        private Label NotificationLabel;
+        private System.Windows.Forms.Timer HideNotificationTimer;
     }
 }

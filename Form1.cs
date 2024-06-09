@@ -53,6 +53,57 @@ namespace LAB6291
                 ReturnComboBox.Visible = false;
             }
         }
+
+        private void ShowError(string message)
+        {
+            NotificationLabel.ForeColor = Color.Red;
+            NotificationLabel.Text = message;
+            NotificationLabel.Show();
+
+            HideNotificationTimer.Stop();
+            HideNotificationTimer.Start();
+        }
+
+        private void ShowSuccess(string message)
+        {
+            NotificationLabel.ForeColor = Color.Green;
+            NotificationLabel.Text = message;
+            NotificationLabel.Show();
+
+            HideNotificationTimer.Stop();
+            HideNotificationTimer.Start();
+        }
+
+        private void HideNotificationTimer_Tick(object sender, EventArgs e)
+        {
+            NotificationLabel.Hide();
+            HideNotificationTimer.Stop();
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            if (AddRadioButton.Checked)
+            {
+
+            }
+            else if (ModifyRadioButton.Checked)
+            {
+                ModifyCar();
+            }
+            else if (DeleteRadioButton.Checked)
+            {
+
+            }
+            else if (SearchRadioButton.Checked)
+            {
+
+            }
+        }
+
+        private void ModifyCar()
+        {
+            ShowSuccess("Success");
+        }
     }
 }
 
