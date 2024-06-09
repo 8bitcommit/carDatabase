@@ -366,6 +366,7 @@
             ModifyRadioButton.TabIndex = 17;
             ModifyRadioButton.Text = "Modify";
             ModifyRadioButton.UseVisualStyleBackColor = true;
+            ModifyRadioButton.CheckedChanged += ModifyRadioButton_CheckedChanged;
             // 
             // AddRadioButton
             // 
@@ -379,6 +380,7 @@
             AddRadioButton.TabStop = true;
             AddRadioButton.Text = "Add";
             AddRadioButton.UseVisualStyleBackColor = true;
+            AddRadioButton.CheckedChanged += AddRadioButton_CheckedChanged;
             // 
             // VehicleTypeComboBox
             // 

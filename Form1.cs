@@ -1,4 +1,7 @@
 using Microsoft.Data.SqlClient;
+using System.Diagnostics;
+using System.Drawing;
+using System.Reflection;
 
 namespace project291
 {
@@ -11,7 +14,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = SAPHIA_WINDOW; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -84,7 +87,7 @@ namespace project291
         {
             if (AddRadioButton.Checked)
             {
-
+                AddCar();
             }
             else if (ModifyRadioButton.Checked)
             {
@@ -171,7 +174,7 @@ namespace project291
                     updates.Add($"LicensePlate='{carInput.LicensePlate}'");
                 }
 
-                if(carInput.Kilometers != "")
+                if (carInput.Kilometers != "")
                 {
                     updates.Add($"Kilometers={carInput.Kilometers}");
                 }
@@ -244,7 +247,7 @@ namespace project291
             try
             {
                 if (carInput.VIN.Length == 17)
-                { 
+                {
                     myCommand.CommandText = $"delete from Vehicle where VIN='{carInput.VIN}'";
                     myCommand.ExecuteNonQuery();
 
@@ -258,6 +261,61 @@ namespace project291
                 MessageBox.Show(e3.ToString(), "Error");
             }
         }
+        private void AddCar()
+        {
+            var carInput = GetCarFromUI();
+
+            try
+            {
+                // Validate VIN
+                if (carInput.VIN.Length != 17)
+                {
+                    ShowError("VIN must be 17 characters long");
+                    return;
+                }
+
+                // Validate Kilometers
+                if (!string.IsNullOrEmpty(carInput.Kilometers) && !long.TryParse(carInput.Kilometers, out var kms))
+                {
+                    ShowError("Kilometers must be a valid number");
+                    return;
+                }
+
+                // Construct the SQL command
+                myCommand.CommandText = $"INSERT INTO Vehicle (VIN, LicensePlate, Kilometers, Make, Model, Colour, vType) " +
+                                        $"VALUES ('{carInput.VIN}', '{carInput.LicensePlate}', {carInput.Kilometers}, '{carInput.Make}', '{carInput.Model}', '{carInput.Colour}', '{carInput.VehicleType}')";
+
+                // Construct the display message
+                string displayMessage = $"INSERT INTO Vehicle (VIN='{carInput.VIN}', LicensePlate='{carInput.LicensePlate}', " +
+                                        $"Kilometers={carInput.Kilometers}, Make='{carInput.Make}', Model='{carInput.Model}', Colour='{carInput.Colour}', " +
+                                        $"vType='{carInput.VehicleType}')";
+
+                // Show the display message in a message box
+                MessageBox.Show(displayMessage);
+
+
+                // Execute SQL command
+                myCommand.ExecuteNonQuery();
+
+                ShowSuccess("Car added successfully");
+            }
+            catch (Exception e)
+            {
+                ShowError("Error: " + e.Message);
+            }
+        }
+
+
+        private void AddRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ModifyRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }
 
