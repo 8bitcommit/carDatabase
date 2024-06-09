@@ -404,15 +404,9 @@ namespace project291
             ReportsVehicleModel.Items.Clear();
             if (ReportsVehicleType.SelectedItem != null && selected != "")
             {
-                ReportsModelLabel.Visible = true;
-                ReportsVehicleModel.Visible = true;
                 UpdateModel(selected);
             }
-            else 
-            {
-                ReportsModelLabel.Visible = false;
-                ReportsVehicleModel.Visible = false;
-            }
+
         }
 
         private void UpdateModel(string selected)

@@ -30,6 +30,21 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            dateTimePicker2 = new DateTimePicker();
+            label8 = new Label();
+            label7 = new Label();
+            comboBox5 = new ComboBox();
+            label3 = new Label();
+            comboBox1 = new ComboBox();
+            label2 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            KiloSelection = new TextBox();
+            comboBox4 = new ComboBox();
+            label4 = new Label();
+            comboBox3 = new ComboBox();
+            comboBox2 = new ComboBox();
+            label5 = new Label();
+            label6 = new Label();
             ReportsVehicleModel = new ComboBox();
             ReportsModelLabel = new Label();
             ReportsVehicleType = new ComboBox();
@@ -78,6 +93,10 @@
             Model = new DataGridViewTextBoxColumn();
             Colour = new DataGridViewTextBoxColumn();
             vType = new DataGridViewTextBoxColumn();
+            radioButton3 = new RadioButton();
+            radioButton4 = new RadioButton();
+            label9 = new Label();
+            button1 = new Button();
             Reports.SuspendLayout();
             Rental.SuspendLayout();
             Car.SuspendLayout();
@@ -88,6 +107,25 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Controls.Add(button1);
+            Reports.Controls.Add(label9);
+            Reports.Controls.Add(radioButton3);
+            Reports.Controls.Add(radioButton4);
+            Reports.Controls.Add(dateTimePicker2);
+            Reports.Controls.Add(label8);
+            Reports.Controls.Add(label7);
+            Reports.Controls.Add(comboBox5);
+            Reports.Controls.Add(label3);
+            Reports.Controls.Add(comboBox1);
+            Reports.Controls.Add(label2);
+            Reports.Controls.Add(dateTimePicker1);
+            Reports.Controls.Add(KiloSelection);
+            Reports.Controls.Add(comboBox4);
+            Reports.Controls.Add(label4);
+            Reports.Controls.Add(comboBox3);
+            Reports.Controls.Add(comboBox2);
+            Reports.Controls.Add(label5);
+            Reports.Controls.Add(label6);
             Reports.Controls.Add(ReportsVehicleModel);
             Reports.Controls.Add(ReportsModelLabel);
             Reports.Controls.Add(ReportsVehicleType);
@@ -100,34 +138,175 @@
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(445, 308);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(200, 23);
+            dateTimePicker2.TabIndex = 43;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(393, 306);
+            label8.Name = "label8";
+            label8.Size = new Size(46, 25);
+            label8.TabIndex = 42;
+            label8.Text = "and";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(20, 306);
+            label7.Name = "label7";
+            label7.Size = new Size(161, 25);
+            label7.TabIndex = 41;
+            label7.Text = "Rented between:";
+            // 
+            // comboBox5
+            // 
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            comboBox5.Location = new Point(210, 265);
+            comboBox5.Margin = new Padding(3, 2, 3, 2);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(133, 23);
+            comboBox5.TabIndex = 40;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(20, 263);
+            label3.Name = "label3";
+            label3.Size = new Size(124, 25);
+            label3.TabIndex = 39;
+            label3.Text = "Returned to:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            comboBox1.Location = new Point(210, 226);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(133, 23);
+            comboBox1.TabIndex = 38;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(20, 224);
+            label2.Name = "label2";
+            label2.Size = new Size(157, 25);
+            label2.TabIndex = 37;
+            label2.Text = "Picked-up from:";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(187, 308);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 36;
+            // 
+            // KiloSelection
+            // 
+            KiloSelection.Location = new Point(349, 111);
+            KiloSelection.Margin = new Padding(3, 2, 3, 2);
+            KiloSelection.Name = "KiloSelection";
+            KiloSelection.Size = new Size(134, 23);
+            KiloSelection.TabIndex = 35;
+            // 
+            // comboBox4
+            // 
+            comboBox4.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(210, 188);
+            comboBox4.Margin = new Padding(3, 2, 3, 2);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(133, 23);
+            comboBox4.TabIndex = 34;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label4.Location = new Point(20, 183);
+            label4.Name = "label4";
+            label4.Size = new Size(73, 25);
+            label4.TabIndex = 33;
+            label4.Text = "Colour";
+            // 
+            // comboBox3
+            // 
+            comboBox3.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(210, 150);
+            comboBox3.Margin = new Padding(3, 2, 3, 2);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(133, 23);
+            comboBox3.TabIndex = 21;
+            // 
+            // comboBox2
+            // 
+            comboBox2.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "greater than", "less than" });
+            comboBox2.Location = new Point(210, 111);
+            comboBox2.Margin = new Padding(3, 2, 3, 2);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(133, 23);
+            comboBox2.TabIndex = 21;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label5.Location = new Point(20, 145);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 25);
+            label5.TabIndex = 20;
+            label5.Text = "Make:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label6.Location = new Point(20, 106);
+            label6.Name = "label6";
+            label6.Size = new Size(106, 25);
+            label6.TabIndex = 20;
+            label6.Text = "Kilometers";
+            // 
             // ReportsVehicleModel
             // 
             ReportsVehicleModel.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
             ReportsVehicleModel.FormattingEnabled = true;
-            ReportsVehicleModel.Location = new Point(163, 124);
+            ReportsVehicleModel.Location = new Point(210, 70);
             ReportsVehicleModel.Margin = new Padding(3, 2, 3, 2);
             ReportsVehicleModel.Name = "ReportsVehicleModel";
             ReportsVehicleModel.Size = new Size(133, 23);
             ReportsVehicleModel.TabIndex = 19;
-            ReportsVehicleModel.Visible = false;
             // 
             // ReportsModelLabel
             // 
             ReportsModelLabel.AutoSize = true;
             ReportsModelLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            ReportsModelLabel.Location = new Point(6, 121);
+            ReportsModelLabel.Location = new Point(20, 65);
             ReportsModelLabel.Name = "ReportsModelLabel";
             ReportsModelLabel.Size = new Size(74, 25);
             ReportsModelLabel.TabIndex = 18;
             ReportsModelLabel.Text = "Model:";
-            ReportsModelLabel.Visible = false;
             // 
             // ReportsVehicleType
             // 
             ReportsVehicleType.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
             ReportsVehicleType.FormattingEnabled = true;
             ReportsVehicleType.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
-            ReportsVehicleType.Location = new Point(163, 83);
+            ReportsVehicleType.Location = new Point(210, 29);
             ReportsVehicleType.Margin = new Padding(3, 2, 3, 2);
             ReportsVehicleType.Name = "ReportsVehicleType";
             ReportsVehicleType.Size = new Size(133, 23);
@@ -138,7 +317,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            label1.Location = new Point(6, 80);
+            label1.Location = new Point(20, 24);
             label1.Name = "label1";
             label1.Size = new Size(123, 25);
             label1.TabIndex = 16;
@@ -597,6 +776,51 @@
             vType.Name = "vType";
             vType.ReadOnly = true;
             // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(276, 359);
+            radioButton3.Margin = new Padding(3, 2, 3, 2);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(50, 19);
+            radioButton3.TabIndex = 45;
+            radioButton3.Text = "Total";
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Checked = true;
+            radioButton4.Location = new Point(189, 359);
+            radioButton4.Margin = new Padding(3, 2, 3, 2);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(43, 19);
+            radioButton4.TabIndex = 44;
+            radioButton4.TabStop = true;
+            radioButton4.Text = "List";
+            radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label9.Location = new Point(20, 353);
+            label9.Name = "label9";
+            label9.Size = new Size(108, 25);
+            label9.TabIndex = 48;
+            label9.Text = "Select one:";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(20, 399);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.RightToLeft = RightToLeft.Yes;
+            button1.Size = new Size(82, 22);
+            button1.TabIndex = 49;
+            button1.Text = "Submit";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -670,5 +894,24 @@
         private Label label1;
         private ComboBox ReportsVehicleModel;
         private Label ReportsModelLabel;
+        private ComboBox comboBox4;
+        private Label label4;
+        private ComboBox comboBox3;
+        private ComboBox comboBox2;
+        private Label label5;
+        private Label label6;
+        private TextBox KiloSelection;
+        private DateTimePicker dateTimePicker1;
+        private ComboBox comboBox1;
+        private Label label2;
+        private ComboBox comboBox5;
+        private Label label3;
+        private DateTimePicker dateTimePicker2;
+        private Label label8;
+        private Label label7;
+        private Label label9;
+        private RadioButton radioButton3;
+        private RadioButton radioButton4;
+        private Button button1;
     }
 }
