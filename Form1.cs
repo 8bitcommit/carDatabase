@@ -116,17 +116,17 @@ namespace project291
 
         private bool ValidateDataForModify(CarInput carInput)
         {
-            if(carInput.VIN.Length != 17)
+            if (carInput.VIN.Length != 17)
             {
                 ShowError("Vin is not 17 long");
                 return false;
             }
 
-            if(carInput.Kilometers != "")
+            if (carInput.Kilometers != "")
             {
-                if(long.TryParse(carInput.Kilometers, out var kms))
+                if (long.TryParse(carInput.Kilometers, out var kms))
                 {
-                    if(kms < 0 || kms > 10000000)
+                    if (kms < 0 || kms > 10000000)
                     {
                         ShowError("Kilometers must be between 0 and 10 million");
                         return false;
@@ -138,21 +138,103 @@ namespace project291
                     return false;
                 }
             }
-           
 
-               return true;
+
+            return true;
         }
+
+
 
         private void ModifyCar()
         {
             var carInput = GetCarFromUI();
 
-            if(ValidateDataForModify(carInput))
+            if (ValidateDataForModify(carInput))
             {
-                ShowSuccess("Success");
+                UpdateDatabaseForModify(carInput);
             }
 
+
+
+
             //do dangerous operation knowing it's correct
+        }
+
+        private void UpdateDatabaseForModify(CarInput carInput)
+        {
+            try
+            {
+                var updates = new List<string>();
+
+                if (carInput.LicensePlate != "")
+                {
+                    updates.Add($"LicensePlate='{carInput.LicensePlate}'");
+                }
+
+                if(carInput.Kilometers != "")
+                {
+                    updates.Add($"Kilometers={carInput.Kilometers}");
+                }
+
+                if (carInput.Make != "")
+                {
+                    updates.Add($"Make='{carInput.Make}'");
+                }
+
+                if (carInput.Model != "")
+                {
+                    updates.Add($"Model='{carInput.Model}'");
+                }
+
+                if (carInput.Colour != "")
+                {
+                    updates.Add($"Colour='{carInput.Colour}'");
+                }
+
+                if (carInput.VehicleType != "")
+                {
+                    updates.Add($"vType='{carInput.VehicleType}'");
+                }
+
+
+                var updateString = "";
+
+                for (int i = 0; i < updates.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        updateString += updates[i];
+                    }
+                    if (i > 0)
+                    {
+                        updateString += ", " + updates[i];
+                    }
+
+                }
+
+                if (updates.Count == 0)
+                {
+                    ShowSuccess("No updates to perform");
+                    return;
+                }
+
+                myCommand.CommandText = $"UPDATE Vehicle SET {updateString} WHERE VIN = '{carInput.VIN}';";
+                MessageBox.Show(myCommand.CommandText);
+
+                var rowsUpdated = myCommand.ExecuteNonQuery();
+                if (rowsUpdated > 0)
+                {
+                    ShowSuccess("Success");
+                }
+                else
+                {
+                    ShowError("Car with that VIN not found");
+                }
+            }
+            catch (Exception e2)
+            {
+                ShowError("Error: " + e2.ToString());
+            }
         }
 
         private void DeleteCar()
