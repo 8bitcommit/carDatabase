@@ -11,7 +11,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = bubbles; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -240,26 +240,22 @@ namespace project291
         private void DeleteCar()
         {
             var carInput = GetCarFromUI();
-            if(carInput.VIN.Length != 17)
-            {
-                ShowError("That is not a valid VIN");
-                return;
-            }
-            else
-            {
-                int vin = Int32.Parse(carInput.VIN);
-                try
-                {
-                    myCommand.CommandText = "delete from Vehicle where VIN=" + vin;
-                    
-                    ShowSuccess("Vehicle with VIN " + carInput.VIN + " deleted");
 
+            try
+            {
+                if (carInput.VIN.Length == 17)
+                { 
+                    myCommand.CommandText = $"delete from Vehicle where VIN='{carInput.VIN}'";
                     myCommand.ExecuteNonQuery();
+
+                    ShowSuccess("Vehicle with VIN " + carInput.VIN + " deleted");
                 }
-                catch (Exception e2)
-                {
-                    MessageBox.Show(e2.ToString(), "Error");
-                }
+                else ShowError("That is not a valid VIN");
+            }
+
+            catch (Exception e3)
+            {
+                MessageBox.Show(e3.ToString(), "Error");
             }
         }
     }
