@@ -30,24 +30,30 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            label10 = new Label();
+            month5 = new ComboBox();
+            label9 = new Label();
+            month4 = new ComboBox();
+            label8 = new Label();
+            month2 = new ComboBox();
+            label7 = new Label();
             label6 = new Label();
-            textBox2 = new TextBox();
+            kms_per_car = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            comboBox3 = new ComboBox();
-            comboBox2 = new ComboBox();
+            month1 = new ComboBox();
+            vTypebox1 = new ComboBox();
             label1 = new Label();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
-            radioButton7 = new RadioButton();
+            rental_count = new TextBox();
+            Pop_branch = new ComboBox();
             radioButton6 = new RadioButton();
-            radioButton5 = new RadioButton();
-            radioButton4 = new RadioButton();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            Q5_radio = new RadioButton();
+            Q4_radio = new RadioButton();
+            Q3_radio = new RadioButton();
+            Q2_radio = new RadioButton();
+            Q1_radio = new RadioButton();
             Rental = new TabPage();
             DifferentLocationCheckBox = new CheckBox();
             ReturnComboBox = new ComboBox();
@@ -92,10 +98,6 @@
             Model = new DataGridViewTextBoxColumn();
             Colour = new DataGridViewTextBoxColumn();
             vType = new DataGridViewTextBoxColumn();
-            label7 = new Label();
-            comboBox5 = new ComboBox();
-            comboBox4 = new ComboBox();
-            label8 = new Label();
             Reports.SuspendLayout();
             Rental.SuspendLayout();
             Car.SuspendLayout();
@@ -106,28 +108,30 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
-            Reports.Controls.Add(comboBox4);
+            Reports.Controls.Add(label10);
+            Reports.Controls.Add(month5);
+            Reports.Controls.Add(label9);
+            Reports.Controls.Add(month4);
             Reports.Controls.Add(label8);
-            Reports.Controls.Add(comboBox5);
+            Reports.Controls.Add(month2);
             Reports.Controls.Add(label7);
             Reports.Controls.Add(label6);
-            Reports.Controls.Add(textBox2);
+            Reports.Controls.Add(kms_per_car);
             Reports.Controls.Add(label5);
             Reports.Controls.Add(label4);
             Reports.Controls.Add(label3);
             Reports.Controls.Add(label2);
-            Reports.Controls.Add(comboBox3);
-            Reports.Controls.Add(comboBox2);
+            Reports.Controls.Add(month1);
+            Reports.Controls.Add(vTypebox1);
             Reports.Controls.Add(label1);
-            Reports.Controls.Add(textBox1);
-            Reports.Controls.Add(comboBox1);
-            Reports.Controls.Add(radioButton7);
+            Reports.Controls.Add(rental_count);
+            Reports.Controls.Add(Pop_branch);
             Reports.Controls.Add(radioButton6);
-            Reports.Controls.Add(radioButton5);
-            Reports.Controls.Add(radioButton4);
-            Reports.Controls.Add(radioButton3);
-            Reports.Controls.Add(radioButton2);
-            Reports.Controls.Add(radioButton1);
+            Reports.Controls.Add(Q5_radio);
+            Reports.Controls.Add(Q4_radio);
+            Reports.Controls.Add(Q3_radio);
+            Reports.Controls.Add(Q2_radio);
+            Reports.Controls.Add(Q1_radio);
             Reports.Location = new Point(4, 24);
             Reports.Margin = new Padding(3, 2, 3, 2);
             Reports.Name = "Reports";
@@ -137,26 +141,95 @@
             Reports.Text = "Reports";
             Reports.Click += Reports_Click;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(105, 242);
+            label10.Name = "label10";
+            label10.Size = new Size(364, 15);
+            label10.TabIndex = 31;
+            label10.Text = "Vehicle type most often returned to a different branch than pick-up.";
+            label10.Click += label10_Click;
+            // 
+            // month5
+            // 
+            month5.FormattingEnabled = true;
+            month5.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            month5.Location = new Point(256, 196);
+            month5.Name = "month5";
+            month5.Size = new Size(121, 23);
+            month5.TabIndex = 30;
+            month5.Text = "Month";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(105, 199);
+            label9.Name = "label9";
+            label9.Size = new Size(136, 15);
+            label9.TabIndex = 29;
+            label9.Text = "Average rental length in ";
+            // 
+            // month4
+            // 
+            month4.FormattingEnabled = true;
+            month4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            month4.Location = new Point(348, 152);
+            month4.Name = "month4";
+            month4.Size = new Size(121, 23);
+            month4.TabIndex = 28;
+            month4.Text = "Month";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(105, 155);
+            label8.Name = "label8";
+            label8.Size = new Size(216, 15);
+            label8.TabIndex = 27;
+            label8.Text = "Branch that rented the most vehicles in ";
+            label8.Click += label8_Click;
+            // 
+            // month2
+            // 
+            month2.FormattingEnabled = true;
+            month2.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            month2.Location = new Point(372, 106);
+            month2.Name = "month2";
+            month2.Size = new Size(121, 23);
+            month2.TabIndex = 26;
+            month2.Text = "Month";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(105, 109);
+            label7.Name = "label7";
+            label7.Size = new Size(233, 15);
+            label7.TabIndex = 25;
+            label7.Text = "Branches where no vehicles are available in";
+            label7.Click += label7_Click;
+            // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(621, 67);
+            label6.Location = new Point(639, 67);
             label6.Name = "label6";
-            label6.Size = new Size(62, 15);
+            label6.Size = new Size(65, 15);
             label6.TabIndex = 23;
-            label6.Text = "kilometers";
+            label6.Text = "kilometers.";
             // 
-            // textBox2
+            // kms_per_car
             // 
-            textBox2.Location = new Point(552, 64);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(51, 23);
-            textBox2.TabIndex = 22;
+            kms_per_car.Location = new Point(570, 64);
+            kms_per_car.Name = "kms_per_car";
+            kms_per_car.Size = new Size(51, 23);
+            kms_per_car.TabIndex = 22;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(454, 67);
+            label5.Location = new Point(472, 67);
             label5.Name = "label5";
             label5.Size = new Size(79, 15);
             label5.TabIndex = 21;
@@ -190,27 +263,27 @@
             label2.TabIndex = 18;
             label2.Text = "more than";
             // 
-            // comboBox3
+            // month1
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            comboBox3.Location = new Point(329, 21);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 17;
-            comboBox3.Text = "Month";
+            month1.FormattingEnabled = true;
+            month1.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            month1.Location = new Point(329, 21);
+            month1.Name = "month1";
+            month1.Size = new Size(121, 23);
+            month1.TabIndex = 17;
+            month1.Text = "Month";
             // 
-            // comboBox2
+            // vTypebox1
             // 
-            comboBox2.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
-            comboBox2.Location = new Point(105, 21);
-            comboBox2.Margin = new Padding(3, 2, 3, 2);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(133, 23);
-            comboBox2.TabIndex = 16;
-            comboBox2.Text = "Vehicle Type";
+            vTypebox1.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            vTypebox1.FormattingEnabled = true;
+            vTypebox1.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
+            vTypebox1.Location = new Point(105, 21);
+            vTypebox1.Margin = new Padding(3, 2, 3, 2);
+            vTypebox1.Name = "vTypebox1";
+            vTypebox1.Size = new Size(133, 23);
+            vTypebox1.TabIndex = 16;
+            vTypebox1.Text = "Vehicle Type";
             // 
             // label1
             // 
@@ -222,95 +295,86 @@
             label1.Text = "rented in";
             label1.Click += label1_Click;
             // 
-            // textBox1
+            // rental_count
             // 
-            textBox1.Location = new Point(552, 21);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(27, 23);
-            textBox1.TabIndex = 8;
+            rental_count.Location = new Point(552, 21);
+            rental_count.Name = "rental_count";
+            rental_count.Size = new Size(27, 23);
+            rental_count.TabIndex = 8;
             // 
-            // comboBox1
+            // Pop_branch
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            comboBox1.Location = new Point(304, 64);
-            comboBox1.Margin = new Padding(3, 2, 3, 2);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(133, 23);
-            comboBox1.TabIndex = 7;
-            comboBox1.Text = "Branch";
-            // 
-            // radioButton7
-            // 
-            radioButton7.AutoSize = true;
-            radioButton7.Location = new Point(11, 261);
-            radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(56, 19);
-            radioButton7.TabIndex = 6;
-            radioButton7.Text = "Select";
-            radioButton7.UseVisualStyleBackColor = true;
+            Pop_branch.FormattingEnabled = true;
+            Pop_branch.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            Pop_branch.Location = new Point(304, 64);
+            Pop_branch.Margin = new Padding(3, 2, 3, 2);
+            Pop_branch.Name = "Pop_branch";
+            Pop_branch.Size = new Size(144, 23);
+            Pop_branch.TabIndex = 7;
+            Pop_branch.Text = "Branch";
             // 
             // radioButton6
             // 
             radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(11, 227);
+            radioButton6.Location = new Point(11, 240);
             radioButton6.Name = "radioButton6";
             radioButton6.Size = new Size(56, 19);
             radioButton6.TabIndex = 5;
             radioButton6.Text = "Select";
             radioButton6.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // Q5_radio
             // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(11, 192);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(56, 19);
-            radioButton5.TabIndex = 4;
-            radioButton5.Text = "Select";
-            radioButton5.UseVisualStyleBackColor = true;
+            Q5_radio.AutoSize = true;
+            Q5_radio.Location = new Point(11, 197);
+            Q5_radio.Name = "Q5_radio";
+            Q5_radio.Size = new Size(56, 19);
+            Q5_radio.TabIndex = 4;
+            Q5_radio.Text = "Select";
+            Q5_radio.UseVisualStyleBackColor = true;
+            Q5_radio.CheckedChanged += radioButton5_CheckedChanged;
             // 
-            // radioButton4
+            // Q4_radio
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(11, 153);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(56, 19);
-            radioButton4.TabIndex = 3;
-            radioButton4.Text = "Select";
-            radioButton4.UseVisualStyleBackColor = true;
+            Q4_radio.AutoSize = true;
+            Q4_radio.Location = new Point(11, 153);
+            Q4_radio.Name = "Q4_radio";
+            Q4_radio.Size = new Size(56, 19);
+            Q4_radio.TabIndex = 3;
+            Q4_radio.Text = "Select";
+            Q4_radio.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // Q3_radio
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(11, 107);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(56, 19);
-            radioButton3.TabIndex = 2;
-            radioButton3.Text = "Select";
-            radioButton3.UseVisualStyleBackColor = true;
+            Q3_radio.AutoSize = true;
+            Q3_radio.Location = new Point(11, 107);
+            Q3_radio.Name = "Q3_radio";
+            Q3_radio.Size = new Size(56, 19);
+            Q3_radio.TabIndex = 2;
+            Q3_radio.Text = "Select";
+            Q3_radio.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // Q2_radio
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(11, 65);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(56, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.Text = "Select";
-            radioButton2.UseVisualStyleBackColor = true;
+            Q2_radio.AutoSize = true;
+            Q2_radio.Location = new Point(11, 65);
+            Q2_radio.Name = "Q2_radio";
+            Q2_radio.Size = new Size(56, 19);
+            Q2_radio.TabIndex = 1;
+            Q2_radio.Text = "Select";
+            Q2_radio.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // Q1_radio
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Checked = true;
-            radioButton1.Location = new Point(11, 25);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(56, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Select";
-            radioButton1.UseVisualStyleBackColor = true;
+            Q1_radio.AutoSize = true;
+            Q1_radio.Checked = true;
+            Q1_radio.Location = new Point(11, 25);
+            Q1_radio.Name = "Q1_radio";
+            Q1_radio.Size = new Size(56, 19);
+            Q1_radio.TabIndex = 0;
+            Q1_radio.TabStop = true;
+            Q1_radio.Text = "Select";
+            Q1_radio.UseVisualStyleBackColor = true;
             // 
             // Rental
             // 
@@ -764,46 +828,6 @@
             vType.Name = "vType";
             vType.ReadOnly = true;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(105, 109);
-            label7.Name = "label7";
-            label7.Size = new Size(233, 15);
-            label7.TabIndex = 25;
-            label7.Text = "Branches where no vehicles are available in";
-            label7.Click += label7_Click;
-            // 
-            // comboBox5
-            // 
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            comboBox5.Location = new Point(358, 106);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(121, 23);
-            comboBox5.TabIndex = 26;
-            comboBox5.Text = "Month";
-            // 
-            // comboBox4
-            // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            comboBox4.Location = new Point(329, 152);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(121, 23);
-            comboBox4.TabIndex = 28;
-            comboBox4.Text = "Month";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(105, 155);
-            label8.Name = "label8";
-            label8.Size = new Size(216, 15);
-            label8.TabIndex = 27;
-            label8.Text = "Branch that rented the most vehicles in ";
-            label8.Click += label8_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -873,27 +897,29 @@
         private DataGridViewTextBoxColumn Model;
         private DataGridViewTextBoxColumn Colour;
         private DataGridViewTextBoxColumn vType;
-        private RadioButton radioButton1;
-        private RadioButton radioButton7;
+        private RadioButton Q1_radio;
         private RadioButton radioButton6;
-        private RadioButton radioButton5;
-        private RadioButton radioButton4;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private ComboBox comboBox2;
+        private RadioButton Q5_radio;
+        private RadioButton Q4_radio;
+        private RadioButton Q3_radio;
+        private RadioButton Q2_radio;
+        private ComboBox vTypebox1;
         private Label label1;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
-        private ComboBox comboBox3;
+        private TextBox rental_count;
+        private ComboBox Pop_branch;
+        private ComboBox month1;
         private Label label4;
         private Label label3;
         private Label label2;
         private Label label6;
-        private TextBox textBox2;
+        private TextBox kms_per_car;
         private Label label5;
-        private ComboBox comboBox5;
+        private ComboBox month2;
         private Label label7;
-        private ComboBox comboBox4;
+        private ComboBox month4;
         private Label label8;
+        private Label label10;
+        private ComboBox month5;
+        private Label label9;
     }
 }
