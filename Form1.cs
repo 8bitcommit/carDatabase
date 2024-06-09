@@ -156,11 +156,6 @@ namespace project291
             {
                 UpdateDatabaseForModify(carInput);
             }
-
-
-
-
-            //do dangerous operation knowing it's correct
         }
 
         private void UpdateDatabaseForModify(CarInput carInput)
@@ -387,21 +382,6 @@ namespace project291
 
         }
 
-
-        private void AddRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ModifyRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void vehicleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 
 }

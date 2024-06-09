@@ -87,7 +87,7 @@
             Reports.Margin = new Padding(3, 2, 3, 2);
             Reports.Name = "Reports";
             Reports.Padding = new Padding(3, 2, 3, 2);
-            Reports.Size = new Size(906, 444);
+            Reports.Size = new Size(777, 407);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             // 
@@ -109,7 +109,7 @@
             Rental.Margin = new Padding(3, 2, 3, 2);
             Rental.Name = "Rental";
             Rental.Padding = new Padding(3, 2, 3, 2);
-            Rental.Size = new Size(906, 444);
+            Rental.Size = new Size(777, 407);
             Rental.TabIndex = 1;
             Rental.Text = "Rental";
             // 
@@ -375,7 +375,6 @@
             ModifyRadioButton.TabIndex = 17;
             ModifyRadioButton.Text = "Modify";
             ModifyRadioButton.UseVisualStyleBackColor = true;
-            ModifyRadioButton.CheckedChanged += ModifyRadioButton_CheckedChanged;
             // 
             // AddRadioButton
             // 
@@ -389,7 +388,6 @@
             AddRadioButton.TabStop = true;
             AddRadioButton.Text = "Add";
             AddRadioButton.UseVisualStyleBackColor = true;
-            AddRadioButton.CheckedChanged += AddRadioButton_CheckedChanged;
             // 
             // VehicleTypeComboBox
             // 
@@ -501,7 +499,6 @@
             vehicleList.ReadOnly = true;
             vehicleList.Size = new Size(782, 305);
             vehicleList.TabIndex = 12;
-            vehicleList.CellContentClick += vehicleList_CellContentClick;
             // 
             // VIN
             // 
