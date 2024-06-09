@@ -304,7 +304,7 @@ namespace project291
                 ShowError("Error: " + e.Message);
             }
         }
-        
+
         private void SearchCar()
         {
             var carInput = GetCarFromUI();
@@ -367,10 +367,10 @@ namespace project291
                 vehicleList.Rows.Clear();
                 while (myReader.Read())
                 {
-                    vehicleList.Rows.Add(myReader["VIN"].ToString(), 
-                                         myReader["LicensePlate"].ToString(), 
-                                         myReader["Kilometers"].ToString(), 
-                                         myReader["Make"].ToString(), 
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(),
+                                         myReader["LicensePlate"].ToString(),
+                                         myReader["Kilometers"].ToString(),
+                                         myReader["Make"].ToString(),
                                          myReader["Model"].ToString(),
                                          myReader["Colour"].ToString(),
                                          myReader["vType"].ToString());
@@ -380,7 +380,7 @@ namespace project291
 
                 myReader.Close();
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 ShowError("Error: " + e.Message);
             }
@@ -394,6 +394,11 @@ namespace project291
         }
 
         private void ModifyRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void vehicleList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

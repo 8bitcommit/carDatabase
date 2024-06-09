@@ -87,7 +87,7 @@
             Reports.Margin = new Padding(3, 2, 3, 2);
             Reports.Name = "Reports";
             Reports.Padding = new Padding(3, 2, 3, 2);
-            Reports.Size = new Size(672, 444);
+            Reports.Size = new Size(906, 444);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             // 
@@ -109,7 +109,7 @@
             Rental.Margin = new Padding(3, 2, 3, 2);
             Rental.Name = "Rental";
             Rental.Padding = new Padding(3, 2, 3, 2);
-            Rental.Size = new Size(672, 444);
+            Rental.Size = new Size(906, 444);
             Rental.TabIndex = 1;
             Rental.Text = "Rental";
             // 
@@ -254,7 +254,7 @@
             Car.Location = new Point(4, 24);
             Car.Margin = new Padding(3, 2, 3, 2);
             Car.Name = "Car";
-            Car.Size = new Size(740, 444);
+            Car.Size = new Size(777, 407);
             Car.TabIndex = 2;
             Car.Text = "Car";
             // 
@@ -482,7 +482,7 @@
             tabControl1.Margin = new Padding(4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(748, 472);
+            tabControl1.Size = new Size(785, 435);
             tabControl1.TabIndex = 11;
             // 
             // HideNotificationTimer
@@ -496,17 +496,19 @@
             vehicleList.AllowUserToDeleteRows = false;
             vehicleList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             vehicleList.Columns.AddRange(new DataGridViewColumn[] { VIN, LicensePlate, Kilometers, Make, Model, Colour, vType });
-            vehicleList.Location = new Point(17, 492);
+            vehicleList.Location = new Point(17, 455);
             vehicleList.Name = "vehicleList";
             vehicleList.ReadOnly = true;
-            vehicleList.Size = new Size(744, 274);
+            vehicleList.Size = new Size(782, 305);
             vehicleList.TabIndex = 12;
+            vehicleList.CellContentClick += vehicleList_CellContentClick;
             // 
             // VIN
             // 
             VIN.HeaderText = "VIN";
             VIN.Name = "VIN";
             VIN.ReadOnly = true;
+            VIN.Width = 135;
             // 
             // LicensePlate
             // 
@@ -549,7 +551,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.MenuBar;
-            ClientSize = new Size(772, 771);
+            ClientSize = new Size(811, 771);
             Controls.Add(vehicleList);
             Controls.Add(tabControl1);
             Margin = new Padding(3, 2, 3, 2);
