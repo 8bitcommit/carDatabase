@@ -7,6 +7,7 @@ ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_CustomerID;
 ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_VIN;
 ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_RentedFrom;
 ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_ReturnedTo;
+GO
 
 -- Drop tables
 DROP TABLE IF EXISTS Rental;
@@ -15,6 +16,7 @@ DROP TABLE IF EXISTS VehicleType;
 DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Employee;
 DROP TABLE IF EXISTS Branch;
+GO
 
 -- Create tables
 CREATE TABLE Branch(
@@ -66,7 +68,7 @@ CREATE TABLE VehicleType(
 CREATE TABLE Vehicle(
     VIN nchar(17) PRIMARY KEY,
     LicensePlate nchar(10) NULL,
-	Mileage numeric(7, 0) CHECK (Mileage >= 0) NOT NULL,
+	Kilometers numeric(7, 0) CHECK (Kilometers >= 0) NOT NULL,
     Make nchar(20) NULL,
     Model nchar(20) NULL,
     Colour nchar(20) NULL,
@@ -104,7 +106,7 @@ VALUES
 ('Electric', 150.00, 900.00, 3000.00);
 
 -- Insert sample cars into the Vehicle table
-INSERT INTO Vehicle (VIN, LicensePlate, Mileage, Make, Model, Colour, vType)
+INSERT INTO Vehicle (VIN, LicensePlate, Kilometers, Make, Model, Colour, vType)
 VALUES 
 ('1FA6P8TH0J5132526', 'MUSTNG1', 15000, 'Ford', 'Mustang', 'Pink', 'Sports'),
 ('YV1MS382X82152219', '8YVMS82', 30000, 'Volvo', 'S60', 'Red', 'Sedan'),
