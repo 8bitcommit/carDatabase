@@ -65,10 +65,10 @@ CREATE TABLE VehicleType(
 
 CREATE TABLE Vehicle(
     VIN nchar(17) PRIMARY KEY,
-    LicensePlate nchar(7) NULL,
-    Mileage numeric(6, 0) NULL,
-    Make nchar(10) NULL,
-    Model nchar(10) NULL,
+    LicensePlate nchar(10) NULL,
+	Mileage numeric(7, 0) CHECK (Mileage >= 0) NOT NULL,
+    Make nchar(20) NULL,
+    Model nchar(20) NULL,
     Colour nchar(20) NULL,
     vType nchar(15) NULL
 );
