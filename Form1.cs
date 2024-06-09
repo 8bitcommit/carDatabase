@@ -1,6 +1,6 @@
 using Microsoft.Data.SqlClient;
 
-namespace LAB6291
+namespace project291
 {
     public partial class Form1 : Form
     {
@@ -100,9 +100,59 @@ namespace LAB6291
             }
         }
 
+        private CarInput GetCarFromUI()
+        {
+            return new CarInput()
+            {
+                VIN = VINTextBox.Text.Trim(),
+                LicensePlate = LicensePlateTextBox.Text.Trim(),
+                Kilometers = KilometersTextBox.Text.Trim(),
+                Make = MakeTextBox.Text.Trim(),
+                Model = ModelTextBox.Text.Trim(),
+                Colour = ColourTextBox.Text.Trim(),
+                VehicleType = VehicleTypeComboBox.Text.Trim(),
+            };
+        }
+
+        private bool ValidateDataForModify(CarInput carInput)
+        {
+            if(carInput.VIN.Length != 17)
+            {
+                ShowError("Vin is not 17 long");
+                return false;
+            }
+
+            if(carInput.Kilometers != "")
+            {
+                if(long.TryParse(carInput.Kilometers, out var kms))
+                {
+                    if(kms < 0 || kms > 10000000)
+                    {
+                        ShowError("Kilometers must be between 0 and 10 million");
+                        return false;
+                    }
+                }
+                else
+                {
+                    ShowError("Kilometers must be a number");
+                    return false;
+                }
+            }
+           
+
+               return true;
+        }
+
         private void ModifyCar()
         {
-            ShowSuccess("Success");
+            var carInput = GetCarFromUI();
+
+            if(ValidateDataForModify(carInput))
+            {
+                ShowSuccess("Success");
+            }
+
+            //do dangerous operation knowing it's correct
         }
     }
 }

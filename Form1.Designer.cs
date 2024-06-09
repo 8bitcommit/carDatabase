@@ -1,4 +1,4 @@
-﻿namespace LAB6291
+﻿namespace project291
 {
     partial class Form1
     {
@@ -264,6 +264,7 @@
             // 
             ColourTextBox.Location = new Point(192, 210);
             ColourTextBox.Margin = new Padding(3, 2, 3, 2);
+            ColourTextBox.MaxLength = 20;
             ColourTextBox.Name = "ColourTextBox";
             ColourTextBox.Size = new Size(133, 23);
             ColourTextBox.TabIndex = 22;
@@ -272,6 +273,7 @@
             // 
             ModelTextBox.Location = new Point(191, 172);
             ModelTextBox.Margin = new Padding(3, 2, 3, 2);
+            ModelTextBox.MaxLength = 20;
             ModelTextBox.Name = "ModelTextBox";
             ModelTextBox.Size = new Size(134, 23);
             ModelTextBox.TabIndex = 13;
@@ -280,6 +282,7 @@
             // 
             MakeTextBox.Location = new Point(191, 137);
             MakeTextBox.Margin = new Padding(3, 2, 3, 2);
+            MakeTextBox.MaxLength = 20;
             MakeTextBox.Name = "MakeTextBox";
             MakeTextBox.Size = new Size(134, 23);
             MakeTextBox.TabIndex = 11;
@@ -288,6 +291,7 @@
             // 
             KilometersTextBox.Location = new Point(191, 98);
             KilometersTextBox.Margin = new Padding(3, 2, 3, 2);
+            KilometersTextBox.MaxLength = 9;
             KilometersTextBox.Name = "KilometersTextBox";
             KilometersTextBox.Size = new Size(134, 23);
             KilometersTextBox.TabIndex = 9;
@@ -304,6 +308,7 @@
             // 
             LicensePlateTextBox.Location = new Point(191, 60);
             LicensePlateTextBox.Margin = new Padding(3, 2, 3, 2);
+            LicensePlateTextBox.MaxLength = 10;
             LicensePlateTextBox.Name = "LicensePlateTextBox";
             LicensePlateTextBox.Size = new Size(134, 23);
             LicensePlateTextBox.TabIndex = 7;
@@ -379,7 +384,7 @@
             // 
             VehicleTypeComboBox.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
             VehicleTypeComboBox.FormattingEnabled = true;
-            VehicleTypeComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            VehicleTypeComboBox.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
             VehicleTypeComboBox.Location = new Point(192, 248);
             VehicleTypeComboBox.Margin = new Padding(3, 2, 3, 2);
             VehicleTypeComboBox.Name = "VehicleTypeComboBox";
