@@ -158,7 +158,7 @@ namespace project291
         private void DeleteCar()
         {
             var carInput = GetCarFromUI();
-            if(carInput.VIN.Length != 10)
+            if(carInput.VIN.Length != 17)
             {
                 ShowError("That is not a valid VIN");
                 return;
