@@ -30,6 +30,10 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            ReportsVehicleModel = new ComboBox();
+            ReportsModelLabel = new Label();
+            ReportsVehicleType = new ComboBox();
+            label1 = new Label();
             Rental = new TabPage();
             DifferentLocationCheckBox = new CheckBox();
             ReturnComboBox = new ComboBox();
@@ -74,6 +78,7 @@
             Model = new DataGridViewTextBoxColumn();
             Colour = new DataGridViewTextBoxColumn();
             vType = new DataGridViewTextBoxColumn();
+            Reports.SuspendLayout();
             Rental.SuspendLayout();
             Car.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -83,13 +88,61 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Controls.Add(ReportsVehicleModel);
+            Reports.Controls.Add(ReportsModelLabel);
+            Reports.Controls.Add(ReportsVehicleType);
+            Reports.Controls.Add(label1);
             Reports.Location = new Point(4, 24);
             Reports.Margin = new Padding(3, 2, 3, 2);
             Reports.Name = "Reports";
             Reports.Padding = new Padding(3, 2, 3, 2);
-            Reports.Size = new Size(672, 444);
+            Reports.Size = new Size(740, 444);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
+            // 
+            // ReportsVehicleModel
+            // 
+            ReportsVehicleModel.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            ReportsVehicleModel.FormattingEnabled = true;
+            ReportsVehicleModel.Location = new Point(163, 124);
+            ReportsVehicleModel.Margin = new Padding(3, 2, 3, 2);
+            ReportsVehicleModel.Name = "ReportsVehicleModel";
+            ReportsVehicleModel.Size = new Size(133, 23);
+            ReportsVehicleModel.TabIndex = 19;
+            ReportsVehicleModel.Visible = false;
+            // 
+            // ReportsModelLabel
+            // 
+            ReportsModelLabel.AutoSize = true;
+            ReportsModelLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            ReportsModelLabel.Location = new Point(6, 121);
+            ReportsModelLabel.Name = "ReportsModelLabel";
+            ReportsModelLabel.Size = new Size(74, 25);
+            ReportsModelLabel.TabIndex = 18;
+            ReportsModelLabel.Text = "Model:";
+            ReportsModelLabel.Visible = false;
+            // 
+            // ReportsVehicleType
+            // 
+            ReportsVehicleType.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            ReportsVehicleType.FormattingEnabled = true;
+            ReportsVehicleType.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
+            ReportsVehicleType.Location = new Point(163, 83);
+            ReportsVehicleType.Margin = new Padding(3, 2, 3, 2);
+            ReportsVehicleType.Name = "ReportsVehicleType";
+            ReportsVehicleType.Size = new Size(133, 23);
+            ReportsVehicleType.TabIndex = 17;
+            ReportsVehicleType.SelectedIndexChanged += ReportsVehicleType_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label1.Location = new Point(6, 80);
+            label1.Name = "label1";
+            label1.Size = new Size(123, 25);
+            label1.TabIndex = 16;
+            label1.Text = "Vehicle type:";
             // 
             // Rental
             // 
@@ -109,7 +162,7 @@
             Rental.Margin = new Padding(3, 2, 3, 2);
             Rental.Name = "Rental";
             Rental.Padding = new Padding(3, 2, 3, 2);
-            Rental.Size = new Size(672, 444);
+            Rental.Size = new Size(740, 444);
             Rental.TabIndex = 1;
             Rental.Text = "Rental";
             // 
@@ -555,6 +608,8 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Reservation";
+            Reports.ResumeLayout(false);
+            Reports.PerformLayout();
             Rental.ResumeLayout(false);
             Rental.PerformLayout();
             Car.ResumeLayout(false);
@@ -611,5 +666,9 @@
         private DataGridViewTextBoxColumn Model;
         private DataGridViewTextBoxColumn Colour;
         private DataGridViewTextBoxColumn vType;
+        private ComboBox ReportsVehicleType;
+        private Label label1;
+        private ComboBox ReportsVehicleModel;
+        private Label ReportsModelLabel;
     }
 }

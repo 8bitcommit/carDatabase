@@ -14,7 +14,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = VBOX; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -304,7 +304,7 @@ namespace project291
                 ShowError("Error: " + e.Message);
             }
         }
-        
+
         private void SearchCar()
         {
             var carInput = GetCarFromUI();
@@ -367,10 +367,10 @@ namespace project291
                 vehicleList.Rows.Clear();
                 while (myReader.Read())
                 {
-                    vehicleList.Rows.Add(myReader["VIN"].ToString(), 
-                                         myReader["LicensePlate"].ToString(), 
-                                         myReader["Kilometers"].ToString(), 
-                                         myReader["Make"].ToString(), 
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(),
+                                         myReader["LicensePlate"].ToString(),
+                                         myReader["Kilometers"].ToString(),
+                                         myReader["Make"].ToString(),
                                          myReader["Model"].ToString(),
                                          myReader["Colour"].ToString(),
                                          myReader["vType"].ToString());
@@ -380,7 +380,7 @@ namespace project291
 
                 myReader.Close();
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 ShowError("Error: " + e.Message);
             }
@@ -396,6 +396,34 @@ namespace project291
         private void ModifyRadioButton_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ReportsVehicleType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = ReportsVehicleType.SelectedItem.ToString();
+            ReportsVehicleModel.Items.Clear();
+            if (ReportsVehicleType.SelectedItem != null && selected != "")
+            {
+                ReportsModelLabel.Visible = true;
+                ReportsVehicleModel.Visible = true;
+                UpdateModel(selected);
+            }
+            else 
+            {
+                ReportsModelLabel.Visible = false;
+                ReportsVehicleModel.Visible = false;
+            }
+        }
+
+        private void UpdateModel(string selected)
+        {
+            myCommand.CommandText = $"SELECT Model FROM Vehicle where vType = '{selected}';";
+            myReader = myCommand.ExecuteReader();
+            while (myReader.Read())
+            {
+                ReportsVehicleModel.Items.Add(myReader["Model"].ToString());
+            }
+            myReader.Close();
         }
     }
 
