@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            button1 = new Button();
             label10 = new Label();
             month5 = new ComboBox();
             label9 = new Label();
@@ -42,9 +43,7 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label2 = new Label();
             month1 = new ComboBox();
-            vTypebox1 = new ComboBox();
             label1 = new Label();
             rental_count = new TextBox();
             Pop_branch = new ComboBox();
@@ -108,6 +107,7 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Controls.Add(button1);
             Reports.Controls.Add(label10);
             Reports.Controls.Add(month5);
             Reports.Controls.Add(label9);
@@ -120,9 +120,7 @@
             Reports.Controls.Add(label5);
             Reports.Controls.Add(label4);
             Reports.Controls.Add(label3);
-            Reports.Controls.Add(label2);
             Reports.Controls.Add(month1);
-            Reports.Controls.Add(vTypebox1);
             Reports.Controls.Add(label1);
             Reports.Controls.Add(rental_count);
             Reports.Controls.Add(Pop_branch);
@@ -140,6 +138,17 @@
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             Reports.Click += Reports_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(11, 291);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.RightToLeft = RightToLeft.Yes;
+            button1.Size = new Size(82, 22);
+            button1.TabIndex = 32;
+            button1.Text = "Submit";
+            button1.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -248,56 +257,36 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(598, 27);
+            label3.Location = new Point(444, 27);
             label3.Name = "label3";
-            label3.Size = new Size(39, 15);
+            label3.Size = new Size(49, 15);
             label3.TabIndex = 19;
-            label3.Text = "times.";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(472, 27);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 15);
-            label2.TabIndex = 18;
-            label2.Text = "more than";
+            label3.Text = "times in";
             // 
             // month1
             // 
             month1.FormattingEnabled = true;
             month1.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            month1.Location = new Point(329, 21);
+            month1.Location = new Point(516, 21);
             month1.Name = "month1";
             month1.Size = new Size(121, 23);
             month1.TabIndex = 17;
             month1.Text = "Month";
             // 
-            // vTypebox1
-            // 
-            vTypebox1.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
-            vTypebox1.FormattingEnabled = true;
-            vTypebox1.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
-            vTypebox1.Location = new Point(105, 21);
-            vTypebox1.Margin = new Padding(3, 2, 3, 2);
-            vTypebox1.Name = "vTypebox1";
-            vTypebox1.Size = new Size(133, 23);
-            vTypebox1.TabIndex = 16;
-            vTypebox1.Text = "Vehicle Type";
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(256, 27);
+            label1.Location = new Point(105, 27);
             label1.Name = "label1";
-            label1.Size = new Size(54, 15);
+            label1.RightToLeft = RightToLeft.Yes;
+            label1.Size = new Size(256, 15);
             label1.TabIndex = 9;
-            label1.Text = "rented in";
+            label1.Text = "Vehicles where Vehicle type is rented more than";
             label1.Click += label1_Click;
             // 
             // rental_count
             // 
-            rental_count.Location = new Point(552, 21);
+            rental_count.Location = new Point(398, 21);
             rental_count.Name = "rental_count";
             rental_count.Size = new Size(27, 23);
             rental_count.TabIndex = 8;
@@ -649,6 +638,7 @@
             SearchRadioButton.TabIndex = 18;
             SearchRadioButton.Text = "Search";
             SearchRadioButton.UseVisualStyleBackColor = true;
+            SearchRadioButton.CheckedChanged += SearchRadioButton_CheckedChanged;
             // 
             // ModifyRadioButton
             // 
@@ -903,14 +893,12 @@
         private RadioButton Q4_radio;
         private RadioButton Q3_radio;
         private RadioButton Q2_radio;
-        private ComboBox vTypebox1;
         private Label label1;
         private TextBox rental_count;
         private ComboBox Pop_branch;
         private ComboBox month1;
         private Label label4;
         private Label label3;
-        private Label label2;
         private Label label6;
         private TextBox kms_per_car;
         private Label label5;
@@ -921,5 +909,6 @@
         private Label label10;
         private ComboBox month5;
         private Label label9;
+        private Button button1;
     }
 }
