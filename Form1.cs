@@ -10,11 +10,12 @@ namespace project291
         public SqlConnection myConnection;
         public SqlCommand myCommand;
         public SqlDataReader myReader;
+        private bool fillMissingFields = false;
 
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = LAPTOP-ITDAE565\\SQLEXPRESS; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = SAPHIA_WINDOW; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -256,6 +257,9 @@ namespace project291
                 MessageBox.Show(e3.ToString(), "Error");
             }
         }
+
+
+
         private void AddCar()
         {
             var carInput = GetCarFromUI();
@@ -269,36 +273,146 @@ namespace project291
                     return;
                 }
 
-                // Validate Kilometers
-                if (!string.IsNullOrEmpty(carInput.Kilometers) && !long.TryParse(carInput.Kilometers, out var kms))
+                // Check if the VIN already exists
+                myCommand.CommandText = $"SELECT * FROM Vehicle WHERE VIN = '{carInput.VIN}'";
+
+                using (var myReader = myCommand.ExecuteReader())
                 {
-                    ShowError("Kilometers must be a valid number");
-                    return;
+                    if (myReader.Read())
+                    {
+                        // VIN already exists, check for missing fields
+                        var missingFields = new List<string>();
+
+                        if (myReader["LicensePlate"] == DBNull.Value)
+                            missingFields.Add("License Plate");
+                        if (myReader["Kilometers"] == DBNull.Value)
+                            missingFields.Add("Kilometers");
+                        if (myReader["Make"] == DBNull.Value)
+                            missingFields.Add("Make");
+                        if (myReader["Model"] == DBNull.Value)
+                            missingFields.Add("Model");
+                        if (myReader["Colour"] == DBNull.Value)
+                            missingFields.Add("Colour");
+                        if (myReader["vType"] == DBNull.Value)
+                            missingFields.Add("Vehicle Type");
+
+                        if (missingFields.Count > 0 && !fillMissingFields)
+                        {
+                            // Prompt user to fill missing fields
+                            DialogResult dialogResult = MessageBox.Show("VIN already exists. Do you want to fill in the missing fields?", "VIN Exists", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                // Populate form with existing data
+                                VINTextBox.Text = myReader["VIN"].ToString();
+                                LicensePlateTextBox.Text = myReader["LicensePlate"] != DBNull.Value ? myReader["LicensePlate"].ToString() : "";
+                                KilometersTextBox.Text = myReader["Kilometers"] != DBNull.Value ? myReader["Kilometers"].ToString() : "";
+                                MakeTextBox.Text = myReader["Make"] != DBNull.Value ? myReader["Make"].ToString() : "";
+                                ModelTextBox.Text = myReader["Model"] != DBNull.Value ? myReader["Model"].ToString() : "";
+                                ColourTextBox.Text = myReader["Colour"] != DBNull.Value ? myReader["Colour"].ToString() : "";
+                                VehicleTypeComboBox.Text = myReader["vType"] != DBNull.Value ? myReader["vType"].ToString() : "";
+
+
+                                fillMissingFields = true;
+                                myReader.Close();
+                                return;
+                            }
+                            
+                        }
+                        else if (fillMissingFields)
+                        {
+                            
+                            myReader.Close();
+                            InsertOrUpdateCar(carInput, true);
+                            ClearForm();
+                            return;
+                            
+                        }
+                        else 
+                        {
+                            // VIN exists with no missing info
+                            ShowSuccess("VIN already exists and has no missing information.");
+                           
+                            return;
+                        }
+                    }
+
                 }
 
-                // Construct the SQL command
-                myCommand.CommandText = $"INSERT INTO Vehicle (VIN, LicensePlate, Kilometers, Make, Model, Colour, vType) " +
-                                        $"VALUES ('{carInput.VIN}', '{carInput.LicensePlate}', {carInput.Kilometers}, '{carInput.Make}', '{carInput.Model}', '{carInput.Colour}', '{carInput.VehicleType}')";
+                // VIN doesn't exist, proceed with inserting new car
+                InsertOrUpdateCar(carInput, false);
+            }
+            catch (Exception e)
+            {
+                ShowError("Error: " + e.Message);
+            }
+           
+        }
 
+        private void InsertOrUpdateCar(CarInput carInput, bool update)
+        {
+            try
+            {
+                // Construct SQL command based on whether to update or insert
+                string sqlCommand;
+
+                if (update)
+                {
+                    // Update the existing record with NULL values for empty fields
+                    sqlCommand = $"UPDATE Vehicle SET " +
+                                 $"LicensePlate = {(string.IsNullOrEmpty(carInput.LicensePlate) ? "NULL" : $"'{carInput.LicensePlate}'")}, " +
+                                 $"Kilometers = {(string.IsNullOrEmpty(carInput.Kilometers) ? "0" : $"{carInput.Kilometers}")}, " +
+                                 $"Make = {(string.IsNullOrEmpty(carInput.Make) ? "NULL" : $"'{carInput.Make}'")}, " +
+                                 $"Model = {(string.IsNullOrEmpty(carInput.Model) ? "NULL" : $"'{carInput.Model}'")}, " +
+                                 $"Colour = {(string.IsNullOrEmpty(carInput.Colour) ? "NULL" : $"'{carInput.Colour}'")}, " +
+                                 $"vType = {(string.IsNullOrEmpty(carInput.VehicleType) ? "NULL" : $"'{carInput.VehicleType}'")} " +
+                                 $"WHERE VIN = '{carInput.VIN}'";
+                }
+                else
+                {
+                    // Insert the new car with NULL values for empty fields
+                    sqlCommand = $"INSERT INTO Vehicle (VIN, LicensePlate, Kilometers, Make, Model, Colour, vType) " +
+                                 $"VALUES ('{carInput.VIN}', " +
+                                 $"{(string.IsNullOrEmpty(carInput.LicensePlate) ? "NULL" : $"'{carInput.LicensePlate}'")}, " +
+                                 $"{(string.IsNullOrEmpty(carInput.Kilometers) ? "0" : $"{carInput.Kilometers}")}, " +
+                                 $"{(string.IsNullOrEmpty(carInput.Make) ? "NULL" : $"'{carInput.Make}'")}, " +
+                                 $"{(string.IsNullOrEmpty(carInput.Model) ? "NULL" : $"'{carInput.Model}'")}, " +
+                                 $"{(string.IsNullOrEmpty(carInput.Colour) ? "NULL" : $"'{carInput.Colour}'")}, " +
+                                 $"{(string.IsNullOrEmpty(carInput.VehicleType) ? "NULL" : $"'{carInput.VehicleType}'")})";
+                }
                 // Construct the display message
-                string displayMessage = $"INSERT INTO Vehicle (VIN='{carInput.VIN}', LicensePlate='{carInput.LicensePlate}', " +
-                                        $"Kilometers={carInput.Kilometers}, Make='{carInput.Make}', Model='{carInput.Model}', Colour='{carInput.Colour}', " +
-                                        $"vType='{carInput.VehicleType}')";
+                string displayMessage = sqlCommand;
 
                 // Show the display message in a message box
                 MessageBox.Show(displayMessage);
 
-
                 // Execute SQL command
+                myCommand.CommandText = sqlCommand;
                 myCommand.ExecuteNonQuery();
 
-                ShowSuccess("Car added successfully");
+               
+                // Show success message
+                ShowSuccess(update ? "Car information updated successfully." : "Car added successfully.");
+                fillMissingFields = false;
+                ClearForm();
             }
             catch (Exception e)
             {
                 ShowError("Error: " + e.Message);
             }
         }
+
+        private void ClearForm()
+        {
+            // Clear all form fields
+            VINTextBox.Text = "";
+            LicensePlateTextBox.Text = "";
+            KilometersTextBox.Text = "";
+            MakeTextBox.Text = "";
+            ModelTextBox.Text = "";
+            ColourTextBox.Text = "";
+            VehicleTypeComboBox.SelectedIndex = -1; // Reset combo box selection
+        }
+
 
         private void SearchCar()
         {
