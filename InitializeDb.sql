@@ -22,7 +22,7 @@ GO
 CREATE TABLE Branch(
     BranchID int IDENTITY(5000, 1) PRIMARY KEY,
     BranchName nchar(40) NULL,
-    PhoneNumber nchar(10) NULL,
+    PhoneNumber nchar(12) NULL,
     UnitNum int NULL,
     Street nchar(10) NULL,
     City nchar(10) NULL,
@@ -122,11 +122,11 @@ VALUES
 
 INSERT INTO Branch(BranchName, PhoneNumber,UnitNum,Street, City,Province, PostalCode)
 VALUES
-('Whyte Avenue',555-5000,12,'whyte','Edmonton','AB','T5T1S4'),
-('Jasper Avenue',555-5001,12,'jasper','Edmonton','AB','T5T1S4'),
-('North side',555-5002,12,'137 ave','Edmonton','AB','T5T1S4'),
-('South side',555-5003,12,'34 ave','Edmonton','AB','T5T1S4'),
-('YEG Edmonton int''l Airport',555-5004,12,'Airport Rd','Nisku','AB','T5T1S4');
+('Whyte Avenue','555-5000',12,'whyte','Edmonton','AB','T5T1S4'),
+('Jasper Avenue','555-5001',12,'jasper','Edmonton','AB','T5T1S5'),
+('North side','555-5002',12,'137 ave','Edmonton','AB','T5T1S6'),
+('South side','555-5003',12,'34 ave','Edmonton','AB','T5T1S7'),
+('YEG Edmonton int''l Airport','555-5004',12,'Airport Rd','Nisku','AB','T5T1S8');
 
 INSERT INTO Rental(DateRented,DateReturned, VIN ,RentedFrom,ReturnedTo)
 VALUES
