@@ -30,6 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            comboBox1 = new ComboBox();
+            timespermonth = new ComboBox();
+            label2 = new Label();
             button1 = new Button();
             label10 = new Label();
             month5 = new ComboBox();
@@ -39,13 +42,11 @@
             month2 = new ComboBox();
             label7 = new Label();
             label6 = new Label();
-            kms_per_car = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             month1 = new ComboBox();
             label1 = new Label();
-            rental_count = new TextBox();
             Pop_branch = new ComboBox();
             radioButton6 = new RadioButton();
             Q5_radio = new RadioButton();
@@ -54,14 +55,18 @@
             Q2_radio = new RadioButton();
             Q1_radio = new RadioButton();
             Rental = new TabPage();
+            Price = new Label();
+            label12 = new Label();
+            vehType = new ComboBox();
+            label11 = new Label();
             DifferentLocationCheckBox = new CheckBox();
             ReturnComboBox = new ComboBox();
-            ReturnBranchLabel = new Label();
+            rBranch = new Label();
             AddBranchButton = new Button();
             ReserveButton = new Button();
             DropOffPicker = new DateTimePicker();
             DropOffDateLabel = new Label();
-            BranchComboBox = new ComboBox();
+            pBranch = new ComboBox();
             PickUpBranchLabel = new Label();
             PickUpPicker = new DateTimePicker();
             PickUpDateLabel = new Label();
@@ -107,6 +112,9 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Controls.Add(comboBox1);
+            Reports.Controls.Add(timespermonth);
+            Reports.Controls.Add(label2);
             Reports.Controls.Add(button1);
             Reports.Controls.Add(label10);
             Reports.Controls.Add(month5);
@@ -116,13 +124,11 @@
             Reports.Controls.Add(month2);
             Reports.Controls.Add(label7);
             Reports.Controls.Add(label6);
-            Reports.Controls.Add(kms_per_car);
             Reports.Controls.Add(label5);
             Reports.Controls.Add(label4);
             Reports.Controls.Add(label3);
             Reports.Controls.Add(month1);
             Reports.Controls.Add(label1);
-            Reports.Controls.Add(rental_count);
             Reports.Controls.Add(Pop_branch);
             Reports.Controls.Add(radioButton6);
             Reports.Controls.Add(Q5_radio);
@@ -138,6 +144,36 @@
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             Reports.Click += Reports_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "10000", "20000", "30000", "50000", "100000" });
+            comboBox1.Location = new Point(570, 64);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(93, 23);
+            comboBox1.TabIndex = 35;
+            comboBox1.Text = "Choose KMs";
+            // 
+            // timespermonth
+            // 
+            timespermonth.FormattingEnabled = true;
+            timespermonth.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            timespermonth.Location = new Point(391, 24);
+            timespermonth.Name = "timespermonth";
+            timespermonth.Size = new Size(37, 23);
+            timespermonth.TabIndex = 34;
+            timespermonth.Text = "#";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(398, 199);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 15);
+            label2.TabIndex = 33;
+            label2.Text = "per branch.";
+            label2.Click += label2_Click;
             // 
             // button1
             // 
@@ -222,18 +258,11 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(639, 67);
+            label6.Location = new Point(686, 67);
             label6.Name = "label6";
             label6.Size = new Size(65, 15);
             label6.TabIndex = 23;
             label6.Text = "kilometers.";
-            // 
-            // kms_per_car
-            // 
-            kms_per_car.Location = new Point(570, 64);
-            kms_per_car.Name = "kms_per_car";
-            kms_per_car.Size = new Size(51, 23);
-            kms_per_car.TabIndex = 22;
             // 
             // label5
             // 
@@ -257,7 +286,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(444, 27);
+            label3.Location = new Point(454, 27);
             label3.Name = "label3";
             label3.Size = new Size(49, 15);
             label3.TabIndex = 19;
@@ -267,7 +296,7 @@
             // 
             month1.FormattingEnabled = true;
             month1.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            month1.Location = new Point(516, 21);
+            month1.Location = new Point(526, 21);
             month1.Name = "month1";
             month1.Size = new Size(121, 23);
             month1.TabIndex = 17;
@@ -283,13 +312,6 @@
             label1.TabIndex = 9;
             label1.Text = "Vehicles where Vehicle type is rented more than";
             label1.Click += label1_Click;
-            // 
-            // rental_count
-            // 
-            rental_count.Location = new Point(398, 21);
-            rental_count.Name = "rental_count";
-            rental_count.Size = new Size(27, 23);
-            rental_count.TabIndex = 8;
             // 
             // Pop_branch
             // 
@@ -368,14 +390,18 @@
             // Rental
             // 
             Rental.BackColor = SystemColors.GradientInactiveCaption;
+            Rental.Controls.Add(Price);
+            Rental.Controls.Add(label12);
+            Rental.Controls.Add(vehType);
+            Rental.Controls.Add(label11);
             Rental.Controls.Add(DifferentLocationCheckBox);
             Rental.Controls.Add(ReturnComboBox);
-            Rental.Controls.Add(ReturnBranchLabel);
+            Rental.Controls.Add(rBranch);
             Rental.Controls.Add(AddBranchButton);
             Rental.Controls.Add(ReserveButton);
             Rental.Controls.Add(DropOffPicker);
             Rental.Controls.Add(DropOffDateLabel);
-            Rental.Controls.Add(BranchComboBox);
+            Rental.Controls.Add(pBranch);
             Rental.Controls.Add(PickUpBranchLabel);
             Rental.Controls.Add(PickUpPicker);
             Rental.Controls.Add(PickUpDateLabel);
@@ -386,6 +412,49 @@
             Rental.Size = new Size(777, 407);
             Rental.TabIndex = 1;
             Rental.Text = "Rental";
+            // 
+            // Price
+            // 
+            Price.AutoSize = true;
+            Price.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Price.Location = new Point(643, 49);
+            Price.Name = "Price";
+            Price.Size = new Size(66, 25);
+            Price.TabIndex = 20;
+            Price.Text = "$ 0.00";
+            Price.Click += Price_Click;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Location = new Point(520, 49);
+            label12.Name = "label12";
+            label12.Size = new Size(117, 25);
+            label12.TabIndex = 18;
+            label12.Text = "Order Total:";
+            label12.Click += label12_Click;
+            // 
+            // vehType
+            // 
+            vehType.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            vehType.FormattingEnabled = true;
+            vehType.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
+            vehType.Location = new Point(216, 303);
+            vehType.Margin = new Padding(3, 2, 3, 2);
+            vehType.Name = "vehType";
+            vehType.Size = new Size(133, 23);
+            vehType.TabIndex = 17;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            label11.Location = new Point(59, 300);
+            label11.Name = "label11";
+            label11.Size = new Size(123, 25);
+            label11.TabIndex = 16;
+            label11.Text = "Vehicle type:";
             // 
             // DifferentLocationCheckBox
             // 
@@ -402,28 +471,28 @@
             // 
             ReturnComboBox.FormattingEnabled = true;
             ReturnComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            ReturnComboBox.Location = new Point(207, 148);
+            ReturnComboBox.Location = new Point(207, 142);
             ReturnComboBox.Margin = new Padding(3, 2, 3, 2);
             ReturnComboBox.Name = "ReturnComboBox";
             ReturnComboBox.Size = new Size(133, 23);
             ReturnComboBox.TabIndex = 13;
             ReturnComboBox.Visible = false;
             // 
-            // ReturnBranchLabel
+            // rBranch
             // 
-            ReturnBranchLabel.AutoSize = true;
-            ReturnBranchLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ReturnBranchLabel.Location = new Point(59, 143);
-            ReturnBranchLabel.Name = "ReturnBranchLabel";
-            ReturnBranchLabel.Size = new Size(78, 25);
-            ReturnBranchLabel.TabIndex = 12;
-            ReturnBranchLabel.Text = "Return:";
-            ReturnBranchLabel.Visible = false;
+            rBranch.AutoSize = true;
+            rBranch.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            rBranch.Location = new Point(59, 137);
+            rBranch.Name = "rBranch";
+            rBranch.Size = new Size(78, 25);
+            rBranch.TabIndex = 12;
+            rBranch.Text = "Return:";
+            rBranch.Visible = false;
             // 
             // AddBranchButton
             // 
             AddBranchButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AddBranchButton.Location = new Point(240, 376);
+            AddBranchButton.Location = new Point(246, 359);
             AddBranchButton.Margin = new Padding(3, 2, 3, 2);
             AddBranchButton.Name = "AddBranchButton";
             AddBranchButton.Size = new Size(154, 40);
@@ -435,7 +504,7 @@
             // ReserveButton
             // 
             ReserveButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ReserveButton.Location = new Point(46, 374);
+            ReserveButton.Location = new Point(59, 359);
             ReserveButton.Margin = new Padding(3, 2, 3, 2);
             ReserveButton.Name = "ReserveButton";
             ReserveButton.Size = new Size(132, 44);
@@ -446,7 +515,7 @@
             // 
             // DropOffPicker
             // 
-            DropOffPicker.Location = new Point(261, 276);
+            DropOffPicker.Location = new Point(274, 248);
             DropOffPicker.Margin = new Padding(3, 2, 3, 2);
             DropOffPicker.Name = "DropOffPicker";
             DropOffPicker.Size = new Size(219, 23);
@@ -456,27 +525,27 @@
             // 
             DropOffDateLabel.AutoSize = true;
             DropOffDateLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DropOffDateLabel.Location = new Point(46, 276);
+            DropOffDateLabel.Location = new Point(59, 248);
             DropOffDateLabel.Name = "DropOffDateLabel";
             DropOffDateLabel.Size = new Size(191, 25);
             DropOffDateLabel.TabIndex = 7;
             DropOffDateLabel.Text = "Enter drop-off date:";
             // 
-            // BranchComboBox
+            // pBranch
             // 
-            BranchComboBox.FormattingEnabled = true;
-            BranchComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            BranchComboBox.Location = new Point(203, 49);
-            BranchComboBox.Margin = new Padding(3, 2, 3, 2);
-            BranchComboBox.Name = "BranchComboBox";
-            BranchComboBox.Size = new Size(133, 23);
-            BranchComboBox.TabIndex = 5;
+            pBranch.FormattingEnabled = true;
+            pBranch.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
+            pBranch.Location = new Point(208, 54);
+            pBranch.Margin = new Padding(3, 2, 3, 2);
+            pBranch.Name = "pBranch";
+            pBranch.Size = new Size(133, 23);
+            pBranch.TabIndex = 5;
             // 
             // PickUpBranchLabel
             // 
             PickUpBranchLabel.AutoSize = true;
             PickUpBranchLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PickUpBranchLabel.Location = new Point(54, 44);
+            PickUpBranchLabel.Location = new Point(59, 49);
             PickUpBranchLabel.Name = "PickUpBranchLabel";
             PickUpBranchLabel.Size = new Size(85, 25);
             PickUpBranchLabel.TabIndex = 4;
@@ -484,7 +553,7 @@
             // 
             // PickUpPicker
             // 
-            PickUpPicker.Location = new Point(261, 220);
+            PickUpPicker.Location = new Point(274, 192);
             PickUpPicker.Margin = new Padding(3, 2, 3, 2);
             PickUpPicker.Name = "PickUpPicker";
             PickUpPicker.Size = new Size(219, 23);
@@ -494,7 +563,7 @@
             // 
             PickUpDateLabel.AutoSize = true;
             PickUpDateLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PickUpDateLabel.Location = new Point(46, 220);
+            PickUpDateLabel.Location = new Point(59, 192);
             PickUpDateLabel.Name = "PickUpDateLabel";
             PickUpDateLabel.Size = new Size(181, 25);
             PickUpDateLabel.TabIndex = 0;
@@ -756,7 +825,7 @@
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(785, 435);
-            tabControl1.TabIndex = 11;
+            tabControl1.TabIndex = 1;
             // 
             // HideNotificationTimer
             // 
@@ -773,7 +842,7 @@
             vehicleList.Name = "vehicleList";
             vehicleList.ReadOnly = true;
             vehicleList.Size = new Size(782, 305);
-            vehicleList.TabIndex = 12;
+            vehicleList.TabIndex = 0;
             // 
             // VIN
             // 
@@ -845,12 +914,12 @@
         private TabPage Reports;
         private TabPage Rental;
         private ComboBox ReturnComboBox;
-        private Label ReturnBranchLabel;
+        private Label rBranch;
         private Button AddBranchButton;
         private Button ReserveButton;
         private DateTimePicker DropOffPicker;
         private Label DropOffDateLabel;
-        private ComboBox BranchComboBox;
+        private ComboBox pBranch;
         private Label PickUpBranchLabel;
         private DateTimePicker PickUpPicker;
         private Label PickUpDateLabel;
@@ -894,13 +963,11 @@
         private RadioButton Q3_radio;
         private RadioButton Q2_radio;
         private Label label1;
-        private TextBox rental_count;
         private ComboBox Pop_branch;
         private ComboBox month1;
         private Label label4;
         private Label label3;
         private Label label6;
-        private TextBox kms_per_car;
         private Label label5;
         private ComboBox month2;
         private Label label7;
@@ -910,5 +977,12 @@
         private ComboBox month5;
         private Label label9;
         private Button button1;
+        private Label label2;
+        private ComboBox vehType;
+        private Label label11;
+        private Label label12;
+        private Label Price;
+        private ComboBox timespermonth;
+        private ComboBox comboBox1;
     }
 }

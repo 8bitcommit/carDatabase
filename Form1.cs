@@ -2,6 +2,7 @@ using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace project291
 {
@@ -15,7 +16,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = LAPTOP-ITDAE565\\SQLEXPRESS; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -34,13 +35,23 @@ namespace project291
 
         private void ReserveButton_Click(object sender, EventArgs e)
         {
-            string mes = "Reservation from " + BranchComboBox.Text + " branch \nFrom Date: " + PickUpPicker.Text + " To Date: " + DropOffPicker.Text + "\nFor:" + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days is Confirmed";
-            MessageBox.Show(mes);
+            string title = "Confirm Reservation";
+            string message = "Do you wish to confirm this reservation?\n\n"+ vehType.Text +" Vehicle\nPick-up at " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn: " + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
+            MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+            DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.OK)
+            {
+                // total will be calculated price from Database
+                double total = 100.00;
+
+                Price.Text = total.ToString("C2");//display price in dollar format
+                Price.Visible = true;
+            }
         }
 
         private void AddBranchButton_Click(object sender, EventArgs e)
         {
-            BranchComboBox.Items.Add("London");
+            pBranch.Items.Add("London");
         }
 
         private void DifferentLocationCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -48,12 +59,12 @@ namespace project291
 
             if (DifferentLocationCheckBox.Checked)
             {
-                ReturnBranchLabel.Visible = true;
+                rBranch.Visible = true;
                 ReturnComboBox.Visible = true;
             }
             else
             {
-                ReturnBranchLabel.Visible = false;
+                rBranch.Visible = false;
                 ReturnComboBox.Visible = false;
             }
         }
@@ -317,22 +328,22 @@ namespace project291
                                 myReader.Close();
                                 return;
                             }
-                            
+
                         }
                         else if (fillMissingFields)
                         {
-                            
+
                             myReader.Close();
                             InsertOrUpdateCar(carInput, true);
                             ClearForm();
                             return;
-                            
+
                         }
-                        else 
+                        else
                         {
                             // VIN exists with no missing info
                             ShowSuccess("VIN already exists and has no missing information.");
-                           
+
                             return;
                         }
                     }
@@ -346,7 +357,7 @@ namespace project291
             {
                 ShowError("Error: " + e.Message);
             }
-           
+
         }
 
         private void InsertOrUpdateCar(CarInput carInput, bool update)
@@ -390,7 +401,7 @@ namespace project291
                 myCommand.CommandText = sqlCommand;
                 myCommand.ExecuteNonQuery();
 
-               
+
                 // Show success message
                 ShowSuccess(update ? "Car information updated successfully." : "Car added successfully.");
                 fillMissingFields = false;
@@ -533,6 +544,21 @@ namespace project291
         }
 
         private void SearchRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Price_Click(object sender, EventArgs e)
         {
 
         }
