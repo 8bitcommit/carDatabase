@@ -21,7 +21,7 @@ GO
 -- Create tables
 CREATE TABLE Branch(
     BranchID int IDENTITY(5000, 1) PRIMARY KEY,
-    BranchName nchar(10) NULL,
+    BranchName nchar(40) NULL,
     PhoneNumber nchar(10) NULL,
     UnitNum int NULL,
     Street nchar(10) NULL,
@@ -76,7 +76,7 @@ CREATE TABLE Vehicle(
 );
 
 CREATE TABLE Rental(
-    TransactionID nchar(10) PRIMARY KEY,
+    TransactionID int IDENTITY(1000, 1) PRIMARY KEY,
     DateRented date NULL,
     DateReturned date NULL,
     TotalPrice numeric(6, 2) NULL,
@@ -118,3 +118,20 @@ VALUES
 ('1N4BZ0CP5JC305067', 'NISSN1X', 10000, 'Nissan', 'Leaf', 'White', 'Electric'),
 ('WAUHGAFC6DN048573', 'AUD1A6X', 18000, 'Audi', 'A6', 'Black', 'Sedan'),
 ('1HGCM82633A004589', 'C1VICRX', 27000, 'Honda', 'Civic', 'Red', 'Sedan');
+
+
+INSERT INTO Branch(BranchName, PhoneNumber,UnitNum,Street, City,Province, PostalCode)
+VALUES
+('Whyte Avenue',555-5000,12,'whyte','Edmonton','AB','T5T1S4'),
+('Jasper Avenue',555-5001,12,'jasper','Edmonton','AB','T5T1S4'),
+('North side',555-5002,12,'137 ave','Edmonton','AB','T5T1S4'),
+('South side',555-5003,12,'34 ave','Edmonton','AB','T5T1S4'),
+('YEG Edmonton int''l Airport',555-5004,12,'Airport Rd','Nisku','AB','T5T1S4');
+
+INSERT INTO Rental(DateRented,DateReturned, VIN ,RentedFrom,ReturnedTo)
+VALUES
+('2024/05/20','2024/05/21','1FA6P8TH0J5132526',5000,5000),
+('2024/06/20','2024/06/27','1FA6P8TH0J5132526',5000,5001),
+('2024/03/5','2024/03/15','1FA6P8TH0J5132526',5002,5000);
+
+
