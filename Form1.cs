@@ -15,7 +15,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = SAPHIA_WINDOW; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -247,9 +247,10 @@ namespace project291
                     myCommand.CommandText = $"delete from Vehicle where VIN='{carInput.VIN}'";
                     myCommand.ExecuteNonQuery();
 
-                    ShowSuccess("Vehicle with VIN " + carInput.VIN + " deleted");
+                    MessageBox.Show(myCommand.CommandText);
+                    ShowSuccess("Success");
                 }
-                else ShowError("That is not a valid VIN");
+                else ShowError("VIN must be 17 characters long");
             }
 
             catch (Exception e3)
