@@ -6,11 +6,13 @@ SELECT * from VehicleType;
 SELECT * from Customer;
 SELECT * from Employee;
 SELECT * from Branch;
+
+
 --1
 SELECT vehicle.VType from Rental, Vehicle
 where DateRented like '%-03-%' and rental.VIN=Vehicle.VIN
 group by vehicle.VType
-having count(*)>=0;
+having count(*)>=1;
 
 --2
 
