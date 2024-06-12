@@ -62,7 +62,6 @@
             DifferentLocationCheckBox = new CheckBox();
             ReturnComboBox = new ComboBox();
             rBranch = new Label();
-            AddBranchButton = new Button();
             ReserveButton = new Button();
             DropOffPicker = new DateTimePicker();
             DropOffDateLabel = new Label();
@@ -397,7 +396,6 @@
             Rental.Controls.Add(DifferentLocationCheckBox);
             Rental.Controls.Add(ReturnComboBox);
             Rental.Controls.Add(rBranch);
-            Rental.Controls.Add(AddBranchButton);
             Rental.Controls.Add(ReserveButton);
             Rental.Controls.Add(DropOffPicker);
             Rental.Controls.Add(DropOffDateLabel);
@@ -489,22 +487,10 @@
             rBranch.Text = "Return:";
             rBranch.Visible = false;
             // 
-            // AddBranchButton
-            // 
-            AddBranchButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            AddBranchButton.Location = new Point(246, 359);
-            AddBranchButton.Margin = new Padding(3, 2, 3, 2);
-            AddBranchButton.Name = "AddBranchButton";
-            AddBranchButton.Size = new Size(154, 40);
-            AddBranchButton.TabIndex = 10;
-            AddBranchButton.Text = "Add Branch";
-            AddBranchButton.UseVisualStyleBackColor = true;
-            AddBranchButton.Click += AddBranchButton_Click;
-            // 
             // ReserveButton
             // 
             ReserveButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ReserveButton.Location = new Point(59, 359);
+            ReserveButton.Location = new Point(59, 348);
             ReserveButton.Margin = new Padding(3, 2, 3, 2);
             ReserveButton.Name = "ReserveButton";
             ReserveButton.Size = new Size(132, 44);
@@ -540,6 +526,7 @@
             pBranch.Name = "pBranch";
             pBranch.Size = new Size(133, 23);
             pBranch.TabIndex = 5;
+            pBranch.SelectedIndexChanged += pBranch_SelectedIndexChanged;
             // 
             // PickUpBranchLabel
             // 
@@ -558,6 +545,7 @@
             PickUpPicker.Name = "PickUpPicker";
             PickUpPicker.Size = new Size(219, 23);
             PickUpPicker.TabIndex = 2;
+            PickUpPicker.ValueChanged += PickUpPicker_ValueChanged;
             // 
             // PickUpDateLabel
             // 
@@ -915,7 +903,6 @@
         private TabPage Rental;
         private ComboBox ReturnComboBox;
         private Label rBranch;
-        private Button AddBranchButton;
         private Button ReserveButton;
         private DateTimePicker DropOffPicker;
         private Label DropOffDateLabel;

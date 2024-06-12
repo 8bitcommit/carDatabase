@@ -16,7 +16,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = LAPTOP-ITDAE565\\SQLEXPRESS; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = Bubbles; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -36,11 +36,13 @@ namespace project291
         private void ReserveButton_Click(object sender, EventArgs e)
         {
             string title = "Confirm Reservation";
-            string message = "Do you wish to confirm this reservation?\n\n"+ vehType.Text +" Vehicle\nPick-up at " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn: " + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
+            string message = "Do you wish to confirm this reservation?\n\n" + vehType.Text + "Vehicle\nPick-up location: " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn location: " + ReturnComboBox.Text+ "\nReturn Date: "  + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
             MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
             DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.OK)
             {
+                
+                RentVehicle();
                 // total will be calculated price from Database
                 double total = 100.00;
 
@@ -49,10 +51,7 @@ namespace project291
             }
         }
 
-        private void AddBranchButton_Click(object sender, EventArgs e)
-        {
-            pBranch.Items.Add("London");
-        }
+        
 
         private void DifferentLocationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -66,6 +65,8 @@ namespace project291
             {
                 rBranch.Visible = false;
                 ReturnComboBox.Visible = false;
+
+         
             }
         }
 
@@ -508,6 +509,39 @@ namespace project291
 
         }
 
+        private RentalInput GetRentalInfoFromUI()
+        {
+            return new RentalInput()
+            {
+                PickUpLocation = pBranch.Text.Trim(),
+                ReturnLocation = ReturnComboBox.Text.Trim(),
+                PickupDate = PickUpPicker.Value.ToString("yyyy-MM-dd"), //might be the way to save the date
+                DropOffDate = DropOffPicker.Text.Trim(), 
+                VehicleType = vehType.Text.Trim(),
+
+            };
+        }
+
+        //rental page
+
+        private void RentVehicle()
+        {
+            var rentalInput = GetRentalInfoFromUI();
+            try
+            {
+                var dbg = 0;
+
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+
+
+
+
         private void Reports_Click(object sender, EventArgs e)
         {
 
@@ -559,6 +593,16 @@ namespace project291
         }
 
         private void Price_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PickUpPicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
