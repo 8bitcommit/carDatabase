@@ -16,7 +16,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = Bubbles; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -36,12 +36,12 @@ namespace project291
         private void ReserveButton_Click(object sender, EventArgs e)
         {
             string title = "Confirm Reservation";
-            string message = "Do you wish to confirm this reservation?\n\n" + vehType.Text + "Vehicle\nPick-up location: " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn location: " + ReturnComboBox.Text+ "\nReturn Date: "  + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
+            string message = "Do you wish to confirm this reservation?\n\n" + vehType.Text + "Vehicle\nPick-up location: " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn location: " + ReturnComboBox.Text + "\nReturn Date: " + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
             MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
             DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.OK)
             {
-                
+
                 RentVehicle();
                 // total will be calculated price from Database
                 double total = 100.00;
@@ -51,7 +51,7 @@ namespace project291
             }
         }
 
-        
+
 
         private void DifferentLocationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace project291
                 rBranch.Visible = false;
                 ReturnComboBox.Visible = false;
 
-         
+
             }
         }
 
@@ -516,7 +516,7 @@ namespace project291
                 PickUpLocation = pBranch.Text.Trim(),
                 ReturnLocation = ReturnComboBox.Text.Trim(),
                 PickupDate = PickUpPicker.Value.ToString("yyyy-MM-dd"), //might be the way to save the date
-                DropOffDate = DropOffPicker.Text.Trim(), 
+                DropOffDate = DropOffPicker.Text.Trim(),
                 VehicleType = vehType.Text.Trim(),
 
             };
@@ -603,6 +603,61 @@ namespace project291
         }
 
         private void pBranch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Q1_radio.Checked)
+            {
+                Query1();
+            }
+            else if (Q2_radio.Checked)
+            {
+                Query2();
+            }
+            else if (Q3_radio.Checked)
+            {
+                Query3();
+            }
+        }
+
+        private void Query1()
+        {
+            try
+            {
+                Dictionary<string, string> months = new Dictionary<string, string>
+            {
+                {"January", "01" },
+                {"February", "02" },
+                {"March", "03" },
+                {"April", "04" },
+                {"May", "05" },
+                {"June", "06" },
+                {"July", "07" },
+                {"August", "08" },
+                {"September", "09" },
+                {"October", "10" },
+                {"November", "11" },
+                {"December", "12" }
+            };
+
+                string month = months[month1.Text.Trim()];
+                int rentAmt = Int32.Parse(timespermonth.Text.Trim());
+                ShowSuccess(rentAmt + ", " + month);
+                // Query : select VIN from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as month) = '05') group by vType having count(*) = 1)
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please select an amount and month");
+            }
+        }
+        private void Query2()
+        {
+
+        }
+        private void Query3()
         {
 
         }
