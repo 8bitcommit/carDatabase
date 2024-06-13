@@ -16,7 +16,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = Bubbles; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = VBOX; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -36,12 +36,12 @@ namespace project291
         private void ReserveButton_Click(object sender, EventArgs e)
         {
             string title = "Confirm Reservation";
-            string message = "Do you wish to confirm this reservation?\n\n" + vehType.Text + "Vehicle\nPick-up location: " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn location: " + ReturnComboBox.Text+ "\nReturn Date: "  + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
+            string message = "Do you wish to confirm this reservation?\n\n" + vehType.Text + "Vehicle\nPick-up location: " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn location: " + ReturnComboBox.Text + "\nReturn Date: " + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
             MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
             DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result == DialogResult.OK)
             {
-                
+
                 RentVehicle();
                 // total will be calculated price from Database
                 double total = 100.00;
@@ -51,7 +51,7 @@ namespace project291
             }
         }
 
-        
+
 
         private void DifferentLocationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace project291
                 rBranch.Visible = false;
                 ReturnComboBox.Visible = false;
 
-         
+
             }
         }
 
@@ -112,6 +112,7 @@ namespace project291
             }
             else if (SearchRadioButton.Checked)
             {
+
                 SearchCar();
             }
         }
@@ -435,6 +436,19 @@ namespace project291
             {
                 var search = new List<string>();
 
+                if (carInput.VIN != "")
+                {
+                    if (vinComboBox.SelectedIndex == 0)
+                    {
+                        search.Add($"VIN='{carInput.VIN}'");
+                    }
+                    else if (vinComboBox.SelectedIndex == 1)
+                    {
+                        search.Add($"VIN like '%{carInput.VIN}%'");
+                    }
+
+                }
+
                 if (carInput.LicensePlate != "")
                 {
                     search.Add($"LicensePlate='{carInput.LicensePlate}'");
@@ -442,7 +456,18 @@ namespace project291
 
                 if (carInput.Kilometers != "")
                 {
-                    search.Add($"Kilometers={carInput.Kilometers}");
+                    if (kiloComboBox.SelectedIndex == 0)
+                    {
+                        search.Add($"Kilometers<{carInput.Kilometers}");
+                    }
+                    else if (kiloComboBox.SelectedIndex == 1)
+                    {
+                        search.Add($"Kilometers>{carInput.Kilometers}");
+                    }
+                    else
+                    {
+                        search.Add($"Kilometers={carInput.Kilometers}");
+                    }
                 }
 
                 if (carInput.Make != "")
@@ -487,6 +512,19 @@ namespace project291
                 myReader = myCommand.ExecuteReader();
 
                 vehicleList.Rows.Clear();
+
+                vehicleList.Columns.Clear();
+                vehicleList.Columns.Add("VIN", "VIN");
+                vehicleList.Columns.Add("LicensePlate", "License Plate");
+                vehicleList.Columns.Add("Kilometers", "Kilometers");
+                vehicleList.Columns.Add("Make", "Make");
+                vehicleList.Columns.Add("Model", "Model");
+                vehicleList.Columns.Add("Colour", "Colour");
+                vehicleList.Columns.Add("vType", "Vehicle Type");
+
+
+
+
                 while (myReader.Read())
                 {
                     vehicleList.Rows.Add(myReader["VIN"].ToString(),
@@ -516,7 +554,7 @@ namespace project291
                 PickUpLocation = pBranch.Text.Trim(),
                 ReturnLocation = ReturnComboBox.Text.Trim(),
                 PickupDate = PickUpPicker.Value.ToString("yyyy-MM-dd"), //might be the way to save the date
-                DropOffDate = DropOffPicker.Text.Trim(), 
+                DropOffDate = DropOffPicker.Text.Trim(),
                 VehicleType = vehType.Text.Trim(),
 
             };
@@ -567,11 +605,6 @@ namespace project291
 
         }
 
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void label10_Click(object sender, EventArgs e)
         {
 
@@ -579,33 +612,100 @@ namespace project291
 
         private void SearchRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            if (SearchRadioButton.Checked)
+            {
+                kiloComboBox.Visible = true;
+                kiloComboBox.SelectedIndex = 0;
+                vinComboBox.Visible = true;
+                vinComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                kiloComboBox.Visible = false;
+                vinComboBox.Visible = false;
+            }
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
+            if (Q1_radio.Checked)
+            {
+                
+            }
+            else if (Q2_radio.Checked)
+            {
+                
+            }
+            else if (Q3_radio.Checked)
+            {
+                
+            }
+            else if (Q4_radio.Checked)
+            {
+                report_4();
+            }
+            else if (Q5_radio.Checked)
+            {
 
+            }
+            else if (Q5_radio.Checked)
+            {
+
+            }
         }
 
-        private void label12_Click(object sender, EventArgs e)
+        private void report_4()
         {
+            // Ben's code here
+            // Branch that rented the most vehicles in Q4_combo Q4_combo2
 
+            int month = Q4_combo.SelectedIndex + 1;
+            int year = 2024 - Q4_combo2.SelectedIndex;
+
+            myCommand.CommandText = $"SELECT b.BranchID, b.BranchName, COUNT(*) AS RentalCount " +
+                                    $"FROM Branch b JOIN Rental r ON r.RentedFrom = b.BranchID " +
+                                    $"WHERE YEAR(r.DateRented) = {year} AND MONTH(r.DateRented) = {month} " +
+                                    $"GROUP BY b.BranchID, b.BranchName;";
+            MessageBox.Show(myCommand.CommandText);
+
+            myReader = myCommand.ExecuteReader();
+
+
+            vehicleList.Columns.Clear();
+            vehicleList.Columns.Add("Branch ID", "Branch ID");
+            vehicleList.Columns.Add("Branch Name", "Branch Name");
+            vehicleList.Columns.Add("Rental Count", "Rental Count");
+
+
+
+            vehicleList.Rows.Clear();
+
+            while (myReader.Read())
+            {
+                vehicleList.Rows.Add(myReader["BranchID"].ToString(),
+                                     myReader["BranchName"].ToString(),
+                                     myReader["RentalCount"].ToString());
+            }
+
+
+
+            myReader.Close();
         }
-
-        private void Price_Click(object sender, EventArgs e)
+        private void report_5()
         {
-
+            // Ben's code here
+            // Vehicle type most often returned to a different branch than pick-up.
         }
-
-        private void PickUpPicker_ValueChanged(object sender, EventArgs e)
+        private void report_6()
         {
-
+            // Ben's code here
+            // Average rental length in Q5_combo per branch
         }
 
-        private void pBranch_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
+
     }
 
 }

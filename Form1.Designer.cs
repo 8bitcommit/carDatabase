@@ -30,14 +30,16 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            Q4_combo2 = new ComboBox();
+            Q5_combo2 = new ComboBox();
             comboBox1 = new ComboBox();
             timespermonth = new ComboBox();
             label2 = new Label();
             button1 = new Button();
             label10 = new Label();
-            month5 = new ComboBox();
+            Q5_combo = new ComboBox();
             label9 = new Label();
-            month4 = new ComboBox();
+            Q4_combo = new ComboBox();
             label8 = new Label();
             month2 = new ComboBox();
             label7 = new Label();
@@ -48,7 +50,7 @@
             month1 = new ComboBox();
             label1 = new Label();
             Pop_branch = new ComboBox();
-            radioButton6 = new RadioButton();
+            Q6_radio = new RadioButton();
             Q5_radio = new RadioButton();
             Q4_radio = new RadioButton();
             Q3_radio = new RadioButton();
@@ -70,6 +72,8 @@
             PickUpPicker = new DateTimePicker();
             PickUpDateLabel = new Label();
             Car = new TabPage();
+            vinComboBox = new ComboBox();
+            kiloComboBox = new ComboBox();
             DeleteRadioButton = new RadioButton();
             ColourTextBox = new TextBox();
             ModelTextBox = new TextBox();
@@ -111,14 +115,16 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Controls.Add(Q4_combo2);
+            Reports.Controls.Add(Q5_combo2);
             Reports.Controls.Add(comboBox1);
             Reports.Controls.Add(timespermonth);
             Reports.Controls.Add(label2);
             Reports.Controls.Add(button1);
             Reports.Controls.Add(label10);
-            Reports.Controls.Add(month5);
+            Reports.Controls.Add(Q5_combo);
             Reports.Controls.Add(label9);
-            Reports.Controls.Add(month4);
+            Reports.Controls.Add(Q4_combo);
             Reports.Controls.Add(label8);
             Reports.Controls.Add(month2);
             Reports.Controls.Add(label7);
@@ -129,7 +135,7 @@
             Reports.Controls.Add(month1);
             Reports.Controls.Add(label1);
             Reports.Controls.Add(Pop_branch);
-            Reports.Controls.Add(radioButton6);
+            Reports.Controls.Add(Q6_radio);
             Reports.Controls.Add(Q5_radio);
             Reports.Controls.Add(Q4_radio);
             Reports.Controls.Add(Q3_radio);
@@ -143,6 +149,26 @@
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
             Reports.Click += Reports_Click;
+            // 
+            // Q4_combo2
+            // 
+            Q4_combo2.FormattingEnabled = true;
+            Q4_combo2.Items.AddRange(new object[] { "2024", "2023", "2022", "2021", "2020" });
+            Q4_combo2.Location = new Point(475, 152);
+            Q4_combo2.Name = "Q4_combo2";
+            Q4_combo2.Size = new Size(121, 23);
+            Q4_combo2.TabIndex = 37;
+            Q4_combo2.Text = "Year";
+            // 
+            // Q5_combo2
+            // 
+            Q5_combo2.FormattingEnabled = true;
+            Q5_combo2.Items.AddRange(new object[] { "2024", "2023", "2022", "2021", "2020" });
+            Q5_combo2.Location = new Point(360, 197);
+            Q5_combo2.Name = "Q5_combo2";
+            Q5_combo2.Size = new Size(60, 23);
+            Q5_combo2.TabIndex = 36;
+            Q5_combo2.Text = "Year";
             // 
             // comboBox1
             // 
@@ -167,12 +193,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(398, 199);
+            label2.Location = new Point(426, 199);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
             label2.TabIndex = 33;
             label2.Text = "per branch.";
-            label2.Click += label2_Click;
             // 
             // button1
             // 
@@ -184,6 +209,7 @@
             button1.TabIndex = 32;
             button1.Text = "Submit";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label10
             // 
@@ -195,15 +221,15 @@
             label10.Text = "Vehicle type most often returned to a different branch than pick-up.";
             label10.Click += label10_Click;
             // 
-            // month5
+            // Q5_combo
             // 
-            month5.FormattingEnabled = true;
-            month5.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            month5.Location = new Point(256, 196);
-            month5.Name = "month5";
-            month5.Size = new Size(121, 23);
-            month5.TabIndex = 30;
-            month5.Text = "Month";
+            Q5_combo.FormattingEnabled = true;
+            Q5_combo.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            Q5_combo.Location = new Point(247, 196);
+            Q5_combo.Name = "Q5_combo";
+            Q5_combo.Size = new Size(91, 23);
+            Q5_combo.TabIndex = 30;
+            Q5_combo.Text = "Month";
             // 
             // label9
             // 
@@ -214,15 +240,15 @@
             label9.TabIndex = 29;
             label9.Text = "Average rental length in ";
             // 
-            // month4
+            // Q4_combo
             // 
-            month4.FormattingEnabled = true;
-            month4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            month4.Location = new Point(348, 152);
-            month4.Name = "month4";
-            month4.Size = new Size(121, 23);
-            month4.TabIndex = 28;
-            month4.Text = "Month";
+            Q4_combo.FormattingEnabled = true;
+            Q4_combo.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            Q4_combo.Location = new Point(348, 152);
+            Q4_combo.Name = "Q4_combo";
+            Q4_combo.Size = new Size(121, 23);
+            Q4_combo.TabIndex = 28;
+            Q4_combo.Text = "Month";
             // 
             // label8
             // 
@@ -323,15 +349,15 @@
             Pop_branch.TabIndex = 7;
             Pop_branch.Text = "Branch";
             // 
-            // radioButton6
+            // Q6_radio
             // 
-            radioButton6.AutoSize = true;
-            radioButton6.Location = new Point(11, 240);
-            radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(56, 19);
-            radioButton6.TabIndex = 5;
-            radioButton6.Text = "Select";
-            radioButton6.UseVisualStyleBackColor = true;
+            Q6_radio.AutoSize = true;
+            Q6_radio.Location = new Point(11, 240);
+            Q6_radio.Name = "Q6_radio";
+            Q6_radio.Size = new Size(56, 19);
+            Q6_radio.TabIndex = 5;
+            Q6_radio.Text = "Select";
+            Q6_radio.UseVisualStyleBackColor = true;
             // 
             // Q5_radio
             // 
@@ -342,7 +368,6 @@
             Q5_radio.TabIndex = 4;
             Q5_radio.Text = "Select";
             Q5_radio.UseVisualStyleBackColor = true;
-            Q5_radio.CheckedChanged += radioButton5_CheckedChanged;
             // 
             // Q4_radio
             // 
@@ -420,7 +445,6 @@
             Price.Size = new Size(66, 25);
             Price.TabIndex = 20;
             Price.Text = "$ 0.00";
-            Price.Click += Price_Click;
             // 
             // label12
             // 
@@ -431,7 +455,6 @@
             label12.Size = new Size(117, 25);
             label12.TabIndex = 18;
             label12.Text = "Order Total:";
-            label12.Click += label12_Click;
             // 
             // vehType
             // 
@@ -526,7 +549,6 @@
             pBranch.Name = "pBranch";
             pBranch.Size = new Size(133, 23);
             pBranch.TabIndex = 5;
-            pBranch.SelectedIndexChanged += pBranch_SelectedIndexChanged;
             // 
             // PickUpBranchLabel
             // 
@@ -545,7 +567,6 @@
             PickUpPicker.Name = "PickUpPicker";
             PickUpPicker.Size = new Size(219, 23);
             PickUpPicker.TabIndex = 2;
-            PickUpPicker.ValueChanged += PickUpPicker_ValueChanged;
             // 
             // PickUpDateLabel
             // 
@@ -561,6 +582,8 @@
             // 
             Car.AccessibleRole = AccessibleRole.Caret;
             Car.BackColor = SystemColors.GradientInactiveCaption;
+            Car.Controls.Add(vinComboBox);
+            Car.Controls.Add(kiloComboBox);
             Car.Controls.Add(DeleteRadioButton);
             Car.Controls.Add(ColourTextBox);
             Car.Controls.Add(ModelTextBox);
@@ -589,6 +612,26 @@
             Car.TabIndex = 2;
             Car.Text = "Car";
             // 
+            // vinComboBox
+            // 
+            vinComboBox.FormattingEnabled = true;
+            vinComboBox.Items.AddRange(new object[] { "is", "contains" });
+            vinComboBox.Location = new Point(109, 22);
+            vinComboBox.Name = "vinComboBox";
+            vinComboBox.Size = new Size(95, 23);
+            vinComboBox.TabIndex = 27;
+            vinComboBox.Visible = false;
+            // 
+            // kiloComboBox
+            // 
+            kiloComboBox.FormattingEnabled = true;
+            kiloComboBox.Items.AddRange(new object[] { "<", ">", "=" });
+            kiloComboBox.Location = new Point(156, 96);
+            kiloComboBox.Name = "kiloComboBox";
+            kiloComboBox.Size = new Size(48, 23);
+            kiloComboBox.TabIndex = 26;
+            kiloComboBox.Visible = false;
+            // 
             // DeleteRadioButton
             // 
             DeleteRadioButton.AutoSize = true;
@@ -602,7 +645,7 @@
             // 
             // ColourTextBox
             // 
-            ColourTextBox.Location = new Point(192, 210);
+            ColourTextBox.Location = new Point(210, 209);
             ColourTextBox.Margin = new Padding(3, 2, 3, 2);
             ColourTextBox.MaxLength = 20;
             ColourTextBox.Name = "ColourTextBox";
@@ -611,7 +654,7 @@
             // 
             // ModelTextBox
             // 
-            ModelTextBox.Location = new Point(191, 172);
+            ModelTextBox.Location = new Point(210, 174);
             ModelTextBox.Margin = new Padding(3, 2, 3, 2);
             ModelTextBox.MaxLength = 20;
             ModelTextBox.Name = "ModelTextBox";
@@ -620,7 +663,7 @@
             // 
             // MakeTextBox
             // 
-            MakeTextBox.Location = new Point(191, 137);
+            MakeTextBox.Location = new Point(210, 136);
             MakeTextBox.Margin = new Padding(3, 2, 3, 2);
             MakeTextBox.MaxLength = 20;
             MakeTextBox.Name = "MakeTextBox";
@@ -629,7 +672,7 @@
             // 
             // KilometersTextBox
             // 
-            KilometersTextBox.Location = new Point(191, 98);
+            KilometersTextBox.Location = new Point(210, 96);
             KilometersTextBox.Margin = new Padding(3, 2, 3, 2);
             KilometersTextBox.MaxLength = 9;
             KilometersTextBox.Name = "KilometersTextBox";
@@ -638,7 +681,7 @@
             // 
             // VINTextBox
             // 
-            VINTextBox.Location = new Point(191, 22);
+            VINTextBox.Location = new Point(210, 22);
             VINTextBox.Margin = new Padding(3, 2, 3, 2);
             VINTextBox.Name = "VINTextBox";
             VINTextBox.Size = new Size(134, 23);
@@ -646,7 +689,7 @@
             // 
             // LicensePlateTextBox
             // 
-            LicensePlateTextBox.Location = new Point(191, 60);
+            LicensePlateTextBox.Location = new Point(210, 58);
             LicensePlateTextBox.Margin = new Padding(3, 2, 3, 2);
             LicensePlateTextBox.MaxLength = 10;
             LicensePlateTextBox.Name = "LicensePlateTextBox";
@@ -726,7 +769,7 @@
             VehicleTypeComboBox.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
             VehicleTypeComboBox.FormattingEnabled = true;
             VehicleTypeComboBox.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
-            VehicleTypeComboBox.Location = new Point(192, 248);
+            VehicleTypeComboBox.Location = new Point(210, 247);
             VehicleTypeComboBox.Margin = new Padding(3, 2, 3, 2);
             VehicleTypeComboBox.Name = "VehicleTypeComboBox";
             VehicleTypeComboBox.Size = new Size(133, 23);
@@ -944,7 +987,7 @@
         private DataGridViewTextBoxColumn Colour;
         private DataGridViewTextBoxColumn vType;
         private RadioButton Q1_radio;
-        private RadioButton radioButton6;
+        private RadioButton Q6_radio;
         private RadioButton Q5_radio;
         private RadioButton Q4_radio;
         private RadioButton Q3_radio;
@@ -958,10 +1001,10 @@
         private Label label5;
         private ComboBox month2;
         private Label label7;
-        private ComboBox month4;
+        private ComboBox Q4_combo;
         private Label label8;
         private Label label10;
-        private ComboBox month5;
+        private ComboBox Q5_combo;
         private Label label9;
         private Button button1;
         private Label label2;
@@ -971,5 +1014,9 @@
         private Label Price;
         private ComboBox timespermonth;
         private ComboBox comboBox1;
+        private ComboBox kiloComboBox;
+        private ComboBox vinComboBox;
+        private ComboBox Q5_combo2;
+        private ComboBox Q4_combo2;
     }
 }
