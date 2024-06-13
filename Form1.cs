@@ -2,7 +2,10 @@ using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace project291
 {
@@ -16,7 +19,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = VBOX; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -560,7 +563,13 @@ namespace project291
             vehicleList.Columns.Add("Colour", "Colour");
             vehicleList.Columns.Add("vType", "Vehicle Type");
 
-            vehicleList.Columns[0].Width = 135;
+            //resize columns automatically
+            for (int x = 0; x < vehicleList.ColumnCount; x++)
+            {
+                vehicleList.Columns[x].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
+            
         }
 
         private RentalInput GetRentalInfoFromUI()
@@ -821,42 +830,110 @@ namespace project291
 
         private void Query4()
         {
-            // Ben's code here
-            // Branch that rented the most vehicles in Q4_combo Q4_combo2
+            //SELECT b.BranchID, b.BranchName, COUNT(*) AS RentalCount
+            //FROM Branch b
+            //JOIN Rental r ON r.RentedFrom = b.BranchID
+            //WHERE YEAR(r.DateRented) = 2024 AND MONTH(r.DateRented) = 6
+            //GROUP BY b.BranchID, b.BranchName;
 
-            int month = Q4_combo.SelectedIndex + 1;
-            int year = 2024 - Q4_combo2.SelectedIndex;
-
-            myCommand.CommandText = $"SELECT b.BranchID, b.BranchName, COUNT(*) AS RentalCount " +
-                                    $"FROM Branch b JOIN Rental r ON r.RentedFrom = b.BranchID " +
-                                    $"WHERE YEAR(r.DateRented) = {year} AND MONTH(r.DateRented) = {month} " +
-                                    $"GROUP BY b.BranchID, b.BranchName;";
-            MessageBox.Show(myCommand.CommandText);
-
-            myReader = myCommand.ExecuteReader();
-
-
-            vehicleList.Columns.Clear();
-            vehicleList.Columns.Add("Branch ID", "Branch ID");
-            vehicleList.Columns.Add("Branch Name", "Branch Name");
-            vehicleList.Columns.Add("Rental Count", "Rental Count");
-            vehicleList.Columns[1].Width = 135;
-
-            vehicleList.Rows.Clear();
-
-            while (myReader.Read())
+            try
             {
-                vehicleList.Rows.Add(myReader["BranchID"].ToString(),
-                                     myReader["BranchName"].ToString(),
-                                     myReader["RentalCount"].ToString());
+                int month = Q4_combo.SelectedIndex + 1;
+                int year = 2024 - Q4_combo2.SelectedIndex;
+
+                myCommand.CommandText = $"SELECT TOP 1 b.BranchID, b.BranchName, COUNT(*) AS RentalCount " +
+                                        $"FROM Branch b JOIN Rental r ON r.RentedFrom = b.BranchID " +
+                                        $"WHERE YEAR(r.DateRented) = {year} AND MONTH(r.DateRented) = {month} " +
+                                        $"GROUP BY b.BranchID, b.BranchName " +
+                                        $"ORDER BY RentalCount DESC;";
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                vehicleList.Columns.Clear();
+                vehicleList.Columns.Add("Branch ID", "Branch ID");
+                vehicleList.Columns.Add("Branch Name", "Branch Name");
+                vehicleList.Columns.Add("Rental Count", "Rental Count");
+
+                //resize columns automatically
+                for (int x = 0; x < vehicleList.ColumnCount; x++)
+                {
+                    vehicleList.Columns[x].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+
+
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["BranchID"].ToString(),
+                                         myReader["BranchName"].ToString(),
+                                         myReader["RentalCount"].ToString());
+                }
+
+                myReader.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
             }
 
-            myReader.Close();
+
         }
         private void Query5()
         {
-            // Ben's code here
-            // Vehicle type most often returned to a different branch than pick-up.
+            //SELECT b.BranchID, b.BranchName, AVG(DATEDIFF(DAY, DateRented, DateReturned)) AS AvgRentalLength
+            //FROM Branch b
+            //JOIN Rental r on r.RentedFrom = b.BranchID
+            //WHERE YEAR(r.DateRented) = 2024 AND MONTH(r.DateRented) = 6
+            //GROUP BY b.BranchID, b.BranchName;
+
+            try
+            {
+                int month = Q5_combo.SelectedIndex + 1;
+                int year = 2024 - Q5_combo2.SelectedIndex;
+
+                myCommand.CommandText = $"SELECT b.BranchID, b.BranchName, AVG(DATEDIFF(DAY, DateRented, DateReturned)) AS AvgRentalLength " +
+                                        $"FROM Branch b JOIN Rental r on r.RentedFrom = b.BranchID " +
+                                        $"WHERE YEAR(r.DateRented) = {year} AND MONTH(r.DateRented) = {month} " +
+                                        $"GROUP BY b.BranchID, b.BranchName " +
+                                        $"ORDER BY AvgRentalLength DESC;";
+
+
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                vehicleList.Columns.Clear();
+                vehicleList.Columns.Add("Branch ID", "Branch ID");
+                vehicleList.Columns.Add("Branch Name", "Branch Name");
+                vehicleList.Columns.Add("AvgRentalLength", "Average Rental Legnth in Days");
+
+                //resize columns automatically
+                for (int x = 0; x < vehicleList.ColumnCount; x++)
+                {
+                    vehicleList.Columns[x].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+
+
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["BranchID"].ToString(),
+                                         myReader["BranchName"].ToString(),
+                                         myReader["AvgRentalLength"].ToString());
+                }
+
+                myReader.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+            }
+
+
         }
         private void Query6()
         {
