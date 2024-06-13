@@ -32,7 +32,7 @@
             Reports = new TabPage();
             Q4_combo2 = new ComboBox();
             Q5_combo2 = new ComboBox();
-            comboBox1 = new ComboBox();
+            RepKilos = new ComboBox();
             timespermonth = new ComboBox();
             label2 = new Label();
             button1 = new Button();
@@ -117,7 +117,7 @@
             Reports.BackColor = SystemColors.GradientInactiveCaption;
             Reports.Controls.Add(Q4_combo2);
             Reports.Controls.Add(Q5_combo2);
-            Reports.Controls.Add(comboBox1);
+            Reports.Controls.Add(RepKilos);
             Reports.Controls.Add(timespermonth);
             Reports.Controls.Add(label2);
             Reports.Controls.Add(button1);
@@ -170,15 +170,15 @@
             Q5_combo2.TabIndex = 36;
             Q5_combo2.Text = "Year";
             // 
-            // comboBox1
+            // RepKilos
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "10000", "20000", "30000", "50000", "100000" });
-            comboBox1.Location = new Point(570, 64);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(93, 23);
-            comboBox1.TabIndex = 35;
-            comboBox1.Text = "Choose KMs";
+            RepKilos.FormattingEnabled = true;
+            RepKilos.Items.AddRange(new object[] { "10000", "20000", "30000", "50000", "100000" });
+            RepKilos.Location = new Point(570, 64);
+            RepKilos.Name = "RepKilos";
+            RepKilos.Size = new Size(93, 23);
+            RepKilos.TabIndex = 35;
+            RepKilos.Text = "Choose KMs";
             // 
             // timespermonth
             // 
@@ -1013,7 +1013,7 @@
         private Label label12;
         private Label Price;
         private ComboBox timespermonth;
-        private ComboBox comboBox1;
+        private ComboBox RepKilos;
         private ComboBox kiloComboBox;
         private ComboBox vinComboBox;
         private ComboBox Q5_combo2;

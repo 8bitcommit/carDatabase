@@ -16,7 +16,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = VBOX; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -716,20 +716,20 @@ namespace project291
             try
             {
                 Dictionary<string, string> months = new Dictionary<string, string>
-            {
-                {"January", "01" },
-                {"February", "02" },
-                {"March", "03" },
-                {"April", "04" },
-                {"May", "05" },
-                {"June", "06" },
-                {"July", "07" },
-                {"August", "08" },
-                {"September", "09" },
-                {"October", "10" },
-                {"November", "11" },
-                {"December", "12" }
-            };
+                {
+                    {"January", "01" },
+                    {"February", "02" },
+                    {"March", "03" },
+                    {"April", "04" },
+                    {"May", "05" },
+                    {"June", "06" },
+                    {"July", "07" },
+                    {"August", "08" },
+                    {"September", "09" },
+                    {"October", "10" },
+                    {"November", "11" },
+                    {"December", "12" }
+                };
 
                 string month = months[month1.Text.Trim()];
                 int rentAmt = Int32.Parse(timespermonth.Text.Trim());
@@ -770,7 +770,48 @@ namespace project291
 
         private void Query2()
         {
+            try
+            {
+                int kilos = Int32.Parse(RepKilos.Text.Trim());
+                string branch = Pop_branch.Text.Trim();
 
+                myCommand.CommandText = $"Select BranchID from Branch where BranchName = '{branch}'";
+                myReader = myCommand.ExecuteReader();
+                myReader.Read();
+                string branchID = myReader["BranchID"].ToString();
+                myReader.Close();
+
+                // Query : select * from Vehicle where VIN in(select VIN from Rental where ReturnedTo = '5000' group by VIN having count(*) = (select max(amt) from (select VIN, count(*) as amt from Rental group by VIN) Rental))
+                
+                myCommand.CommandText = $"select * from Vehicle where VIN in " +
+                            $"(select VIN from Rental where ReturnedTo = '{branchID}' " +
+                            $"group by VIN having count(*) = " +
+                            $"(select max(amt) from (select VIN, count(*) as amt from Rental group by VIN) Rental))" +
+                            $"and Kilometers < {kilos}";
+
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                vehicle_table_columns();
+
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(),
+                                         myReader["LicensePlate"].ToString(),
+                                         myReader["Kilometers"].ToString(),
+                                         myReader["Make"].ToString(),
+                                         myReader["Model"].ToString(),
+                                         myReader["Colour"].ToString(),
+                                         myReader["vType"].ToString());
+                }
+                myReader.Close();
+            }
+            catch (Exception e6)
+            {
+                MessageBox.Show(e6.ToString(), "Error");
+            }
         }
 
         private void Query3()
