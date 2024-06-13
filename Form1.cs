@@ -624,23 +624,31 @@ namespace project291
                 kiloComboBox.Visible = false;
                 vinComboBox.Visible = false;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
 
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (Q1_radio.Checked)
             {
-                
+                Query1();
             }
             else if (Q2_radio.Checked)
             {
-                
+                Query2();
             }
             else if (Q3_radio.Checked)
             {
-                
+                Query3();
             }
             else if (Q4_radio.Checked)
             {
@@ -654,6 +662,68 @@ namespace project291
             {
 
             }
+        }
+
+        private void Query1()
+        {
+            try
+            {
+                Dictionary<string, string> months = new Dictionary<string, string>
+            {
+                {"January", "01" },
+                {"February", "02" },
+                {"March", "03" },
+                {"April", "04" },
+                {"May", "05" },
+                {"June", "06" },
+                {"July", "07" },
+                {"August", "08" },
+                {"September", "09" },
+                {"October", "10" },
+                {"November", "11" },
+                {"December", "12" }
+            };
+
+                string month = months[month1.Text.Trim()];
+                int rentAmt = Int32.Parse(timespermonth.Text.Trim());
+                // Query : select VIN from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as month) = '05') group by vType having count(*) = 1)
+                
+                myCommand.CommandText = $"select * from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as resMonth) = '{month}') group by vType having count(*) > {rentAmt})";
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(),
+                                         myReader["LicensePlate"].ToString(),
+                                         myReader["Kilometers"].ToString(),
+                                         myReader["Make"].ToString(),
+                                         myReader["Model"].ToString(),
+                                         myReader["Colour"].ToString(),
+                                         myReader["vType"].ToString());
+                }
+
+
+
+                myReader.Close();
+            }
+
+            catch (Exception e5)
+            {
+                MessageBox.Show(e5.ToString(), "Error");
+            }
+        }
+
+        private void Query2()
+        {
+
+        }
+
+        private void Query3()
+        {
+
         }
 
         private void report_4()
@@ -700,12 +770,8 @@ namespace project291
         }
         private void report_6()
         {
-            // Ben's code here
-            // Average rental length in Q5_combo per branch
+
         }
-
-
-
     }
 
 }
