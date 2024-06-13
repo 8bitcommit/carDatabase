@@ -714,7 +714,7 @@ namespace project291
             {
                 Query5();
             }
-            else if (Q5_radio.Checked)
+            else if (Q6_radio.Checked)
             {
                 Query6();
             }
@@ -937,6 +937,63 @@ namespace project291
         }
         private void Query6()
         {
+            /*
+            WITH ReturnedToDifferentBranch AS(
+                SELECT r.VIN, r.RentedFrom AS PickUpBranch, r.ReturnedTo AS ReturnBranch, v.vType
+                FROM Rental r
+                JOIN Vehicle v ON r.VIN = v.VIN
+                WHERE r.RentedFrom<> r.ReturnedTo
+            )
+            SELECT TOP 1 vType, COUNT(*) AS ReturnCount
+            FROM ReturnedToDifferentBranch
+            GROUP BY vType
+            ORDER BY ReturnCount DESC;
+            */
+
+            try
+            {
+
+                myCommand.CommandText = $"WITH ReturnedToDifferentBranch AS( " +
+                                            $"SELECT r.VIN, r.RentedFrom AS PickUpBranch, r.ReturnedTo AS ReturnBranch, v.vType " +
+                                            $"FROM Rental r JOIN Vehicle v ON r.VIN = v.VIN " +
+                                            $"WHERE r.RentedFrom<> r.ReturnedTo" +
+                                        $") " +
+                                        $"SELECT TOP 1 vType, COUNT(*) AS ReturnCount " +
+                                        $"FROM ReturnedToDifferentBranch " +
+                                        $"GROUP BY vType ORDER BY ReturnCount DESC;";
+
+
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                vehicleList.Columns.Clear();
+                vehicleList.Columns.Add("vType", "Vehicle Type");
+                vehicleList.Columns.Add("ReturnCount", "Number of Returns to different locations");
+
+                //resize columns automatically
+                for (int x = 0; x < vehicleList.ColumnCount; x++)
+                {
+                    vehicleList.Columns[x].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+
+
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["vType"].ToString(),
+                                         myReader["ReturnCount"].ToString());
+                }
+
+                myReader.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+            }
+
 
         }
     }
