@@ -526,17 +526,7 @@ namespace project291
 
                 vehicleList.Rows.Clear();
 
-                vehicleList.Columns.Clear();
-                vehicleList.Columns.Add("VIN", "VIN");
-                vehicleList.Columns.Add("LicensePlate", "License Plate");
-                vehicleList.Columns.Add("Kilometers", "Kilometers");
-                vehicleList.Columns.Add("Make", "Make");
-                vehicleList.Columns.Add("Model", "Model");
-                vehicleList.Columns.Add("Colour", "Colour");
-                vehicleList.Columns.Add("vType", "Vehicle Type");
-
-
-
+                vehicle_table_columns();
 
                 while (myReader.Read())
                 {
@@ -550,7 +540,6 @@ namespace project291
                 }
 
 
-
                 myReader.Close();
             }
             catch (Exception e)
@@ -558,6 +547,20 @@ namespace project291
                 ShowError("Error: " + e.Message);
             }
 
+        }
+
+        private void vehicle_table_columns()
+        {
+            vehicleList.Columns.Clear();
+            vehicleList.Columns.Add("VIN", "VIN");
+            vehicleList.Columns.Add("LicensePlate", "License Plate");
+            vehicleList.Columns.Add("Kilometers", "Kilometers");
+            vehicleList.Columns.Add("Make", "Make");
+            vehicleList.Columns.Add("Model", "Model");
+            vehicleList.Columns.Add("Colour", "Colour");
+            vehicleList.Columns.Add("vType", "Vehicle Type");
+
+            vehicleList.Columns[0].Width = 135;
         }
 
         private RentalInput GetRentalInfoFromUI()
@@ -696,15 +699,15 @@ namespace project291
             }
             else if (Q4_radio.Checked)
             {
-                report_4();
+                Query4();
             }
             else if (Q5_radio.Checked)
             {
-
+                Query5();
             }
             else if (Q5_radio.Checked)
             {
-
+                Query6();
             }
         }
 
@@ -732,12 +735,17 @@ namespace project291
                 int rentAmt = Int32.Parse(timespermonth.Text.Trim());
                 // Query : select VIN from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as month) = '05') group by vType having count(*) = 1)
 
-                myCommand.CommandText = $"select * from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as resMonth) = '{month}') group by vType having count(*) > {rentAmt})";
+                myCommand.CommandText = $"select * from Vehicle where vType in " +
+                                        $"(select vType from Vehicle where VIN in " +
+                                        $"(select VIN from Rental where (select Month(DateRented) as resMonth) = '{month}') " +
+                                        $"group by vType having count(*) > {rentAmt})";
                 MessageBox.Show(myCommand.CommandText);
 
                 myReader = myCommand.ExecuteReader();
 
                 vehicleList.Rows.Clear();
+                vehicle_table_columns();
+
                 while (myReader.Read())
                 {
                     vehicleList.Rows.Add(myReader["VIN"].ToString(),
@@ -770,7 +778,7 @@ namespace project291
 
         }
 
-        private void report_4()
+        private void Query4()
         {
             // Ben's code here
             // Branch that rented the most vehicles in Q4_combo Q4_combo2
@@ -791,8 +799,7 @@ namespace project291
             vehicleList.Columns.Add("Branch ID", "Branch ID");
             vehicleList.Columns.Add("Branch Name", "Branch Name");
             vehicleList.Columns.Add("Rental Count", "Rental Count");
-
-
+            vehicleList.Columns[1].Width = 135;
 
             vehicleList.Rows.Clear();
 
@@ -803,16 +810,14 @@ namespace project291
                                      myReader["RentalCount"].ToString());
             }
 
-
-
             myReader.Close();
         }
-        private void report_5()
+        private void Query5()
         {
             // Ben's code here
             // Vehicle type most often returned to a different branch than pick-up.
         }
-        private void report_6()
+        private void Query6()
         {
 
         }
