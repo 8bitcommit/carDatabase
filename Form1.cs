@@ -39,28 +39,32 @@ namespace project291
             {
                 var rentalInput = GetRentalInfoFromUI();
                 var availability = CheckRentalAvailability(rentalInput);
+                var displayTotalCost = $"${availability.TotalCost:0.00}";
 
-                var displayPrice = $"${availability.Cost.ToString("#.00")}";
+                ShowTotalCost(availability.TotalCost);
+
+                var pickupLocation = PickupComboBox.Text;
+
                 var title = "Confirm Reservation";
-                var message = $"Do you wish to confirm this reservation?\n\n{vehType.Text}Vehicle\nPick-up location: {pBranch.Text} \nDate: {PickUpPicker.Text}\nReturn location: {ReturnComboBox.Text}\nReturn Date: {DropOffPicker.Text}\nTotal days: {(DropOffPicker.Value - PickUpPicker.Value).Days} days\nPrice: {displayPrice}";
+                var message = $"Do you wish to confirm this reservation?\n\nType: {rentalInput.VehicleType}\nPick-up location: {rentalInput.PickUpLocation} \nPick-up date: {rentalInput.PickupDate.ToString("MMM d, yyyy")}\nReturn location: {rentalInput.ReturnLocation}\nReturn date: {rentalInput.DropOffDate.ToString("MMM d, yyyy")}\nTotal days: {availability.Days}\nPrice: {displayTotalCost}";
                 var buttons = MessageBoxButtons.OKCancel;
                 var result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
                     ReserveRental(rentalInput);
-                    // total will be calculated price from Database
 
-                    Price.Text = displayPrice;//display price in dollar format
-                    Price.Show();
                 }
                 else
                 {
-                    Price.Hide();
+                    OrderTotalLabel.Hide();
+                    PriceLabel.Hide();
                 }
+
+                ShowRentalSuccess("Success");
             }
             catch (Exception ex)
             {
-                ShowError(ex.ToString());
+                ShowRentalError(ex.Message);
             }
         }
 
@@ -565,49 +569,92 @@ namespace project291
 
         private RentalInput GetRentalInfoFromUI()
         {
-            return new RentalInput()
+            var rentalInput = new RentalInput()
             {
-                PickUpLocation = pBranch.Text.Trim(),
+                PickUpLocation = PickupComboBox.Text.Trim(),
                 ReturnLocation = ReturnComboBox.Text.Trim(),
-                PickupDate = PickUpPicker.Value.ToString("yyyy-MM-dd"),
-                DropOffDate = DropOffPicker.Value.ToString("yyyy-MM-dd"),
+                PickupDate = PickUpPicker.Value,
+                DropOffDate = DropOffPicker.Value,
                 VehicleType = vehType.Text.Trim(),
             };
+
+            if (!DifferentLocationCheckBox.Checked)
+            {
+                rentalInput.ReturnLocation = rentalInput.PickUpLocation;
+            }
+
+            return rentalInput;
         }
 
         //rental page
 
+        public static decimal CalculateRentalCost(int rentalDays, decimal costPerDay, decimal costPerWeek, decimal costPerMonth)
+        {
+            // Calculate the number of months, weeks, and remaining days
+            int months = rentalDays / 30;
+            int remainingDaysAfterMonths = rentalDays % 30;
+            int weeks = remainingDaysAfterMonths / 7;
+            int days = remainingDaysAfterMonths % 7;
+
+            // Calculate the total cost
+            decimal totalCost = (months * costPerMonth) + (weeks * costPerWeek) + (days * costPerDay);
+
+            return totalCost;
+        }
+
         private RentalAvailability CheckRentalAvailability(RentalInput rentalInput)
         {
-            //myCommand.CommandText = $"SELECT * From Vehicle WHERE vType = '{rentalInput.VehicleType}';";
-            // WHERE THERE ARE NO RENTALS WHERE VIN = EACHVIN AND DATE RENTED DOES NOT OVERLAP WITH TARGET DATE RANGE
             try
             {
-                myCommand.CommandText = $"SELECT * FROM VehicleType WHERE vType = 'Sedan';";
+                var pickupDate = rentalInput.PickupDate.ToString("yyyy-MM-dd");
+                var dropoffDate = rentalInput.DropOffDate.ToString("yyyy-MM-dd");
+
+                myCommand.CommandText = $"""
+                                         SELECT * 
+                                         FROM Vehicle v
+                                         JOIN VehicleType vt ON v.vType = vt.vType
+                                         WHERE v.vType = '{rentalInput.VehicleType}' 
+                                         AND NOT EXISTS (
+                                            SELECT 1
+                                         	FROM Rental r
+                                         	WHERE v.VIN = r.VIN
+                                         	AND (r.DateRented <= '{dropoffDate}' AND r.DateReturned >= '{pickupDate}')
+                                         )
+                                         """;
+
+                MessageBox.Show(myCommand.CommandText);
+
 
                 myReader = myCommand.ExecuteReader();
 
                 if (!myReader.Read())
                 {
-                    throw new Exception("No price found in database for vehicle");
+                    throw new Exception($"No available {rentalInput.VehicleType} vehicles for that date range");
                 }
+                var rentalDuration = DropOffPicker.Value - PickUpPicker.Value;
+                var rentalDays = (int)rentalDuration.TotalDays + 1;
 
                 var costPerDay = (decimal)myReader["CostPerDay"];
                 var costPerWeek = (decimal)myReader["CostPerWeek"];
                 var costPerMonth = (decimal)myReader["CostPerMonth"];
 
                 // need to actually calculate the price
+                //get num of days rented
 
                 myReader.Close();
 
-                MessageBox.Show(myCommand.CommandText);
+                var totalCost = CalculateRentalCost(rentalDays, costPerDay, costPerWeek, costPerMonth);
 
                 return new RentalAvailability()
                 {
                     Available = true,
-                    Cost = 0
+                    TotalCost = totalCost,
+                    Days = rentalDays
                 };
-
+            }
+            catch
+            {
+                throw;
             }
             finally
             {
@@ -618,14 +665,28 @@ namespace project291
             }
         }
 
-        private void ReserveRental(RentalInput rentalInput)
+        private void ReserveRental(RentalInput rentalInput, decimal totalCost, string VIN, int pickupBranchID, int dropoffBranchID)
         {
 
+            // Insert the new rental transaction with NULL values for empty fields
+            var sqlCommand = $"INSERT INTO Rental (DateRented, DateReturned, TotalPrice, VIN, RentedFrom, ReturnedTo) VALUES ({rentalInput.PickupDate.ToString("yyyy-MM-dd")}, {rentalInput.DropOffDate.ToString("yyyy-MM-dd")}, {totalCost.ToString("0.00")}, {VIN},{pickupBranchID}, {dropoffBranchID});";
+
+            // Construct the display message
+            string displayMessage = sqlCommand;
+
+            // Show the display message in a message box
+            MessageBox.Show(displayMessage);
+
+            // Execute SQL command
+            myCommand.CommandText = sqlCommand;
+            myCommand.ExecuteNonQuery();
+
+            var rowsUpdated = myCommand.ExecuteNonQuery();
+            if (rowsUpdated == 0)
+            {
+                throw new Exception("Failed to add reservation to database");
+            }
         }
-
-
-
-
 
         private void Reports_Click(object sender, EventArgs e)
         {
@@ -782,7 +843,7 @@ namespace project291
                 myReader.Close();
 
                 // Query : select * from Vehicle where VIN in(select VIN from Rental where ReturnedTo = '5000' group by VIN having count(*) = (select max(amt) from (select VIN, count(*) as amt from Rental group by VIN) Rental))
-                
+
                 myCommand.CommandText = $"select * from Vehicle where VIN in " +
                             $"(select VIN from Rental where ReturnedTo = '{branchID}' " +
                             $"group by VIN having count(*) = " +
@@ -861,6 +922,38 @@ namespace project291
         private void Query6()
         {
 
+        }
+
+        private void Price_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ShowTotalCost(decimal totalCost)
+        {
+            OrderTotalLabel.Show();
+            PriceLabel.ForeColor = Color.Green;
+            PriceLabel.Text = $"${totalCost:0.00}";
+            PriceLabel.Show();
+
+        }
+        private void ShowRentalError(string message)
+        {
+            RentalNotificationLabel.ForeColor = Color.Red;
+            RentalNotificationLabel.Text = message;
+            RentalNotificationLabel.Show();
+
+            HideRentalNotificationTimer.Stop();
+            HideRentalNotificationTimer.Start();
+        }
+
+        private void ShowRentalSuccess(string message)
+        {
+            RentalNotificationLabel.ForeColor = Color.Green;
+            RentalNotificationLabel.Text = message;
+            RentalNotificationLabel.Show();
+
+            HideRentalNotificationTimer.Stop();
+            HideRentalNotificationTimer.Start();
         }
     }
 

@@ -3,6 +3,7 @@
     public class RentalAvailability
     {
         public bool Available { get; set; }
-        public double Cost { get; set; }
+        public decimal TotalCost { get; set; }
+        public int Days { get; set; }
     }
 }

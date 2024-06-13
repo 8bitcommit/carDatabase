@@ -2,8 +2,6 @@ USE Project_group3;
 
 -- Drop foreign key constraints
 ALTER TABLE Vehicle DROP CONSTRAINT IF EXISTS FK_Vehicle_vType;
-ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_EmployeeID;
-ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_CustomerID;
 ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_VIN;
 ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_RentedFrom;
 ALTER TABLE Rental DROP CONSTRAINT IF EXISTS FK_Rental_ReturnedTo;
@@ -80,8 +78,6 @@ CREATE TABLE Rental(
     DateRented date NULL,
     DateReturned date NULL,
     TotalPrice numeric(6, 2) NULL,
-    EmployeeID int,
-    CustomerID int NULL,
     VIN nchar(17) NULL,
     RentedFrom int NULL,
     ReturnedTo int NULL
@@ -89,8 +85,6 @@ CREATE TABLE Rental(
 
 -- Add foreign key constraints
 ALTER TABLE Vehicle ADD CONSTRAINT FK_Vehicle_vType FOREIGN KEY (vType) REFERENCES VehicleType(vType);
-ALTER TABLE Rental ADD CONSTRAINT FK_Rental_EmployeeID FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID);
-ALTER TABLE Rental ADD CONSTRAINT FK_Rental_CustomerID FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID);
 ALTER TABLE Rental ADD CONSTRAINT FK_Rental_VIN FOREIGN KEY (VIN) REFERENCES Vehicle(VIN);
 ALTER TABLE Rental ADD CONSTRAINT FK_Rental_RentedFrom FOREIGN KEY (RentedFrom) REFERENCES Branch(BranchID);
 ALTER TABLE Rental ADD CONSTRAINT FK_Rental_ReturnedTo FOREIGN KEY (ReturnedTo) REFERENCES Branch(BranchID);

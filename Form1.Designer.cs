@@ -57,8 +57,9 @@
             Q2_radio = new RadioButton();
             Q1_radio = new RadioButton();
             Rental = new TabPage();
-            Price = new Label();
-            label12 = new Label();
+            RentalNotificationLabel = new Label();
+            PriceLabel = new Label();
+            OrderTotalLabel = new Label();
             vehType = new ComboBox();
             label11 = new Label();
             DifferentLocationCheckBox = new CheckBox();
@@ -67,7 +68,7 @@
             ReserveButton = new Button();
             DropOffPicker = new DateTimePicker();
             DropOffDateLabel = new Label();
-            pBranch = new ComboBox();
+            PickupComboBox = new ComboBox();
             PickUpBranchLabel = new Label();
             PickUpPicker = new DateTimePicker();
             PickUpDateLabel = new Label();
@@ -105,6 +106,7 @@
             Model = new DataGridViewTextBoxColumn();
             Colour = new DataGridViewTextBoxColumn();
             vType = new DataGridViewTextBoxColumn();
+            HideRentalNotificationTimer = new System.Windows.Forms.Timer(components);
             Reports.SuspendLayout();
             Rental.SuspendLayout();
             Car.SuspendLayout();
@@ -414,8 +416,9 @@
             // Rental
             // 
             Rental.BackColor = SystemColors.GradientInactiveCaption;
-            Rental.Controls.Add(Price);
-            Rental.Controls.Add(label12);
+            Rental.Controls.Add(RentalNotificationLabel);
+            Rental.Controls.Add(PriceLabel);
+            Rental.Controls.Add(OrderTotalLabel);
             Rental.Controls.Add(vehType);
             Rental.Controls.Add(label11);
             Rental.Controls.Add(DifferentLocationCheckBox);
@@ -424,7 +427,7 @@
             Rental.Controls.Add(ReserveButton);
             Rental.Controls.Add(DropOffPicker);
             Rental.Controls.Add(DropOffDateLabel);
-            Rental.Controls.Add(pBranch);
+            Rental.Controls.Add(PickupComboBox);
             Rental.Controls.Add(PickUpBranchLabel);
             Rental.Controls.Add(PickUpPicker);
             Rental.Controls.Add(PickUpDateLabel);
@@ -436,25 +439,39 @@
             Rental.TabIndex = 1;
             Rental.Text = "Rental";
             // 
-            // Price
+            // RentalNotificationLabel
             // 
-            Price.AutoSize = true;
-            Price.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Price.Location = new Point(643, 49);
-            Price.Name = "Price";
-            Price.Size = new Size(66, 25);
-            Price.TabIndex = 20;
-            Price.Text = "$ 0.00";
+            RentalNotificationLabel.AutoSize = true;
+            RentalNotificationLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RentalNotificationLabel.Location = new Point(216, 364);
+            RentalNotificationLabel.Name = "RentalNotificationLabel";
+            RentalNotificationLabel.Size = new Size(85, 19);
+            RentalNotificationLabel.TabIndex = 26;
+            RentalNotificationLabel.Text = "Notification";
+            RentalNotificationLabel.Visible = false;
             // 
-            // label12
+            // PriceLabel
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(520, 49);
-            label12.Name = "label12";
-            label12.Size = new Size(117, 25);
-            label12.TabIndex = 18;
-            label12.Text = "Order Total:";
+            PriceLabel.AutoSize = true;
+            PriceLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PriceLabel.Location = new Point(643, 49);
+            PriceLabel.Name = "PriceLabel";
+            PriceLabel.Size = new Size(66, 25);
+            PriceLabel.TabIndex = 20;
+            PriceLabel.Text = "$ 0.00";
+            PriceLabel.Visible = false;
+            PriceLabel.Click += Price_Click;
+            // 
+            // OrderTotalLabel
+            // 
+            OrderTotalLabel.AutoSize = true;
+            OrderTotalLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            OrderTotalLabel.Location = new Point(520, 49);
+            OrderTotalLabel.Name = "OrderTotalLabel";
+            OrderTotalLabel.Size = new Size(117, 25);
+            OrderTotalLabel.TabIndex = 18;
+            OrderTotalLabel.Text = "Order Total:";
+            OrderTotalLabel.Visible = false;
             // 
             // vehType
             // 
@@ -540,15 +557,15 @@
             DropOffDateLabel.TabIndex = 7;
             DropOffDateLabel.Text = "Enter drop-off date:";
             // 
-            // pBranch
+            // PickupComboBox
             // 
-            pBranch.FormattingEnabled = true;
-            pBranch.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
-            pBranch.Location = new Point(208, 54);
-            pBranch.Margin = new Padding(3, 2, 3, 2);
-            pBranch.Name = "pBranch";
-            pBranch.Size = new Size(133, 23);
-            pBranch.TabIndex = 5;
+            PickupComboBox.FormattingEnabled = true;
+            PickupComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton int'l Airport" });
+            PickupComboBox.Location = new Point(208, 54);
+            PickupComboBox.Margin = new Padding(3, 2, 3, 2);
+            PickupComboBox.Name = "PickupComboBox";
+            PickupComboBox.Size = new Size(133, 23);
+            PickupComboBox.TabIndex = 5;
             // 
             // PickUpBranchLabel
             // 
@@ -918,6 +935,10 @@
             vType.Name = "vType";
             vType.ReadOnly = true;
             // 
+            // HideRentalNotificationTimer
+            // 
+            HideRentalNotificationTimer.Interval = 5000;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -949,7 +970,7 @@
         private Button ReserveButton;
         private DateTimePicker DropOffPicker;
         private Label DropOffDateLabel;
-        private ComboBox pBranch;
+        private ComboBox PickupComboBox;
         private Label PickUpBranchLabel;
         private DateTimePicker PickUpPicker;
         private Label PickUpDateLabel;
@@ -1010,13 +1031,15 @@
         private Label label2;
         private ComboBox vehType;
         private Label label11;
-        private Label label12;
-        private Label Price;
+        private Label OrderTotalLabel;
+        private Label PriceLabel;
         private ComboBox timespermonth;
         private ComboBox RepKilos;
         private ComboBox kiloComboBox;
         private ComboBox vinComboBox;
         private ComboBox Q5_combo2;
         private ComboBox Q4_combo2;
+        private Label RentalNotificationLabel;
+        private System.Windows.Forms.Timer HideRentalNotificationTimer;
     }
 }

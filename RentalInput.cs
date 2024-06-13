@@ -10,8 +10,8 @@ namespace project291
     {
         public string PickUpLocation { get; set; }= "";
         public string ReturnLocation { get; set; }= "";
-        public string PickupDate { get; set; } = "";
-        public string DropOffDate { get; set; } = "";
+        public DateTime PickupDate { get; set; }
+        public DateTime DropOffDate { get; set; }
         public string VehicleType { get; set; } = "";
 
     }
