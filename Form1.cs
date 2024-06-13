@@ -645,12 +645,33 @@ namespace project291
 
                 string month = months[month1.Text.Trim()];
                 int rentAmt = Int32.Parse(timespermonth.Text.Trim());
-                ShowSuccess(rentAmt + ", " + month);
                 // Query : select VIN from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as month) = '05') group by vType having count(*) = 1)
+                
+                myCommand.CommandText = $"select * from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as resMonth) = '{month}') group by vType having count(*) > {rentAmt})";
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(),
+                                         myReader["LicensePlate"].ToString(),
+                                         myReader["Kilometers"].ToString(),
+                                         myReader["Make"].ToString(),
+                                         myReader["Model"].ToString(),
+                                         myReader["Colour"].ToString(),
+                                         myReader["vType"].ToString());
+                }
+
+
+
+                myReader.Close();
             }
-            catch (Exception)
+
+            catch (Exception e5)
             {
-                MessageBox.Show("Please select an amount and month");
+                MessageBox.Show(e5.ToString(), "Error");
             }
         }
         private void Query2()
