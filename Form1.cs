@@ -16,7 +16,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = Bubbles; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -35,19 +35,32 @@ namespace project291
 
         private void ReserveButton_Click(object sender, EventArgs e)
         {
-            string title = "Confirm Reservation";
-            string message = "Do you wish to confirm this reservation?\n\n" + vehType.Text + "Vehicle\nPick-up location: " + pBranch.Text + " \nDate: " + PickUpPicker.Text + "\nReturn location: " + ReturnComboBox.Text + "\nReturn Date: " + DropOffPicker.Text + "\nTotal days: " + (DropOffPicker.Value - PickUpPicker.Value).Days.ToString() + " days";
-            MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
-            DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (result == DialogResult.OK)
+            try
             {
+                var rentalInput = GetRentalInfoFromUI();
+                var availability = CheckRentalAvailability(rentalInput);
 
-                RentVehicle();
-                // total will be calculated price from Database
-                double total = 100.00;
+                var displayPrice = $"${availability.Cost.ToString("#.00")}";
+                var title = "Confirm Reservation";
+                var message = $"Do you wish to confirm this reservation?\n\n{vehType.Text}Vehicle\nPick-up location: {pBranch.Text} \nDate: {PickUpPicker.Text}\nReturn location: {ReturnComboBox.Text}\nReturn Date: {DropOffPicker.Text}\nTotal days: {(DropOffPicker.Value - PickUpPicker.Value).Days} days\nPrice: {displayPrice}";
+                var buttons = MessageBoxButtons.OKCancel;
+                var result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.OK)
+                {
+                    ReserveRental(rentalInput);
+                    // total will be calculated price from Database
 
-                Price.Text = total.ToString("C2");//display price in dollar format
-                Price.Visible = true;
+                    Price.Text = displayPrice;//display price in dollar format
+                    Price.Show();
+                }
+                else
+                {
+                    Price.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.ToString());
             }
         }
 
@@ -515,27 +528,58 @@ namespace project291
             {
                 PickUpLocation = pBranch.Text.Trim(),
                 ReturnLocation = ReturnComboBox.Text.Trim(),
-                PickupDate = PickUpPicker.Value.ToString("yyyy-MM-dd"), //might be the way to save the date
-                DropOffDate = DropOffPicker.Text.Trim(),
+                PickupDate = PickUpPicker.Value.ToString("yyyy-MM-dd"),
+                DropOffDate = DropOffPicker.Value.ToString("yyyy-MM-dd"),
                 VehicleType = vehType.Text.Trim(),
-
             };
         }
 
         //rental page
 
-        private void RentVehicle()
+        private RentalAvailability CheckRentalAvailability(RentalInput rentalInput)
         {
-            var rentalInput = GetRentalInfoFromUI();
+            //myCommand.CommandText = $"SELECT * From Vehicle WHERE vType = '{rentalInput.VehicleType}';";
+            // WHERE THERE ARE NO RENTALS WHERE VIN = EACHVIN AND DATE RENTED DOES NOT OVERLAP WITH TARGET DATE RANGE
             try
             {
-                var dbg = 0;
+                myCommand.CommandText = $"SELECT * FROM VehicleType WHERE vType = 'Sedan';";
+
+                myReader = myCommand.ExecuteReader();
+
+                if (!myReader.Read())
+                {
+                    throw new Exception("No price found in database for vehicle");
+                }
+
+                var costPerDay = (decimal)myReader["CostPerDay"];
+                var costPerWeek = (decimal)myReader["CostPerWeek"];
+                var costPerMonth = (decimal)myReader["CostPerMonth"];
+
+                // need to actually calculate the price
+
+                myReader.Close();
+
+                MessageBox.Show(myCommand.CommandText);
+
+                return new RentalAvailability()
+                {
+                    Available = true,
+                    Cost = 0
+                };
 
             }
-            catch (Exception e)
+            finally
             {
-
+                if (!myReader.IsClosed)
+                {
+                    myReader.Close();
+                }
             }
+        }
+
+        private void ReserveRental(RentalInput rentalInput)
+        {
+
         }
 
 
@@ -646,7 +690,7 @@ namespace project291
                 string month = months[month1.Text.Trim()];
                 int rentAmt = Int32.Parse(timespermonth.Text.Trim());
                 // Query : select VIN from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as month) = '05') group by vType having count(*) = 1)
-                
+
                 myCommand.CommandText = $"select * from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as resMonth) = '{month}') group by vType having count(*) > {rentAmt})";
                 MessageBox.Show(myCommand.CommandText);
 
