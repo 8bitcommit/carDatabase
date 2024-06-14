@@ -116,16 +116,16 @@ VALUES
 
 INSERT INTO Branch(BranchName, PhoneNumber,UnitNum,Street, City,Province, PostalCode)
 VALUES
-('Whyte Avenue','555-5000',12,'whyte','Edmonton','AB','T5T1S4'),
-('Jasper Avenue','555-5001',12,'jasper','Edmonton','AB','T5T1S5'),
-('North side','555-5002',12,'137 ave','Edmonton','AB','T5T1S6'),
-('South side','555-5003',12,'34 ave','Edmonton','AB','T5T1S7'),
-('YEG Edmonton int''l Airport','555-5004',12,'Airport Rd','Nisku','AB','T5T1S8');
+('Whyte Avenue','780-555-5000',12,'Whyte Ave','Edmonton','AB','T5T1T4'),
+('Jasper Avenue','780-555-5001',12,'Jasper Ave','Edmonton','AB','T5T1T5'),
+('North Side','780-555-5002',12,'137 Ave','Edmonton','AB','T5T1T6'),
+('South Side','780-555-5003',12,'34 Ave','Edmonton','AB','T5T1T7'),
+('YEG Edmonton Int''l Airport','780-555-5004',12,'Airport Rd','Nisku','AB','T5T1T8');
 
-INSERT INTO Rental(DateRented,DateReturned, VIN ,RentedFrom,ReturnedTo)
+INSERT INTO Rental(DateRented,DateReturned,TotalPrice, VIN,RentedFrom,ReturnedTo)
 VALUES
-('2024/05/20','2024/05/21','1FA6P8TH0J5132526',5000,5000),
-('2024/06/20','2024/06/27','1FA6P8TH0J5132526',5000,5001),
-('2024/03/5','2024/03/15','1FA6P8TH0J5132526',5002,5000);
+('2024/05/20','2024/05/21',120,'1FA6P8TH0J5132526',5000,5000),
+('2024/06/20','2024/06/27',720,'1FA6P8TH0J5132526',5000,5001),
+('2024/03/5','2024/03/15',1080,'1FA6P8TH0J5132526',5002,5000);
 
 

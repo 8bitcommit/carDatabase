@@ -1,11 +1,4 @@
 using Microsoft.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Reflection;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
 
 namespace project291
 {
@@ -28,10 +21,29 @@ namespace project291
                 myConnection.Open(); // Open connection
                 myCommand = new SqlCommand();
                 myCommand.Connection = myConnection; // Link the command stream to the connection
+
+                myCommand.CommandText = $"SELECT * FROM branch";
+                using var myReader = myCommand.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    var branch = new Branch()
+                    {
+                        Name = ((string)myReader["BranchName"]).Trim(),
+                        Id = (int)myReader["BranchID"]
+                    };
+
+                    PickupComboBox.Items.Add(branch);
+                    ReturnComboBox.Items.Add(branch);
+                }
+
+                PickupComboBox.SelectedIndex = 0;
+                ReturnComboBox.SelectedIndex = 0;
+                RentalVehicleTypeComboBox.SelectedIndex = 0;
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString(), "Error");
+                MessageBox.Show(e.Message, "Error");
                 this.Close();
             }
         }
@@ -54,8 +66,7 @@ namespace project291
                 var result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
-                    ReserveRental(rentalInput);
-
+                    ReserveRental(rentalInput,availability.TotalCost, availability.VIN);
                 }
                 else
                 {
@@ -580,11 +591,11 @@ namespace project291
         {
             var rentalInput = new RentalInput()
             {
-                PickUpLocation = PickupComboBox.Text.Trim(),
-                ReturnLocation = ReturnComboBox.Text.Trim(),
+                PickUpLocation = (Branch)PickupComboBox.SelectedItem!,
+                ReturnLocation = (Branch)ReturnComboBox.SelectedItem!,
                 PickupDate = PickUpPicker.Value,
                 DropOffDate = DropOffPicker.Value,
-                VehicleType = vehType.Text.Trim(),
+                VehicleType = RentalVehicleTypeComboBox.Text.Trim(),
             };
 
             if (!DifferentLocationCheckBox.Checked)
@@ -646,6 +657,7 @@ namespace project291
                 var costPerDay = (decimal)myReader["CostPerDay"];
                 var costPerWeek = (decimal)myReader["CostPerWeek"];
                 var costPerMonth = (decimal)myReader["CostPerMonth"];
+                var VIN = (string)myReader["VIN"];
 
                 // need to actually calculate the price
                 //get num of days rented
@@ -658,7 +670,8 @@ namespace project291
                 {
                     Available = true,
                     TotalCost = totalCost,
-                    Days = rentalDays
+                    Days = rentalDays,
+                    VIN = VIN
                 };
             }
             catch
@@ -674,11 +687,11 @@ namespace project291
             }
         }
 
-        private void ReserveRental(RentalInput rentalInput, decimal totalCost, string VIN, int pickupBranchID, int dropoffBranchID)
+        private void ReserveRental(RentalInput rentalInput, decimal totalCost, string VIN)
         {
 
             // Insert the new rental transaction with NULL values for empty fields
-            var sqlCommand = $"INSERT INTO Rental (DateRented, DateReturned, TotalPrice, VIN, RentedFrom, ReturnedTo) VALUES ({rentalInput.PickupDate.ToString("yyyy-MM-dd")}, {rentalInput.DropOffDate.ToString("yyyy-MM-dd")}, {totalCost.ToString("0.00")}, {VIN},{pickupBranchID}, {dropoffBranchID});";
+            var sqlCommand = $"INSERT INTO Rental (DateRented, DateReturned, TotalPrice, VIN, RentedFrom, ReturnedTo) VALUES ('{rentalInput.PickupDate:yyyy-MM-dd}', '{rentalInput.DropOffDate:yyyy-MM-dd}', {totalCost:0.00}, '{VIN}',{rentalInput.PickUpLocation.Id}, {rentalInput.ReturnLocation.Id});";
 
             // Construct the display message
             string displayMessage = sqlCommand;
@@ -688,43 +701,12 @@ namespace project291
 
             // Execute SQL command
             myCommand.CommandText = sqlCommand;
-            myCommand.ExecuteNonQuery();
 
             var rowsUpdated = myCommand.ExecuteNonQuery();
             if (rowsUpdated == 0)
             {
                 throw new Exception("Failed to add reservation to database");
             }
-        }
-
-        private void Reports_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void SearchRadioButton_CheckedChanged(object sender, EventArgs e)

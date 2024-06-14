@@ -60,7 +60,7 @@
             RentalNotificationLabel = new Label();
             PriceLabel = new Label();
             OrderTotalLabel = new Label();
-            vehType = new ComboBox();
+            RentalVehicleTypeComboBox = new ComboBox();
             label11 = new Label();
             DifferentLocationCheckBox = new CheckBox();
             ReturnComboBox = new ComboBox();
@@ -150,7 +150,6 @@
             Reports.Size = new Size(777, 407);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
-            Reports.Click += Reports_Click;
             // 
             // Q4_combo2
             // 
@@ -221,7 +220,6 @@
             label10.Size = new Size(364, 15);
             label10.TabIndex = 31;
             label10.Text = "Vehicle type most often returned to a different branch than pick-up.";
-            label10.Click += label10_Click;
             // 
             // Q5_combo
             // 
@@ -260,7 +258,6 @@
             label8.Size = new Size(216, 15);
             label8.TabIndex = 27;
             label8.Text = "Branch that rented the most vehicles in ";
-            label8.Click += label8_Click;
             // 
             // month2
             // 
@@ -280,7 +277,6 @@
             label7.Size = new Size(233, 15);
             label7.TabIndex = 25;
             label7.Text = "Branches where no vehicles are available in";
-            label7.Click += label7_Click;
             // 
             // label6
             // 
@@ -308,7 +304,6 @@
             label4.Size = new Size(180, 15);
             label4.TabIndex = 20;
             label4.Text = "Most popular vehicle returned to";
-            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -338,7 +333,6 @@
             label1.Size = new Size(256, 15);
             label1.TabIndex = 9;
             label1.Text = "Vehicles where Vehicle type is rented more than";
-            label1.Click += label1_Click;
             // 
             // Pop_branch
             // 
@@ -419,7 +413,7 @@
             Rental.Controls.Add(RentalNotificationLabel);
             Rental.Controls.Add(PriceLabel);
             Rental.Controls.Add(OrderTotalLabel);
-            Rental.Controls.Add(vehType);
+            Rental.Controls.Add(RentalVehicleTypeComboBox);
             Rental.Controls.Add(label11);
             Rental.Controls.Add(DifferentLocationCheckBox);
             Rental.Controls.Add(ReturnComboBox);
@@ -473,16 +467,16 @@
             OrderTotalLabel.Text = "Order Total:";
             OrderTotalLabel.Visible = false;
             // 
-            // vehType
+            // RentalVehicleTypeComboBox
             // 
-            vehType.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
-            vehType.FormattingEnabled = true;
-            vehType.Items.AddRange(new object[] { "", "Sports", "Truck", "SUV", "Sedan", "Electric" });
-            vehType.Location = new Point(216, 303);
-            vehType.Margin = new Padding(3, 2, 3, 2);
-            vehType.Name = "vehType";
-            vehType.Size = new Size(133, 23);
-            vehType.TabIndex = 17;
+            RentalVehicleTypeComboBox.AutoCompleteCustomSource.AddRange(new string[] { "Compact", "Sedan", "SUV", "Mini-Van", "Truck" });
+            RentalVehicleTypeComboBox.FormattingEnabled = true;
+            RentalVehicleTypeComboBox.Items.AddRange(new object[] { "Sports", "Truck", "SUV", "Sedan", "Electric" });
+            RentalVehicleTypeComboBox.Location = new Point(216, 303);
+            RentalVehicleTypeComboBox.Margin = new Padding(3, 2, 3, 2);
+            RentalVehicleTypeComboBox.Name = "RentalVehicleTypeComboBox";
+            RentalVehicleTypeComboBox.Size = new Size(133, 23);
+            RentalVehicleTypeComboBox.TabIndex = 17;
             // 
             // label11
             // 
@@ -508,7 +502,6 @@
             // ReturnComboBox
             // 
             ReturnComboBox.FormattingEnabled = true;
-            ReturnComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton Int'l Airport" });
             ReturnComboBox.Location = new Point(207, 142);
             ReturnComboBox.Margin = new Padding(3, 2, 3, 2);
             ReturnComboBox.Name = "ReturnComboBox";
@@ -560,7 +553,6 @@
             // PickupComboBox
             // 
             PickupComboBox.FormattingEnabled = true;
-            PickupComboBox.Items.AddRange(new object[] { "Whyte Avenue", "Jasper Avenue", "North side", "South side", "YEG Edmonton int'l Airport" });
             PickupComboBox.Location = new Point(208, 54);
             PickupComboBox.Margin = new Padding(3, 2, 3, 2);
             PickupComboBox.Name = "PickupComboBox";
@@ -1029,7 +1021,7 @@
         private Label label9;
         private Button button1;
         private Label label2;
-        private ComboBox vehType;
+        private ComboBox RentalVehicleTypeComboBox;
         private Label label11;
         private Label OrderTotalLabel;
         private Label PriceLabel;
