@@ -477,7 +477,6 @@ namespace project291
                     {
                         search.Add($"VIN like '%{carInput.VIN}%'");
                     }
-
                 }
 
                 if (carInput.LicensePlate != "")
@@ -723,16 +722,6 @@ namespace project291
                 kiloComboBox.Visible = false;
                 vinComboBox.Visible = false;
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1040,10 +1029,6 @@ namespace project291
 
         }
 
-        private void Price_Click(object sender, EventArgs e)
-        {
-
-        }
         private void ShowTotalCost(decimal totalCost)
         {
             OrderTotalLabel.Show();

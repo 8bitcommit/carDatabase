@@ -454,7 +454,6 @@
             PriceLabel.TabIndex = 20;
             PriceLabel.Text = "$ 0.00";
             PriceLabel.Visible = false;
-            PriceLabel.Click += Price_Click;
             // 
             // OrderTotalLabel
             // 
