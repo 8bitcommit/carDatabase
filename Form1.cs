@@ -12,7 +12,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = SAPHIA_WINDOW; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -783,11 +783,11 @@ namespace project291
 
                 string month = months[month1.Text.Trim()];
                 int rentAmt = Int32.Parse(timespermonth.Text.Trim());
-                // Query : select VIN from Vehicle where vType in (select vType from Vehicle where VIN in (select VIN from Rental where (select Month(DateRented) as month) = '05') group by vType having count(*) = 1)
+                // Query : select * from Vehicle where vType in (select vehicle.vType from Vehicle inner join Rental on Vehicle.VIN = Rental.VIN where (select Month(DateRented) as month) = '{month}' group by vehicle.vType having count(*) > {rentAmt})
 
                 myCommand.CommandText = $"select * from Vehicle where vType in " +
-                                        $"(select vType from Vehicle where VIN in " +
-                                        $"(select VIN from Rental where (select Month(DateRented) as resMonth) = '{month}') " +
+                                        $"(select vType from Vehicle inner join Rental on Vehicle.VIN = Rental.VIN where " +
+                                        $"(select Month(DateRented) as month) = '{month}' " +
                                         $"group by vType having count(*) > {rentAmt})";
                 MessageBox.Show(myCommand.CommandText);
 
