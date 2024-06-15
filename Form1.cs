@@ -12,7 +12,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = SAPHIA_WINDOW; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -50,9 +50,18 @@ namespace project291
 
         private void ReserveButton_Click(object sender, EventArgs e)
         {
+
+            // Get rental input from UI
+            var rentalInput = GetRentalInfoFromUI();
+
+            // Validate pickup and return dates
+            if (rentalInput.PickupDate >= rentalInput.DropOffDate)
+            {
+                ShowRentalError("Pickup date must be before return date.");
+                return;
+            }
             try
             {
-                var rentalInput = GetRentalInfoFromUI();
                 var availability = CheckRentalAvailability(rentalInput);
                 var displayTotalCost = $"${availability.TotalCost:0.00}";
 
@@ -66,7 +75,7 @@ namespace project291
                 var result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (result == DialogResult.OK)
                 {
-                    ReserveRental(rentalInput,availability.TotalCost, availability.VIN);
+                    ReserveRental(rentalInput, availability.TotalCost, availability.VIN);
                 }
                 else
                 {
@@ -583,7 +592,7 @@ namespace project291
                 vehicleList.Columns[x].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
 
-            
+
         }
 
         private RentalInput GetRentalInfoFromUI()

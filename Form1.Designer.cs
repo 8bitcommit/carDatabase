@@ -965,7 +965,6 @@
         }
 
         #endregion
-        private TabPage tabPage3;
         private TabPage Reports;
         private TabPage Rental;
         private ComboBox ReturnComboBox;
