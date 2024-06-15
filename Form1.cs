@@ -827,7 +827,7 @@ namespace project291
                 myCommand.CommandText = $"select * from Vehicle where VIN in " +
                             $"(select VIN from Rental where ReturnedTo = '{branchID}' " +
                             $"group by VIN having count(*) = " +
-                            $"(select max(amt) from (select VIN, count(*) as amt from Rental group by VIN) Rental))" +
+                            $"(select max(amt) from (select VIN, count(*) as amt from Rental where ReturnedTo = '{branchID}' group by VIN) Rental))" +
                             $"and Kilometers < {kilos}";
 
                 MessageBox.Show(myCommand.CommandText);
