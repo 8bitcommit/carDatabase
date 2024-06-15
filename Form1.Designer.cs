@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             Reports = new TabPage();
+            Q3_combo2 = new ComboBox();
             Q4_combo2 = new ComboBox();
             Q5_combo2 = new ComboBox();
             RepKilos = new ComboBox();
@@ -41,7 +42,7 @@
             label9 = new Label();
             Q4_combo = new ComboBox();
             label8 = new Label();
-            month2 = new ComboBox();
+            Q3_combo1 = new ComboBox();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -117,6 +118,7 @@
             // Reports
             // 
             Reports.BackColor = SystemColors.GradientInactiveCaption;
+            Reports.Controls.Add(Q3_combo2);
             Reports.Controls.Add(Q4_combo2);
             Reports.Controls.Add(Q5_combo2);
             Reports.Controls.Add(RepKilos);
@@ -128,7 +130,7 @@
             Reports.Controls.Add(label9);
             Reports.Controls.Add(Q4_combo);
             Reports.Controls.Add(label8);
-            Reports.Controls.Add(month2);
+            Reports.Controls.Add(Q3_combo1);
             Reports.Controls.Add(label7);
             Reports.Controls.Add(label6);
             Reports.Controls.Add(label5);
@@ -150,6 +152,16 @@
             Reports.Size = new Size(777, 407);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
+            // 
+            // Q3_combo2
+            // 
+            Q3_combo2.FormattingEnabled = true;
+            Q3_combo2.Items.AddRange(new object[] { "2024", "2023", "2022", "2021", "2020" });
+            Q3_combo2.Location = new Point(404, 107);
+            Q3_combo2.Name = "Q3_combo2";
+            Q3_combo2.Size = new Size(121, 23);
+            Q3_combo2.TabIndex = 38;
+            Q3_combo2.Text = "Year";
             // 
             // Q4_combo2
             // 
@@ -259,24 +271,24 @@
             label8.TabIndex = 27;
             label8.Text = "Branch that rented the most vehicles in ";
             // 
-            // month2
+            // Q3_combo1
             // 
-            month2.FormattingEnabled = true;
-            month2.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            month2.Location = new Point(372, 106);
-            month2.Name = "month2";
-            month2.Size = new Size(121, 23);
-            month2.TabIndex = 26;
-            month2.Text = "Month";
+            Q3_combo1.FormattingEnabled = true;
+            Q3_combo1.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
+            Q3_combo1.Location = new Point(277, 106);
+            Q3_combo1.Name = "Q3_combo1";
+            Q3_combo1.Size = new Size(121, 23);
+            Q3_combo1.TabIndex = 26;
+            Q3_combo1.Text = "Month";
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Location = new Point(105, 109);
             label7.Name = "label7";
-            label7.Size = new Size(233, 15);
+            label7.Size = new Size(166, 15);
             label7.TabIndex = 25;
-            label7.Text = "Branches where no vehicles are available in";
+            label7.Text = "Vehicles that went unrented in";
             // 
             // label6
             // 
@@ -1011,7 +1023,7 @@
         private Label label3;
         private Label label6;
         private Label label5;
-        private ComboBox month2;
+        private ComboBox Q3_combo1;
         private Label label7;
         private ComboBox Q4_combo;
         private Label label8;
@@ -1032,5 +1044,6 @@
         private ComboBox Q4_combo2;
         private Label RentalNotificationLabel;
         private System.Windows.Forms.Timer HideRentalNotificationTimer;
+        private ComboBox Q3_combo2;
     }
 }

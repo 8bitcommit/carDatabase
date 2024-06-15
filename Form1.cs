@@ -12,7 +12,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = VBOX; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -857,7 +857,38 @@ namespace project291
 
         private void Query3()
         {
+            int month = Q3_combo1.SelectedIndex + 1;
+            int year = 2024 - Q3_combo2.SelectedIndex;
+            // Query : select * from Vehicle except (select * from Vehicle where VIN in (select VIN from Rental where Month(DateRented) = '{month}' and Year(DateRented) = '{year}')
+            try
+            {
+                myCommand.CommandText = $"select * from Vehicle except " +
+                            $"(select * from Vehicle where VIN in " +
+                            $"(select VIN from Rental where Month(DateRented) = '{month}' and Year(DateRented) = '{year}'))";
 
+                MessageBox.Show(myCommand.CommandText);
+
+                myReader = myCommand.ExecuteReader();
+
+                vehicleList.Rows.Clear();
+                vehicle_table_columns();
+
+                while (myReader.Read())
+                {
+                    vehicleList.Rows.Add(myReader["VIN"].ToString(),
+                                         myReader["LicensePlate"].ToString(),
+                                         myReader["Kilometers"].ToString(),
+                                         myReader["Make"].ToString(),
+                                         myReader["Model"].ToString(),
+                                         myReader["Colour"].ToString(),
+                                         myReader["vType"].ToString());
+                }
+                myReader.Close();
+            }
+            catch (Exception e7)
+            {
+                MessageBox.Show(e7.ToString(), "Error");
+            }
         }
 
         private void Query4()
