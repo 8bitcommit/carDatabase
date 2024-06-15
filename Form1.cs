@@ -815,8 +815,10 @@ namespace project291
             {
                 int kilos = Int32.Parse(RepKilos.Text.Trim());
                 string branch = Pop_branch.Text.Trim();
+                branch = branch.Replace("'", "\''");
 
                 myCommand.CommandText = $"Select BranchID from Branch where BranchName = '{branch}'";
+                
                 myReader = myCommand.ExecuteReader();
                 myReader.Read();
                 string branchID = myReader["BranchID"].ToString();
