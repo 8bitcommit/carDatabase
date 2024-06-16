@@ -197,7 +197,7 @@
             // 
             timespermonth.FormattingEnabled = true;
             timespermonth.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            timespermonth.Location = new Point(391, 24);
+            timespermonth.Location = new Point(582, 24);
             timespermonth.Name = "timespermonth";
             timespermonth.Size = new Size(37, 23);
             timespermonth.TabIndex = 34;
@@ -320,17 +320,17 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(454, 27);
+            label3.Location = new Point(625, 27);
             label3.Name = "label3";
-            label3.Size = new Size(49, 15);
+            label3.Size = new Size(36, 15);
             label3.TabIndex = 19;
-            label3.Text = "times in";
+            label3.Text = "times";
             // 
             // month1
             // 
             month1.FormattingEnabled = true;
             month1.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            month1.Location = new Point(526, 21);
+            month1.Location = new Point(217, 24);
             month1.Name = "month1";
             month1.Size = new Size(121, 23);
             month1.TabIndex = 17;
@@ -342,9 +342,9 @@
             label1.Location = new Point(105, 27);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
-            label1.Size = new Size(256, 15);
+            label1.Size = new Size(471, 15);
             label1.TabIndex = 9;
-            label1.Text = "Vehicles where Vehicle type is rented more than";
+            label1.Text = "Vehicles rented in                                                where that vehicle type is rented more than";
             // 
             // Pop_branch
             // 

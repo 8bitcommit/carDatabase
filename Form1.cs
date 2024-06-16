@@ -788,7 +788,8 @@ namespace project291
                 myCommand.CommandText = $"select * from Vehicle where vType in " +
                                         $"(select vType from Vehicle inner join Rental on Vehicle.VIN = Rental.VIN where " +
                                         $"(select Month(DateRented) as month) = '{month}' " +
-                                        $"group by vType having count(*) > {rentAmt})";
+                                        $"group by vType having count(*) > {rentAmt})" + 
+                                        $"and VIN in (select VIN from Rental where (select Month(DateRented) as month) = '06')";
                 MessageBox.Show(myCommand.CommandText);
 
                 myReader = myCommand.ExecuteReader();
