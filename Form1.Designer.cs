@@ -152,12 +152,13 @@
             Reports.Size = new Size(777, 407);
             Reports.TabIndex = 3;
             Reports.Text = "Reports";
+            Reports.Click += Reports_Click;
             // 
             // Q3_combo2
             // 
             Q3_combo2.FormattingEnabled = true;
             Q3_combo2.Items.AddRange(new object[] { "2024", "2023", "2022", "2021", "2020" });
-            Q3_combo2.Location = new Point(404, 107);
+            Q3_combo2.Location = new Point(417, 107);
             Q3_combo2.Name = "Q3_combo2";
             Q3_combo2.Size = new Size(121, 23);
             Q3_combo2.TabIndex = 38;
@@ -177,7 +178,7 @@
             // 
             Q5_combo2.FormattingEnabled = true;
             Q5_combo2.Items.AddRange(new object[] { "2024", "2023", "2022", "2021", "2020" });
-            Q5_combo2.Location = new Point(360, 197);
+            Q5_combo2.Location = new Point(370, 197);
             Q5_combo2.Name = "Q5_combo2";
             Q5_combo2.Size = new Size(60, 23);
             Q5_combo2.TabIndex = 36;
@@ -197,7 +198,7 @@
             // 
             timespermonth.FormattingEnabled = true;
             timespermonth.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            timespermonth.Location = new Point(582, 24);
+            timespermonth.Location = new Point(603, 24);
             timespermonth.Name = "timespermonth";
             timespermonth.Size = new Size(37, 23);
             timespermonth.TabIndex = 34;
@@ -206,7 +207,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(426, 199);
+            label2.Location = new Point(452, 199);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
             label2.TabIndex = 33;
@@ -237,7 +238,7 @@
             // 
             Q5_combo.FormattingEnabled = true;
             Q5_combo.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            Q5_combo.Location = new Point(247, 196);
+            Q5_combo.Location = new Point(257, 196);
             Q5_combo.Name = "Q5_combo";
             Q5_combo.Size = new Size(91, 23);
             Q5_combo.TabIndex = 30;
@@ -275,7 +276,7 @@
             // 
             Q3_combo1.FormattingEnabled = true;
             Q3_combo1.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" });
-            Q3_combo1.Location = new Point(277, 106);
+            Q3_combo1.Location = new Point(290, 106);
             Q3_combo1.Name = "Q3_combo1";
             Q3_combo1.Size = new Size(121, 23);
             Q3_combo1.TabIndex = 26;
@@ -320,7 +321,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(625, 27);
+            label3.Location = new Point(646, 27);
             label3.Name = "label3";
             label3.Size = new Size(36, 15);
             label3.TabIndex = 19;

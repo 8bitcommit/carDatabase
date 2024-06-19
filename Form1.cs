@@ -12,7 +12,7 @@ namespace project291
         public Form1()
         {
             InitializeComponent();
-            string connectionString = "Server = DESKTOP-5REHQJV; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
+            string connectionString = "Server = LAPTOP-ITDAE565\\SQLEXPRESS; Database = Project_group3; Trusted_Connection = yes; TrustServerCertificate=true;";
 
             var myConnection = new SqlConnection(connectionString); // Timeout in seconds
 
@@ -788,7 +788,7 @@ namespace project291
                 myCommand.CommandText = $"select * from Vehicle where vType in " +
                                         $"(select vType from Vehicle inner join Rental on Vehicle.VIN = Rental.VIN where " +
                                         $"(select Month(DateRented) as month) = '{month}' " +
-                                        $"group by vType having count(*) > {rentAmt})" + 
+                                        $"group by vType having count(*) > {rentAmt})" +
                                         $"and VIN in (select VIN from Rental where (select Month(DateRented) as month) = '06')";
                 MessageBox.Show(myCommand.CommandText);
 
@@ -828,7 +828,7 @@ namespace project291
                 branch = branch.Replace("'", "\''");
 
                 myCommand.CommandText = $"Select BranchID from Branch where BranchName = '{branch}'";
-                
+
                 myReader = myCommand.ExecuteReader();
                 myReader.Read();
                 string branchID = myReader["BranchID"].ToString();
@@ -1098,6 +1098,11 @@ namespace project291
 
             HideRentalNotificationTimer.Stop();
             HideRentalNotificationTimer.Start();
+        }
+
+        private void Reports_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
